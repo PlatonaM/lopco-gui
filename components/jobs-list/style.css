@@ -1,0 +1,19 @@
+.pending {
+    color: #8A2BE2;
+}
+
+.running {
+    color: #1E90FF;
+}
+
+.finished {
+    color: #228B22;
+}
+
+.failed {
+    color: #DC143C;
+}
+
+.aborted {
+    color: #FF7F50
+}
