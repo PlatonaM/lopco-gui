@@ -19,7 +19,7 @@ export { routes as default }
 
 const routes = [
     ['jobs/active', 'jobs-list', 'Active'],
-    ['jobs/active/{job}', 'job-modal', 'Active'],
+    ['jobs/active/{job}', 'job-details', 'Active'],
     ['jobs/history', 'jobs-list', 'History'],
-    ['jobs/history/{job}', 'job-modal', 'History']
+    ['jobs/history/{job}', 'job-details', 'History']
 ];
