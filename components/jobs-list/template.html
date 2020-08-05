@@ -1,0 +1,22 @@
+<div uk-filter="target: .js-filter">
+    <ul class="uk-subnav uk-subnav-pill">
+        <li class="uk-active" uk-filter-control="sort: data-date; order: desc"><a href="#">Date</a></li>
+        {{#st_sort}}
+        <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
+        {{/st_sort}}
+        <li uk-filter-control="sort: data-ds"><a href="#">Data-Source</a></li>
+    </ul>
+    <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-text-center" uk-grid>
+        {{#jobs}}
+        <li data-date="{{created}}" data-status="{{status}}" data-ds="{{ds_id}}">
+            <div class="uk-card uk-card-default uk-card-body uk-text-left">
+                Job ID: {{id}}<br>
+                Created: {{created}}<br>
+                Datasource ID: {{ds_id}}<br>
+                Pipeline ID: {{pipeline_id}}<br>
+                Status: {{status}}<br>
+            </div>
+        </li>
+        {{/jobs}}
+    </ul>
+</div>
