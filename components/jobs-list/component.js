@@ -19,6 +19,14 @@ export { Active, History }
 class JobsList {
     constructor(ctr) {
         this.container = ctr;
+        this.color_map = {
+            pending: "#8A2BE2",
+            running: "#1E90FF",
+            finished: "#228B22",
+            failed: "#DC143C",
+            aborted: "#FF7F50"
+
+        }
     }
 
     draw(endpoint, st_sort=false) {
@@ -36,12 +44,12 @@ class JobsList {
                                     ds_id: value['machine_id'],
                                     status: value['status'],
                                     pipeline_id: value['pipeline_id'],
-                                    created: value['created']
+                                    created: value['created'],
+                                    st_color: this.color_map[value['status']]
                                 }
                             )
                         }
-                        let rendered = Mustache.render(template, {jobs: items, st_sort: st_sort});
-                        this.container.innerHTML = rendered;
+                        this.container.innerHTML = Mustache.render(template, {jobs: items, st_sort: st_sort});
                     });
             })
             .catch((err) => {
