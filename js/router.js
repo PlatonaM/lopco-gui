@@ -14,7 +14,7 @@
     limitations under the License.
 */
 
-import routes from './routes.js'
+import routes from './routes.min.js'
 
 
 const url_params = new URLSearchParams(window.location.search);
@@ -53,7 +53,7 @@ function getRoute(path) {
 if (url_params.has('trgt')) {
     const route = getRoute(url_params.get('trgt'));
     document.addEventListener('DOMContentLoaded', (event) => {
-        import('../components/' + route[0][1] + '/component.js')
+        import('../components/' + route[0][1] + '/component.min.js')
             .then((cmp) => {
                 let component = new cmp[route[0][2]](main_element);
                 component.draw(route[1]);

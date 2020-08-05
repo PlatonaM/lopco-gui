@@ -22,4 +22,4 @@ const routes = [
     ['jobs/active/{job}', 'job-modal', 'Active'],
     ['jobs/history', 'jobs-list', 'History'],
     ['jobs/history/{job}', 'job-modal', 'History']
-]
+];
