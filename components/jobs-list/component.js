@@ -18,19 +18,20 @@ export { Active, History }
 
 class JobsList {
     constructor(ctr) {
+        this.loadStyle();
         this.container = ctr;
-        this.color_map = {
-            pending: "#8A2BE2",
-            running: "#1E90FF",
-            finished: "#228B22",
-            failed: "#DC143C",
-            aborted: "#FF7F50"
-
-        }
+        this.api = 'http://localhost:8000/job-manager/'
     }
 
-    draw(endpoint, st_sort=false) {
-        fetch('http://localhost:8000/job-manager/' + endpoint)
+    loadStyle() {
+        let element = document.createElement("link");
+        element.href = "components/jobs-list/style.css";
+        element.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(element);
+    }
+
+    draw(endpoint, path, st_sort=false) {
+        fetch(this.api + endpoint)
             .then((response) => response.json())
             .then((data) => {
                 fetch('components/jobs-list/template.html')
@@ -44,12 +45,11 @@ class JobsList {
                                     ds_id: value['machine_id'],
                                     status: value['status'],
                                     pipeline_id: value['pipeline_id'],
-                                    created: value['created'],
-                                    st_color: this.color_map[value['status']]
+                                    created: value['created']
                                 }
                             )
                         }
-                        this.container.innerHTML = Mustache.render(template, {jobs: items, st_sort: st_sort});
+                        this.container.innerHTML = Mustache.render(template, {jobs: items, path: path, st_sort: st_sort});
                     });
             })
             .catch((err) => {
@@ -64,7 +64,7 @@ class Active extends JobsList {
     }
 
     draw() {
-        super.draw('jobs');
+        super.draw('jobs', 'active');
     }
 }
 
@@ -74,6 +74,6 @@ class History extends JobsList {
     }
 
     draw() {
-        super.draw('history', true);
+        super.draw('history', 'history', true);
     }
 }
