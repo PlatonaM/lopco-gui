@@ -1,0 +1,31 @@
+<div uk-filter="target: .js-filter">
+    <ul class="uk-subnav uk-subnav-pill">
+        <li class="uk-active" uk-filter-control="sort: data-name; order: desc"><a href="#">Name</a></li>
+        <li uk-filter-control="sort: data-id"><a href="#">ID</a></li>
+        <li uk-filter-control="sort: data-type"><a href="#">Type</a></li>
+    </ul>
+    <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+        {{#ds_items}}
+        <li data-id="{{id}}" data-name="{{name}}" data-type="{{type_id}}">
+            <div class="uk-card uk-card-default uk-card-body uk-padding-small">
+                <div class="uk-float-left uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+                    </div>
+                </div>
+                <div class="uk-float-right uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 72px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type_id}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 72px">PIPELINE:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="?trgt=pipelines/{{pipeline_id}}">{{pipeline_id}}</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/ds_items}}
+    </ul>
+</div>
