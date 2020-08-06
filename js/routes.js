@@ -21,5 +21,6 @@ const routes = [
     ['jobs/active', 'jobs-list', 'Active'],
     ['jobs/active/{job}', 'job-details', 'Active'],
     ['jobs/history', 'jobs-list', 'History'],
-    ['jobs/history/{job}', 'job-details', 'History']
+    ['jobs/history/{job}', 'job-details', 'History'],
+    ['data-sources/registry', 'data-sources-list', 'DSList']
 ];
