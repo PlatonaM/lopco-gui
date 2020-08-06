@@ -11,13 +11,23 @@
         <li data-date="{{created}}" data-status="{{status}}" data-ds="{{ds_id}}">
             <div class="uk-card uk-card-default uk-card-body uk-padding-small">
                 <div class="uk-float-left uk-width-1-2">
-                    <div><span class="uk-display-inline-block" style="width: 75px">Job:</span><a class="uk-link-text" href="?trgt=jobs/{{path}}/{{id}}">{{id}}</a></div>
-                    <div><span class="uk-display-inline-block" style="width: 75px">Created:</span>{{created}}</div>
-                    <div><span class="uk-display-inline-block" style="width: 75px">Status:</span><span class="{{status}}">{{status}}</span></div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 75px">JOB:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="?trgt=jobs/{{path}}/{{id}}">{{id}}</a>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 75px">CREATED:</span><span class="uk-inline uk-text-light uk-text-small">{{created}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 75px">STATUS:</span><span class="{{status}} uk-inline uk-text-light uk-text-small">{{status}}</span>
+                    </div>
                 </div>
-                <div class="uk-float-left uk-width-1-2">
-                    <div><span class="uk-display-inline-block" style="width: 110px">Data-Source:</span><a class="uk-link-text" href="?trgt=data-sources/{{ds_id}}">{{ds_id}}</a></div>
-                    <div><span class="uk-display-inline-block" style="width: 110px">Pipeline:</span><a class="uk-link-text" href="?trgt=pipelines/{{pipeline_id}}">{{pipeline_id}}</a></div>
+                <div class="uk-float-right uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 110px">DATA-SOURCE:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="?trgt=data-sources/{{ds_id}}">{{ds_id}}</a>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 110px">PIPELINE:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="?trgt=pipelines/{{pipeline_id}}">{{pipeline_id}}</a>
+                    </div>
                 </div>
             </div>
         </li>
