@@ -26,7 +26,7 @@ class DSList {
         fetch(this.api)
             .then((response) => response.json())
             .then((data) => {
-                fetch('components/data-sources-list/template.html')
+                fetch('/components/data-sources-list/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
