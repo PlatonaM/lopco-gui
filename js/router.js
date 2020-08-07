@@ -17,41 +17,42 @@
 import routes from './routes.min.js'
 
 
-const url_params = new URLSearchParams(window.location.search);
+const url = new URL(window.location);
 let main_element = document.getElementsByTagName("main")[0];
 
 
 function getRoute(path) {
     let regex = '';
-    let params = {};
+    let path_vars = {};
     let i;
     for (i = 0; i < routes.length; i++) {
         regex = '^' + routes[i][0].replace(/\//g, '\\/');
-        const path_vars = routes[i][0].match(/{.+?}/g);
-        if (path_vars) {
+        const pv_placeholders = routes[i][0].match(/{.+?}/g);
+        if (pv_placeholders) {
             let j;
-            for (j = 0; j < path_vars.length; j++) {
-                regex = regex.replace(path_vars[j], '[\\w\\-]+');
+            for (j = 0; j < pv_placeholders.length; j++) {
+                regex = regex.replace(pv_placeholders[j], '[\\w\\-]+');
             }
         }
         regex = regex + '\\/*$';
         if (path.match(regex)) {
-            if (path_vars) {
+            if (pv_placeholders) {
                 const p_items = path.split('/');
                 const r_items = routes[i][0].split('/')
                 let j;
-                for (j = 0; j < path_vars.length; j++) {
-                    params[path_vars[j].replace(/{|}/g, '')] = p_items[r_items.indexOf(path_vars[j])];
+                for (j = 0; j < pv_placeholders.length; j++) {
+                    path_vars[pv_placeholders[j].replace(/{|}/g, '')] = p_items[r_items.indexOf(pv_placeholders[j])];
                 }
             }
-            return [routes[i], params];
+            return [routes[i], path_vars];
         }
     }
     return null;
 }
 
-if (url_params.has('trgt')) {
-    const route = getRoute(url_params.get('trgt'));
+const route = getRoute(url.pathname);
+
+if (route) {
     document.addEventListener('DOMContentLoaded', (event) => {
         import('../components/' + route[0][1] + '/component.min.js')
             .then((cmp) => {
