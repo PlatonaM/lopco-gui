@@ -25,7 +25,7 @@ class JobsList {
 
     loadStyle() {
         let element = document.createElement("link");
-        element.href = "components/jobs-list/style.css";
+        element.href = "/components/jobs-list/style.css";
         element.rel = "stylesheet";
         document.getElementsByTagName("head")[0].appendChild(element);
     }
@@ -34,7 +34,7 @@ class JobsList {
         fetch(this.api + endpoint)
             .then((response) => response.json())
             .then((data) => {
-                fetch('components/jobs-list/template.html')
+                fetch('/components/jobs-list/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
