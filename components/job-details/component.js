@@ -47,7 +47,7 @@ class JobDetails {
         fetch(this.api + endpoint + j_id)
             .then((response) => response.json())
             .then((data) => {
-                fetch('components/job-details/template.html')
+                fetch('/components/job-details/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let stages = [];
