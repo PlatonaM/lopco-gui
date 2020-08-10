@@ -17,10 +17,6 @@
 import routes from './routes.min.js'
 
 
-const url = new URL(window.location);
-let main_element = document.getElementsByTagName("main")[0];
-
-
 function getRoute(path) {
     let regex = '';
     let path_vars = {};
@@ -50,14 +46,16 @@ function getRoute(path) {
     return null;
 }
 
+const url = new URL(window.location);
 const route = getRoute(url.pathname);
+let main_element = document.getElementsByTagName("main")[0];
 
 if (route) {
     document.addEventListener('DOMContentLoaded', (event) => {
         import('../components/' + route[0][1] + '/component.min.js')
             .then((cmp) => {
                 let component = new cmp[route[0][2]](main_element);
-                component.draw(route[1]);
+                component.draw(route[1]);// <-------------------------  url.searchParams !!!!!!
             })
             .catch((err) => {
                 main_element.innerHTML = err;
