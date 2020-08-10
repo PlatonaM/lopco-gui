@@ -86,7 +86,7 @@ class Active extends JobDetails {
         super(ctr);
     }
 
-    draw({job}) {
+    draw(sp, {job}) {
         super.draw('jobs/', job);
     }
 }
@@ -96,7 +96,7 @@ class History extends JobDetails {
         super(ctr);
     }
 
-    draw({job}) {
+    draw(sp, {job}) {
         super.draw('history/', job);
     }
 }
