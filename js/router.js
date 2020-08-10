@@ -55,7 +55,7 @@ if (route) {
         import('../components/' + route[0][1] + '/component.min.js')
             .then((cmp) => {
                 let component = new cmp[route[0][2]](main_element);
-                component.draw(route[1]);// <-------------------------  url.searchParams !!!!!!
+                component.draw(url.searchParams, route[1]);
             })
             .catch((err) => {
                 main_element.innerHTML = err;
