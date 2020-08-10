@@ -23,7 +23,7 @@ if (window.location.pathname) {
             let nav_items = parent_items[i].getElementsByTagName("li");
             let x;
             for (x = 0; x < nav_items.length; x++) {
-                if (window.location.pathname.includes(nav_items[x].firstChild.href)) {
+                if (window.location.href.includes(nav_items[x].firstChild.href)) {
                     nav_items[x].className += " uk-active";
                     parent_items[i].className += " uk-active";
                     return null;
