@@ -14,9 +14,8 @@
     limitations under the License.
 */
 
-const url_params = new URLSearchParams(window.location.search);
 
-if (url_params.has('trgt')) {
+if (window.location.pathname) {
     document.addEventListener('DOMContentLoaded', (event) => {
         let parent_items = document.getElementById("main-nav").getElementsByClassName("uk-parent");
         let i;
@@ -24,7 +23,7 @@ if (url_params.has('trgt')) {
             let nav_items = parent_items[i].getElementsByTagName("li");
             let x;
             for (x = 0; x < nav_items.length; x++) {
-                if (nav_items[x].firstChild.href.includes(url_params.get('trgt'))) {
+                if (window.location.pathname.includes(nav_items[x].firstChild.href)) {
                     nav_items[x].className += " uk-active";
                     parent_items[i].className += " uk-active";
                     return null;
