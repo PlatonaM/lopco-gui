@@ -30,7 +30,7 @@ class JobsList {
         document.getElementsByTagName("head")[0].appendChild(element);
     }
 
-    draw(endpoint, path, st_sort=false) {
+    draw(endpoint, path) {
         fetch(this.api + endpoint)
             .then((response) => response.json())
             .then((data) => {
@@ -49,7 +49,7 @@ class JobsList {
                                 }
                             )
                         }
-                        this.container.innerHTML = Mustache.render(template, {jobs: items, path: path, st_sort: st_sort});
+                        this.container.innerHTML = Mustache.render(template, {jobs: items, path: path});
                     });
             })
             .catch((err) => {
@@ -74,6 +74,6 @@ class History extends JobsList {
     }
 
     draw() {
-        super.draw('history', 'history', true);
+        super.draw('history', 'history');
     }
 }
