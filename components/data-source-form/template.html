@@ -1,0 +1,36 @@
+<h4 class="uk-heading-divider uk-text-light">Add new Data-Source:</h4>
+<form class="uk-form-horizontal uk-margin-medium">
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-id">Local ID</label>
+        <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-id" name="form-id" type="text" required>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-name">Name</label>
+        <div class="uk-form-controls" uk-tooltip="title: Name of Data-Source; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-name" name="form-name" type="text">
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-pipeline">Pipeline</label>
+        <div class="uk-form-controls">
+            <select class="uk-select" id="form-pipeline" name="form-pipeline" required>
+                <option value="">Please select ...</option>
+                {{#pipelines}}
+                <option value="{{p_id}}">{{p_name}} ({{p_id}})</option>
+                {{/pipelines}}
+            </select>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-type">Type ID</label>
+        <div class="uk-form-controls" uk-tooltip="title: ID of the Type corresponding to the Data-Source; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-type" name="form-type" type="text" required>
+        </div>
+    </div>
+    <div class="uk-margin uk-margin-medium-top uk-text-center">
+        <button class="uk-button uk-button-default" type="reset" onclick="return confirm('Reset all inputs?')">Reset</button>
+        <button class="uk-button uk-button-default" type="submit">Save</button>
+    </div>
+</form>
