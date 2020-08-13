@@ -61,4 +61,6 @@ if (route) {
                 main_element.innerHTML = err;
             })
     });
+} else {
+    main_element.innerHTML = 'Page not found.';
 }
