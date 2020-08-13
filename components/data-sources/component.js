@@ -21,6 +21,8 @@ import { Form } from './form/form.min.js'
 
 
 class DataSources {
+    static mr_api = 'http://localhost:8000/machine-registry/machines';
+    static pr_api = 'http://localhost:8000/pipeline-registry/pipelines';
 
     constructor(ctr) {
         this.list = new List(ctr);

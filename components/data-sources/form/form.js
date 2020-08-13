@@ -17,15 +17,12 @@
 export { Form }
 
 class Form {
-    static api = 'http://localhost:8000/machine-registry/machines';
-    static p_api = 'http://localhost:8000/pipeline-registry/pipelines';
-
     constructor(ctr) {
         this.container = ctr;
     }
 
     draw(ds_data= null) {
-        fetch(Form.p_api)
+        fetch(active_cmp.constructor.pr_api)
             .then((response) => {
                 if (response.ok) {
                     return response.json()
@@ -70,7 +67,7 @@ class Form {
     }
 
     drawEdit(ds) {
-        fetch(Form.api + '/' + ds)
+        fetch(active_cmp.constructor.mr_api + '/' + ds)
             .then((response) => {
                 if (response.ok) {
                     return response.json()
@@ -89,7 +86,7 @@ class Form {
     submit(event) {
         event.preventDefault();
         const form = new FormData(event.target);
-        fetch(Form.api + '/' + form.get('form-id'), {
+        fetch(active_cmp.constructor.mr_api + '/' + form.get('form-id'), {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

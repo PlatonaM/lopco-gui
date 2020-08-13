@@ -24,7 +24,7 @@ class List {
     }
 
     draw() {
-        fetch(List.api)
+        fetch(active_cmp.constructor.mr_api)
             .then((response) => response.json())
             .then((data) => {
                 fetch('/components/data-sources/list/template.html')
@@ -52,7 +52,7 @@ class List {
 
     delete(id) {
         if (confirm('Delete ' + id + '?')) {
-            fetch(List.api + '/' + id, {method: 'DELETE'})
+            fetch(active_cmp.constructor.mr_api + '/' + id, {method: 'DELETE'})
                 .then((response) => {
                     if (response.ok) {
                         window.open('/data-sources','_self');
