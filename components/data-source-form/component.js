@@ -14,7 +14,7 @@
     limitations under the License.
 */
 
-export { DSForm }
+export { DSForm, DSFormEdit }
 
 class DSForm {
     static api = 'http://localhost:8000/machine-registry/machines';
@@ -24,7 +24,7 @@ class DSForm {
         this.container = ctr;
     }
 
-    draw() {
+    draw(ds_data= null) {
         fetch(DSForm.p_api)
             .then((response) => response.json())
             .then((data) => {
@@ -37,17 +37,30 @@ class DSForm {
                             items.push(
                                 {
                                     p_id: key,
-                                    p_name: value['name']
+                                    p_name: value['name'],
+                                    selected: (ds_data) ? (key === ds_data['pipeline_id']) : false
                                 }
                             )
                         }
-                        this.container.innerHTML = Mustache.render(template, {pipelines: items});
+                        if (ds_data) {
+                            this.container.innerHTML = Mustache.render(
+                                template,
+                                {
+                                    pipelines: items,
+                                    ds_id: ds_data['id'],
+                                    ds_name: ds_data['name'],
+                                    ds_type: ds_data['type_id']
+                                }
+                            );
+                        } else {
+                            this.container.innerHTML = Mustache.render(template, {pipelines: items});
+                        }
                         let form = this.container.getElementsByTagName('form')[0];
                         form.addEventListener('submit', this.submit)
                     });
             })
             .catch((err) => {
-                this.container.innerHTML = err
+                this.container.innerHTML = err;
             });
     }
 
@@ -70,6 +83,30 @@ class DSForm {
             })
             .catch((error) => {
                 alert("Can't create Data-Source: " + error);
+            });
+    }
+}
+
+
+class DSFormEdit extends DSForm {
+    constructor(ctr) {
+        super(ctr);
+    }
+
+    draw(sp, {ds}) {
+        fetch(DSForm.api + '/' + ds)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving Data-Source - ' + response.status;
+            })
+            .then((data) => {
+                data['id'] = ds;
+                super.draw(data);
+            })
+            .catch((err) => {
+                this.container.innerHTML = err;
             });
     }
 }
