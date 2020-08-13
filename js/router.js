@@ -55,7 +55,7 @@ if (route) {
         import('../components/' + route[0][1] + '/component.min.js')
             .then((cmp) => {
                 window.active_cmp = new cmp[route[0][2]](main_element);
-                window.active_cmp.draw(url.searchParams, route[1]);
+                window.active_cmp.draw((url.search) ? url.searchParams : undefined, route[1]);
             })
             .catch((err) => {
                 main_element.innerHTML = err;
