@@ -83,11 +83,11 @@ class DSForm {
         })
             .then(response => response.text())
             .then((data) => {
-                alert('Data-Source created successfully!');
+                alert('Data-Source saved successfully!');
                 window.open('/data-sources/registry','_self');
             })
             .catch((error) => {
-                alert("Can't create Data-Source: " + error);
+                alert("Can't save Data-Source: " + error);
             });
     }
 }
