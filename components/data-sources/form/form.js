@@ -14,9 +14,9 @@
     limitations under the License.
 */
 
-export { DSForm, DSFormEdit }
+export { Form }
 
-class DSForm {
+class Form {
     static api = 'http://localhost:8000/machine-registry/machines';
     static p_api = 'http://localhost:8000/pipeline-registry/pipelines';
 
@@ -25,7 +25,7 @@ class DSForm {
     }
 
     draw(ds_data= null) {
-        fetch(DSForm.p_api)
+        fetch(Form.p_api)
             .then((response) => {
                 if (response.ok) {
                     return response.json()
@@ -33,7 +33,7 @@ class DSForm {
                 throw 'Error retrieving pipelines - ' + response.status;
             })
             .then((data) => {
-                fetch('/components/data-source-form/template.html')
+                fetch('/components/data-sources/form/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
@@ -69,10 +69,27 @@ class DSForm {
             });
     }
 
+    drawEdit(ds) {
+        fetch(Form.api + '/' + ds)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving Data-Source - ' + response.status;
+            })
+            .then((data) => {
+                data['id'] = ds;
+                this.draw(data);
+            })
+            .catch((err) => {
+                this.container.innerHTML = err;
+            });
+    }
+
     submit(event) {
         event.preventDefault();
         const form = new FormData(event.target);
-        fetch(DSForm.api + '/' + form.get('form-id'), {
+        fetch(Form.api + '/' + form.get('form-id'), {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -84,34 +101,10 @@ class DSForm {
             .then(response => response.text())
             .then((data) => {
                 alert('Data-Source saved successfully!');
-                window.open('/data-sources/registry','_self');
+                window.open('/data-sources','_self');
             })
             .catch((error) => {
                 alert("Can't save Data-Source: " + error);
-            });
-    }
-}
-
-
-class DSFormEdit extends DSForm {
-    constructor(ctr) {
-        super(ctr);
-    }
-
-    draw(sp, {ds}) {
-        fetch(DSForm.api + '/' + ds)
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw 'Error retrieving Data-Source - ' + response.status;
-            })
-            .then((data) => {
-                data['id'] = ds;
-                super.draw(data);
-            })
-            .catch((err) => {
-                this.container.innerHTML = err;
             });
     }
 }

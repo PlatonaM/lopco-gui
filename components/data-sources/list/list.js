@@ -14,9 +14,9 @@
     limitations under the License.
 */
 
-export { DSList }
+export { List }
 
-class DSList {
+class List {
     static api = 'http://localhost:8000/machine-registry/machines';
 
     constructor(ctr) {
@@ -24,10 +24,10 @@ class DSList {
     }
 
     draw() {
-        fetch(DSList.api)
+        fetch(List.api)
             .then((response) => response.json())
             .then((data) => {
-                fetch('/components/data-sources-list/template.html')
+                fetch('/components/data-sources/list/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
@@ -52,10 +52,10 @@ class DSList {
 
     delete(id) {
         if (confirm('Delete ' + id + '?')) {
-            fetch(DSList.api + '/' + id, {method: 'DELETE'})
+            fetch(List.api + '/' + id, {method: 'DELETE'})
                 .then((response) => {
                     if (response.ok) {
-                        window.open('/data-sources/registry','_self');
+                        window.open('/data-sources','_self');
                     } else {
                         throw response.status;
                     }
