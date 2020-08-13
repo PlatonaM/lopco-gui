@@ -49,4 +49,20 @@ class DSList {
                 this.container.innerHTML = err
             });
     }
+
+    delete(id) {
+        if (confirm('Delete ' + id + '?')) {
+            fetch(DSList.api + '/' + id, {method: 'DELETE'})
+                .then((response) => {
+                    if (response.ok) {
+                        window.open('/data-sources/registry','_self');
+                    } else {
+                        throw response.status;
+                    }
+                })
+                .catch((err) => {
+                    alert('Error deleting ' + id + ' - ' + err);
+                })
+        }
+    }
 }
