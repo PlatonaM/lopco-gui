@@ -17,13 +17,14 @@
 export { DSList }
 
 class DSList {
+    static api = 'http://localhost:8000/machine-registry/machines';
+
     constructor(ctr) {
         this.container = ctr;
-        this.api = 'http://localhost:8000/machine-registry/machines'
     }
 
     draw() {
-        fetch(this.api)
+        fetch(DSList.api)
             .then((response) => response.json())
             .then((data) => {
                 fetch('/components/data-sources-list/template.html')
