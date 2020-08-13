@@ -22,7 +22,6 @@ const routes = [
     ['/jobs/active/{job}', 'job-details', 'Active'],
     ['/jobs/history', 'jobs-list', 'History'],
     ['/jobs/history/{job}', 'job-details', 'History'],
-    ['/data-sources/registry', 'data-sources-list', 'DSList'],
-    ['/data-sources/new', 'data-source-form', 'DSForm'],
-    ['/data-sources/edit/{ds}', 'data-source-form', 'DSFormEdit']
+    ['/data-sources', 'data-sources', 'DataSources'],
+    ['/data-sources/{ds}', 'data-sources', 'DataSources']
 ];
