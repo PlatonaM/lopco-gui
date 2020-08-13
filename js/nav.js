@@ -17,17 +17,11 @@
 
 if (window.location.pathname) {
     document.addEventListener('DOMContentLoaded', (event) => {
-        let parent_items = document.getElementById("main-nav").getElementsByClassName("uk-parent");
+        let nav_items = document.getElementById("main-nav").getElementsByTagName('li');
         let i;
-        for (i = 0; i < parent_items.length; i++) {
-            let nav_items = parent_items[i].getElementsByTagName("li");
-            let x;
-            for (x = 0; x < nav_items.length; x++) {
-                if (window.location.href.includes(nav_items[x].firstChild.href)) {
-                    nav_items[x].className += " uk-active";
-                    parent_items[i].className += " uk-active";
-                    return null;
-                }
+        for (i = 0; i < nav_items.length; i++) {
+            if (window.location.href.includes(nav_items[i].firstElementChild.href)) {
+                nav_items[i].className += " uk-active";
             }
         }
     });
