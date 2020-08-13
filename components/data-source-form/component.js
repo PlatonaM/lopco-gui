@@ -26,7 +26,12 @@ class DSForm {
 
     draw(ds_data= null) {
         fetch(DSForm.p_api)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving pipelines - ' + response.status;
+            })
             .then((data) => {
                 fetch('/components/data-source-form/template.html')
                     .then((response) => response.text())
