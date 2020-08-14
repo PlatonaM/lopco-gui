@@ -4,6 +4,12 @@
         <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
         <li uk-filter-control="sort: data-ds"><a href="#">Data-Source</a></li>
         <li uk-filter-control="sort: data-pipe"><a href="#">Pipeline</a></li>
+        {{#history}}
+        <li class="uk-margin-auto-left"><a href="/jobs">Show Active</a></li>
+        {{/history}}
+        {{^history}}
+        <li class="uk-margin-auto-left"><a href="/jobs?show=history">Show History</a></li>
+        {{/history}}
     </ul>
     <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
         {{#jobs}}
@@ -11,7 +17,7 @@
             <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
                 <div class="uk-float-left uk-width-1-2">
                     <div>
-                        <span class="uk-inline uk-text-small" style="width: 75px">JOB:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="/jobs/{{path}}/{{id}}">{{id}}</a>
+                        <span class="uk-inline uk-text-small" style="width: 75px">JOB:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="/jobs/{{id}}{{#history}}?show=history{{/history}}">{{id}}</a>
                     </div>
                     <div>
                         <span class="uk-inline uk-text-small" style="width: 75px">CREATED:</span><span class="uk-inline uk-text-light uk-text-small">{{created}}</span>

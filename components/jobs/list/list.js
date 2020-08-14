@@ -14,27 +14,19 @@
     limitations under the License.
 */
 
-export { Active, History }
+export { List }
 
-class JobsList {
+
+class List {
     constructor(ctr) {
-        this.loadStyle();
         this.container = ctr;
-        this.api = '/api/job-manager/'
     }
 
-    loadStyle() {
-        let element = document.createElement("link");
-        element.href = "/components/jobs-list/style.css";
-        element.rel = "stylesheet";
-        document.getElementsByTagName("head")[0].appendChild(element);
-    }
-
-    draw(endpoint, path) {
-        fetch(this.api + endpoint)
+    draw(api, h_toggle) {
+        fetch(api)
             .then((response) => response.json())
             .then((data) => {
-                fetch('/components/jobs-list/template.html')
+                fetch('/components/jobs/list/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
@@ -49,31 +41,11 @@ class JobsList {
                                 }
                             )
                         }
-                        this.container.innerHTML = Mustache.render(template, {jobs: items, path: path});
+                        this.container.innerHTML = Mustache.render(template, {jobs: items, history: h_toggle});
                     });
             })
             .catch((err) => {
                 this.container.innerHTML = err
             });
-    }
-}
-
-class Active extends JobsList {
-    constructor(ctr) {
-        super(ctr);
-    }
-
-    draw() {
-        super.draw('jobs', 'active');
-    }
-}
-
-class History extends JobsList {
-    constructor(ctr) {
-        super(ctr);
-    }
-
-    draw() {
-        super.draw('history', 'history');
     }
 }

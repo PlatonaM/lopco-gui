@@ -14,12 +14,12 @@
     limitations under the License.
 */
 
-export { Active, History }
+export { Details }
 
-class JobDetails {
+
+class Details {
     constructor(ctr) {
         this.container = ctr;
-        this.api = '/api/job-manager/'
     }
 
     genFields(items) {
@@ -43,11 +43,11 @@ class JobDetails {
         return [fields, null_fields];
     }
 
-    draw(endpoint, j_id, st_sort=false) {
-        fetch(this.api + endpoint + j_id)
+    draw(api, j_id) {
+        fetch(api + '/' + j_id)
             .then((response) => response.json())
             .then((data) => {
-                fetch('/components/job-details/template.html')
+                fetch('/components/jobs/details/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let stages = [];
@@ -78,25 +78,5 @@ class JobDetails {
             .catch((err) => {
                 this.container.innerHTML = err
             });
-    }
-}
-
-class Active extends JobDetails {
-    constructor(ctr) {
-        super(ctr);
-    }
-
-    draw(sp, {job}) {
-        super.draw('jobs/', job);
-    }
-}
-
-class History extends JobDetails {
-    constructor(ctr) {
-        super(ctr);
-    }
-
-    draw(sp, {job}) {
-        super.draw('history/', job);
     }
 }
