@@ -62,5 +62,7 @@ if (route) {
             })
     });
 } else {
-    main_element.innerHTML = 'Page not found.';
+    if (!(url.pathname === '/')) {
+        main_element.innerHTML = 'Page not found.';
+    }
 }
