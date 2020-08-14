@@ -18,10 +18,8 @@ export { routes as default }
 
 
 const routes = [
-    ['/jobs/active', 'jobs-list', 'Active'],
-    ['/jobs/active/{job}', 'job-details', 'Active'],
-    ['/jobs/history', 'jobs-list', 'History'],
-    ['/jobs/history/{job}', 'job-details', 'History'],
+    ['/jobs', 'jobs', 'Jobs'],
+    ['/jobs/{job}', 'jobs', 'Jobs'],
     ['/data-sources', 'data-sources', 'DataSources'],
     ['/data-sources/{ds}', 'data-sources', 'DataSources']
 ];
