@@ -19,7 +19,7 @@ export { Active, History }
 class JobDetails {
     constructor(ctr) {
         this.container = ctr;
-        this.api = 'http://localhost:8000/job-manager/'
+        this.api = '/api/job-manager/'
     }
 
     genFields(items) {

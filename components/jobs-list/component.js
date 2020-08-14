@@ -20,7 +20,7 @@ class JobsList {
     constructor(ctr) {
         this.loadStyle();
         this.container = ctr;
-        this.api = 'http://localhost:8000/job-manager/'
+        this.api = '/api/job-manager/'
     }
 
     loadStyle() {

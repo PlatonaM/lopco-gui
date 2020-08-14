@@ -17,7 +17,7 @@
 export { List }
 
 class List {
-    static api = 'http://localhost:8000/machine-registry/machines';
+    static api = '/api/machine-registry/machines';
 
     constructor(ctr) {
         this.container = ctr;
