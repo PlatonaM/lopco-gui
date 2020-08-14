@@ -37,7 +37,8 @@ class List {
                                     ds_id: value['machine_id'],
                                     status: value['status'],
                                     pipeline_id: value['pipeline_id'],
-                                    created: value['created']
+                                    created: value['created'],
+                                    running: (value['status'] === 'running')
                                 }
                             )
                         }
@@ -47,5 +48,23 @@ class List {
             .catch((err) => {
                 this.container.innerHTML = err
             });
+    }
+
+    abort(job) {
+        if (confirm('Abort Job ' + job + '?')) {
+            fetch(active_cmp.constructor.jm_api + '/jobs/' + job, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({status: "aborted"})
+            })
+                .then(response => response.text())
+                .then((data) => {
+                    alert('Job aborted successfully!');
+                    window.open('/jobs','_self');
+                })
+                .catch((error) => {
+                    alert("Can't abort job: " + error);
+                });
+        }
     }
 }
