@@ -21,5 +21,7 @@ const routes = [
     ['/jobs', 'jobs', 'Jobs'],
     ['/jobs/{job}', 'jobs', 'Jobs'],
     ['/data-sources', 'data-sources', 'DataSources'],
-    ['/data-sources/{ds}', 'data-sources', 'DataSources']
+    ['/data-sources/{ds}', 'data-sources', 'DataSources'],
+    ['/workers', 'workers', 'Workers'],
+    ['/workers/{wk}', 'workers', 'Workers']
 ];
