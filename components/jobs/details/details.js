@@ -45,7 +45,12 @@ class Details {
 
     draw(api, j_id) {
         fetch(api + '/' + j_id)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving job - ' + response.status;
+            })
             .then((data) => {
                 fetch('/components/jobs/details/template.html')
                     .then((response) => response.text())
