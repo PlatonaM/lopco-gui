@@ -24,7 +24,12 @@ class List {
 
     draw(api, h_toggle) {
         fetch(api)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving jobs - ' + response.status;
+            })
             .then((data) => {
                 fetch('/components/jobs/list/template.html')
                     .then((response) => response.text())
@@ -57,10 +62,13 @@ class List {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({status: "aborted"})
             })
-                .then(response => response.text())
-                .then((data) => {
-                    alert('Job aborted successfully!');
-                    window.open('/jobs','_self');
+                .then(response => {
+                    if (response.ok) {
+                        alert('Job aborted successfully!');
+                        window.open('/jobs','_self');
+                    } else {
+                        throw response.status;
+                    }
                 })
                 .catch((error) => {
                     alert("Can't abort job: " + error);
