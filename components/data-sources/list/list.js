@@ -25,7 +25,12 @@ class List {
 
     draw() {
         fetch(active_cmp.constructor.mr_api)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving data-sources - ' + response.status;
+            })
             .then((data) => {
                 fetch('/components/data-sources/list/template.html')
                     .then((response) => response.text())
