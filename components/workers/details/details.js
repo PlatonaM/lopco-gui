@@ -22,27 +22,6 @@ class Details {
         this.container = ctr;
     }
 
-    genFields(items) {
-        let fields = [];
-        let null_fields = [];
-        let x;
-        for (x = 0; x < items.length; x++) {
-            try {
-                for (const [key, value] of Object.entries(items[x])) {
-                    fields.push(
-                        {
-                            field: key,
-                            f_value: value
-                        }
-                    );
-                }
-            } catch (err) {
-                null_fields.push({field: 'null'});
-            }
-        }
-        return [fields, null_fields];
-    }
-
     genConfigs(items) {
         let configs = [];
         if (items) {
