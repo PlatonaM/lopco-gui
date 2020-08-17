@@ -17,8 +17,8 @@
 export { Workers }
 
 import { List } from './list/list.min.js'
-//import { Form } from './form/form.min.js'
-//import { Details } from "./details/details.min.js";
+import { Form } from './form/form.min.js'
+import { Details } from "./details/details.min.js";
 
 
 class Workers {
@@ -26,19 +26,22 @@ class Workers {
 
     constructor(ctr) {
         this.list = new List(ctr);
-        //this.form = new Form(ctr);
-        //this.details = new Details(ctr);
+        this.form = new Form(ctr);
+        this.details = new Details(ctr);
     }
 
-    draw(sp, {ds}) {
-        if (!sp && !ds) {
+    draw(sp, {wk}) {
+        if (!sp && !wk) {
             return this.list.draw();
         }
-        if (sp && !ds && sp.has('action') && sp.get('action') === 'new') {
+        if (sp && wk && sp.has('action') && sp.get('action') === 'details') {
+            return this.details.draw(wk);
+        }
+        if (sp && !wk && sp.has('action') && sp.get('action') === 'new') {
             return this.form.draw();
         }
-        if (sp && ds && sp.has('action') && sp.get('action') === 'edit') {
-            return this.form.drawEdit(ds);
+        if (sp && wk && sp.has('action') && sp.get('action') === 'edit') {
+            return this.form.drawEdit(wk);
         }
     }
 
