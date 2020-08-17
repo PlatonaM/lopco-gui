@@ -1,10 +1,19 @@
 <div uk-filter="target: .js-filter">
     <ul class="uk-subnav uk-subnav-pill">
-        <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
-        <li uk-filter-control="sort: data-id"><a href="#">ID</a></li>
-        <li uk-filter-control="sort: data-type"><a href="#">Type</a></li>
-        <li uk-filter-control="sort: data-pipe"><a href="#">Pipeline</a></li>
-        <li class="uk-margin-auto-left"><a href="/data-sources?action=new">New Data-Source</a></li>
+        <li>
+            <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
+                    <li uk-filter-control="sort: data-id"><a href="#">ID</a></li>
+                    <li uk-filter-control="sort: data-type"><a href="#">Type</a></li>
+                    <li uk-filter-control="sort: data-pipe"><a href="#">Pipeline</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="uk-margin-auto-left">
+            <a href="/data-sources?action=new">New<span style="margin-left: 5px" uk-icon="icon: plus-circle"></span></a>
+        </li>
     </ul>
     <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
         {{#ds_items}}
