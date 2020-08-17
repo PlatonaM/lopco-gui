@@ -24,7 +24,12 @@ class List {
 
     draw() {
         fetch(active_cmp.constructor.api)
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw 'Error retrieving workers - ' + response.status;
+            })
             .then((data) => {
                 fetch('/components/workers/list/template.html')
                     .then((response) => response.text())
