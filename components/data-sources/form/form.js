@@ -95,10 +95,13 @@ class Form {
                 type_id: form.get('form-type')
             }),
         })
-            .then(response => response.text())
-            .then((data) => {
-                alert('Data-Source saved successfully!');
-                window.open('/data-sources','_self');
+            .then(response => {
+                if (response.ok) {
+                    alert('Data-Source saved successfully!');
+                    window.open('/data-sources','_self');
+                } else {
+                    throw response.status;
+                }
             })
             .catch((error) => {
                 alert("Can't save Data-Source: " + error);
