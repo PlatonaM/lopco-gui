@@ -1,9 +1,16 @@
 <div uk-filter="target: .js-filter">
     <ul class="uk-subnav uk-subnav-pill">
-        <li class="uk-active" uk-filter-control="sort: data-date; order: desc"><a href="#">Date</a></li>
-        <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
-        <li uk-filter-control="sort: data-ds"><a href="#">Data-Source</a></li>
-        <li uk-filter-control="sort: data-pipe"><a href="#">Pipeline</a></li>
+        <li>
+            <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-active" uk-filter-control="sort: data-date; order: desc"><a href="#">Date</a></li>
+                    <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
+                    <li uk-filter-control="sort: data-ds"><a href="#">Data-Source</a></li>
+                    <li uk-filter-control="sort: data-pipe"><a href="#">Pipeline</a></li>
+                </ul>
+            </div>
+        </li>
         {{#history}}
         <li class="uk-margin-auto-left"><a href="/jobs">Show Active</a></li>
         {{/history}}
