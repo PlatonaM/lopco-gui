@@ -70,18 +70,6 @@ class Details {
                 fetch('/components/workers/details/template.html')
                     .then((response) => response.text())
                     .then((template) => {
-                       /* let stages = [];
-                        let i;
-                        for (i = 0; i < data['stages'].length; i++) {
-                            const gen_fields = this.genFields(data['stages'][i]['outputs'])
-                            stages.push(
-                                {
-                                    stage: data['stages'][i]['id'],
-                                    fields: gen_fields[0],
-                                    null_fields: gen_fields[1]
-                                }
-                            );
-                        }*/
                         this.container.innerHTML = Mustache.render(
                             template,
                             {
