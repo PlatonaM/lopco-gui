@@ -1,0 +1,78 @@
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    <div class="uk-float-left uk-width-1-2">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
+        </div>
+        {{#conf_section}}
+        <div style="margin-top: 3px">
+            <span class="uk-inline uk-text-top uk-text-small" style="width: 74px">CONFIGS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#configs}}<div>{{conf_key}} = <span class="uk-text-italic">{{conf_value}}</span></div>{{/configs}}</div>
+        </div>
+        {{/conf_section}}
+    </div>
+    <div class="uk-float-left uk-width-1-2">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 142px">DATA-CACHE-PATH:</span><span class="uk-inline uk-text-light uk-text-small">{{data_cache_path}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 142px">DESCRIPTION:</span><span class="uk-inline uk-text-light uk-text-small">{{description}}</span>
+        </div>
+    </div>
+    {{#i_type}}
+    <div class="uk-float-left uk-width-1-1">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">INPUT:</span><span class="uk-inline uk-text-light uk-text-small">type = {{i_type}}</span>
+        </div>
+        <ul class="uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small uk-margin-small" uk-grid>
+            {{#i_fields}}
+            <li>
+                <div class="uk-card uk-card-body uk-padding-small" style="border: 1px dashed #e5e5e5; margin-left: 74px;">
+                    <div class="uk-float-left uk-width-1-1">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">MEDIA-TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{media_type}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">IS-FILE:</span><span class="uk-inline uk-text-light uk-text-small">{{is_file}}</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/i_fields}}
+        </ul>
+    </div>
+    {{/i_type}}
+    {{#o_type}}
+    <div class="uk-float-left uk-width-1-1">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">OUTPUT:</span><span class="uk-inline uk-text-light uk-text-small">type = {{o_type}}</span>
+        </div>
+        <ul class="uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small uk-margin-small" uk-grid>
+            {{#o_fields}}
+            <li>
+                <div class="uk-card uk-card-body uk-padding-small" style="border: 1px dashed #e5e5e5; margin-left: 74px;">
+                    <div class="uk-float-left uk-width-1-1">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">MEDIA-TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{media_type}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 97px">IS-FILE:</span><span class="uk-inline uk-text-light uk-text-small">{{is_file}}</span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/o_fields}}
+        </ul>
+    </div>
+    {{/o_type}}
+</div>
