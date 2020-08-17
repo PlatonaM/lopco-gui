@@ -1,0 +1,62 @@
+{{^id}}
+<h4 class="uk-heading-divider uk-text-light">Add new Worker:</h4>
+{{/id}}
+{{#id}}
+<h4 class="uk-heading-divider uk-text-light">Edit Worker:</h4>
+{{/id}}
+<form class="uk-form-horizontal uk-margin-medium">
+    {{#id}}
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-id">ID</label>
+        <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
+            <input class="uk-input" type="text" value="{{id}}" disabled>
+            <input class="uk-input" id="form-id" name="form-id" type="text" value="{{id}}" hidden>
+        </div>
+    </div>
+    {{/id}}
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-name">Name</label>
+        <div class="uk-form-controls" uk-tooltip="title: Worker name; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-name" name="form-name" type="text" value="{{name}}" required>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-image">Image</label>
+        <div class="uk-form-controls" uk-tooltip="title: Docker image; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-image" name="form-image" type="text" value="{{image}}" required>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-dcp">Data-Cache path</label>
+        <div class="uk-form-controls" uk-tooltip="title: Data-Cach mount point in the container; pos: top-left; delay: 500">
+            <input class="uk-input" id="form-dcp" name="form-dcp" type="text" value="{{data_cache_path}}" required>
+        </div>
+    </div>
+    <div class="uk-margin">
+        <label class="uk-form-label" for="form-desc">Description</label>
+        <div class="uk-form-controls" uk-tooltip="title: Worker description; pos: top-left; delay: 500">
+            <textarea class="uk-textarea" id="form-desc" name="form-desc" rows="5">{{description}}</textarea>
+        </div>
+    </div>
+<!--    <div class="uk-margin">
+        <label class="uk-form-label" for="form-pipeline">Pipeline</label>
+        <div class="uk-form-controls">
+            <select class="uk-select" id="form-pipeline" name="form-pipeline" required>
+                <option value="">Please select ...</option>
+                {{#pipelines}}
+                {{^selected}}
+                <option value="{{p_id}}">{{p_name}} ({{p_id}})</option>
+                {{/selected}}
+                {{#selected}}
+                <option value="{{p_id}}" selected>{{p_name}} ({{p_id}})</option>
+                {{/selected}}
+                {{/pipelines}}
+            </select>
+        </div>
+    </div>-->
+    <div class="uk-margin uk-margin-medium-top uk-text-center uk-subnav-pill">
+        <button class="uk-button uk-button-default uk-button-small" type="reset" onclick="return confirm('Reset all changes?')">Reset</button>
+        <button class="uk-button uk-button-default uk-button-small" type="button" onclick="confirm('Cancel and return to Workers?') ? window.open('/workers','_self') : null">Cancel</button>
+        <button class="uk-button uk-button-default uk-button-small" type="submit">Save</button>
+    </div>
+</form>
