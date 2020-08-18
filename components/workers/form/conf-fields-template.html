@@ -1,0 +1,11 @@
+<div class="uk-grid uk-grid-small" id="conf-{{id}}">
+    <div class="uk-width-expand@s">
+        <input class="uk-input" type="text" id="conf-{{id}}-key" name="conf-{{id}}-key" uk-tooltip="title: Config field name; pos: top-left; delay: 500" required>
+    </div>
+    <div class="uk-width-expand@s">
+        <input class="uk-input" type="text" id="conf-{{id}}-value" name="conf-{{id}}-value" uk-tooltip="title: Config field default value; pos: top-left; delay: 500">
+    </div>
+    <div class="uk-width-auto@s">
+        <button class="uk-button uk-button-default uk-icon" type="button" uk-icon="trash" onclick="active_cmp.form.removeConfigFields('conf-{{id}}')"></button>
+    </div>
+</div>
