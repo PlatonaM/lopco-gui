@@ -19,6 +19,7 @@ export { Form }
 class Form {
     constructor(ctr) {
         this.container = ctr;
+        this.conf_count = 0;
     }
 
     genConfigs(items) {
@@ -85,7 +86,10 @@ class Form {
     submit(event) {
         event.preventDefault();
         const form = new FormData(event.target);
-        fetch(active_cmp.constructor.api + '/' + form.get('form-id'), {
+        for (let [key, value] of form.entries()) {
+            console.log(key + ' = ' + value);
+        }
+/*        fetch(active_cmp.constructor.api + '/' + form.get('form-id'), {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -104,6 +108,28 @@ class Form {
             })
             .catch((error) => {
                 alert("Can't save Data-Source: " + error);
+            });*/
+    }
+
+    addConfigFields(element) {
+        fetch('/components/workers/form/conf-fields-template.html')
+            .then((response) => response.text())
+            .then((template) => {
+                let parent = element.parentElement;
+                if (parent.childElementCount < 2) {
+                    element.className += " uk-margin-bottom";
+                }
+                parent.append(document.createRange().createContextualFragment(Mustache.render(template, {id: this.conf_count})));
+                this.conf_count++;
             });
+    }
+
+    removeConfigFields(id) {
+        let element = document.getElementById(id);
+        let parent = element.parentElement;
+        parent.removeChild(element);
+        if (parent.childElementCount < 2) {
+            parent.firstElementChild.className = 'uk-button uk-button-default';
+        }
     }
 }
