@@ -17,6 +17,8 @@
 export { Form }
 
 class Form {
+    static conf_template;
+
     constructor(ctr) {
         this.container = ctr;
         this.conf_count = 0;
@@ -38,6 +40,11 @@ class Form {
     }
 
     draw(data= null) {
+        fetch('/components/workers/form/conf-fields-template.html')
+            .then((response) => response.text())
+            .then((template) => {
+                Form.conf_template = template;
+            });
         fetch('/components/workers/form/template.html')
             .then((response) => response.text())
             .then((template) => {
@@ -112,16 +119,12 @@ class Form {
     }
 
     addConfigFields(element) {
-        fetch('/components/workers/form/conf-fields-template.html')
-            .then((response) => response.text())
-            .then((template) => {
-                let parent = element.parentElement;
-                if (parent.childElementCount < 2) {
-                    element.className += " uk-margin-bottom";
-                }
-                parent.append(document.createRange().createContextualFragment(Mustache.render(template, {id: this.conf_count})));
-                this.conf_count++;
-            });
+        let parent = element.parentElement;
+        if (parent.childElementCount < 2) {
+            element.className += " uk-margin-bottom";
+        }
+        parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count})));
+        this.conf_count++;
     }
 
     removeConfigFields(id) {
