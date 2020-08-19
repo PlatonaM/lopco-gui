@@ -1,0 +1,17 @@
+<div class="uk-grid uk-grid-small" id="{{type}}-{{id}}">
+    <div class="uk-width-expand">
+        <input class="uk-input" type="text" id="{{type}}-{{id}}-key" name="{{type}}-{{id}}-name" placeholder="Field name" uk-tooltip="title: Input field name; pos: top-left; delay: 500" required>
+    </div>
+    <div class="uk-width-expand">
+        <input class="uk-input" type="text" id="{{type}}-{{id}}-value" name="{{type}}-{{id}}-media_type" placeholder="Media type" uk-tooltip="title: Input field media type; pos: top-left; delay: 500" required>
+    </div>
+    <div>
+        <select class="uk-select uk-width-auto" id="{{type}}-{{id}}-is_file" name="{{type}}-{{id}}-is_file" uk-tooltip="title: Select if this {{type}} field contains a value or a reference to a file stored in the Data-Cache; pos: top-left; delay: 500">
+            <option value="true" selected>File</option>
+            <option value="false">Value</option>
+        </select>
+    </div>
+    <div class="uk-width-auto">
+        <button class="uk-button uk-button-default uk-icon" type="button" uk-icon="trash" onclick="active_cmp.form.removeIOField('{{type}}-{{id}}')" uk-tooltip="title: Remove {{type}} field; pos: top-left; delay: 500"></button>
+    </div>
+</div>
