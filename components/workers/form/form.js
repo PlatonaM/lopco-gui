@@ -97,32 +97,79 @@ class Form {
             });
     }
 
+    genIO(form, type, keys) {
+        let data = {
+            type: form.get(type + '-type'),
+            fields: []
+        };
+        for (const num of keys) {
+            data['fields'].push(
+                {
+                    name: form.get(type + '-' + num + '-name'),
+                    media_type: form.get(type + '-' + num + '-media_type'),
+                    is_file: (form.get(type + '-' + num + '-is_file') === 'true')
+                }
+            );
+        }
+        return data;
+    }
+
     submit(event) {
         event.preventDefault();
         const form = new FormData(event.target);
+        let data = {};
+        let config_field_keys = [];
+        let input_field_keys = [];
+        let output_field_keys = [];
         for (let [key, value] of form.entries()) {
-            console.log(key + ' = ' + value);
+            if (!key.includes('input-') && !key.includes('output-') && !key.includes('conf-')) {
+                data[key] = value;
+            }
+            if (key.includes('conf-')) {
+                const num = key.split('-')[1];
+                if (!config_field_keys.includes(num)) {
+                    config_field_keys.push(num)
+                }
+            }
+            if (key.includes('input-') && !key.includes('input-type')) {
+                const num = key.split('-')[1];
+                if (!input_field_keys.includes(num)) {
+                    input_field_keys.push(num)
+                }
+            }
+            if (key.includes('output-') && !key.includes('output-type')) {
+                const num = key.split('-')[1];
+                if (!output_field_keys.includes(num)) {
+                    output_field_keys.push(num)
+                }
+            }
         }
-/*        fetch(active_cmp.constructor.api + '/' + form.get('form-id'), {
-            method: 'PUT',
+        if (config_field_keys.length > 0) {
+            data['configs'] = {};
+            for (const num of config_field_keys) {
+                data['configs'][form.get('conf-' + num + '-key')] = (form.get('conf-' + num + '-value')) ? form.get('conf-' + num + '-value') : null;
+            }
+        } else {
+            data['configs'] = null;
+        }
+        data['input'] = (form.get('input-type') && input_field_keys.length > 0) ? active_cmp.form.genIO(form, 'input', input_field_keys) : null;
+        data['output'] = (form.get('output-type') && output_field_keys.length > 0) ? active_cmp.form.genIO(form, 'output', output_field_keys) : null;
+        fetch(active_cmp.constructor.api, {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: form.get('form-name'),
-                pipeline_id: form.get('form-pipeline'),
-                type_id: form.get('form-type')
-            }),
+            body: JSON.stringify(data)
         })
             .then(response => {
                 if (response.ok) {
-                    alert('Data-Source saved successfully!');
-                    window.open('/data-sources','_self');
+                    alert('Worker saved successfully!');
+                    window.open('/workers','_self');
                 } else {
                     throw response.status;
                 }
             })
             .catch((error) => {
-                alert("Can't save Data-Source: " + error);
-            });*/
+                alert("Can't save Worker: " + error);
+            });
     }
 
     addConfigFields(element) {
@@ -165,7 +212,7 @@ class Form {
             parent.getElementsByTagName('select')[0].className = 'uk-select uk-width-auto';
         }
     }
-    
+
     addIOField(element, type) {
         let parent = element.parentElement;
         if (parent.childElementCount < 3) {
