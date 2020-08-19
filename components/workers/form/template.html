@@ -47,7 +47,7 @@
     <div class="uk-margin">
         <label class="uk-form-label">Input</label>
         <div class="uk-form-controls">
-            <select class="uk-select uk-width-auto@s" id="form-input-type" name="form-input-type">
+            <select class="uk-select uk-width-auto" id="form-input-type" name="form-input-type" onchange="active_cmp.form.toggleIOFields(this, 'input')" uk-tooltip="title: Number of possible inputs; pos: top-left; delay: 500">
                 <option value="">None</option>
                 <option value="single">Single</option>
                 <option value="multiple">Multiple</option>
@@ -58,7 +58,7 @@
     <div class="uk-margin">
         <label class="uk-form-label">Output</label>
         <div class="uk-form-controls">
-            <select class="uk-select uk-width-auto@s" id="form-output-type" name="form-output-type">
+            <select class="uk-select uk-width-auto" id="form-output-type" name="form-output-type" onchange="active_cmp.form.toggleIOFields(this, 'output')" uk-tooltip="title: Number of possible outputs; pos: top-left; delay: 500">
                 <option value="">None</option>
                 <option value="single">Single</option>
                 <option value="multiple">Multiple</option>
