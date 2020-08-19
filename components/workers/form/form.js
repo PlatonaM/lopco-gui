@@ -18,10 +18,12 @@ export { Form }
 
 class Form {
     static conf_template;
+    static io_template;
 
     constructor(ctr) {
         this.container = ctr;
         this.conf_count = 0;
+        this.io_count = 0;
     }
 
     genConfigs(items) {
@@ -44,6 +46,11 @@ class Form {
             .then((response) => response.text())
             .then((template) => {
                 Form.conf_template = template;
+            });
+        fetch('/components/workers/form/io-fields-template.html')
+            .then((response) => response.text())
+            .then((template) => {
+                Form.io_template = template;
             });
         fetch('/components/workers/form/template.html')
             .then((response) => response.text())
@@ -133,6 +140,49 @@ class Form {
         parent.removeChild(element);
         if (parent.childElementCount < 2) {
             parent.firstElementChild.className = 'uk-button uk-button-default';
+        }
+    }
+
+    toggleIOFields(element, type) {
+        let parent = element.parentElement;
+        if (element.value) {
+            if (parent.getElementsByTagName('button').length < 1) {
+                let btn = document.createElement('button');
+                btn.className = 'uk-button uk-button-default';
+                btn.type = 'button';
+                btn.setAttribute('uk-icon', 'plus');
+                btn.setAttribute('uk-tooltip', 'title: Add ' + type + ' field; pos: top-left; delay: 500');
+                btn.onclick = function (e) { active_cmp.form.addIOField(this, type) };
+                parent.append(btn);
+            }
+        } else {
+            while (parent.children.length > 1) {
+                const lst_child = parent.lastChild;
+                if (lst_child.tagName.toLowerCase() !== 'select') {
+                    parent.removeChild(lst_child);
+                }
+            }
+            parent.getElementsByTagName('select')[0].className = 'uk-select uk-width-auto';
+        }
+    }
+    
+    addIOField(element, type) {
+        let parent = element.parentElement;
+        if (parent.childElementCount < 3) {
+            parent.getElementsByTagName('select')[0].className += " uk-margin-bottom";
+            element.className += " uk-margin-bottom";
+        }
+        parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type})));
+        this.io_count++;
+    }
+
+    removeIOField(id) {
+        let element = document.getElementById(id);
+        let parent = element.parentElement;
+        parent.removeChild(element);
+        if (parent.childElementCount < 3) {
+            parent.getElementsByTagName('select')[0].className = 'uk-select uk-width-auto';
+            parent.getElementsByTagName('button')[0].className = 'uk-button uk-button-default';
         }
     }
 }
