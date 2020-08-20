@@ -235,13 +235,17 @@ class Form {
         }
     }
 
-    addIOField(element, type) {
+    addIOField(element, type, data= null) {
         let parent = element.parentElement;
         if (parent.childElementCount < 3) {
             parent.getElementsByTagName('select')[0].className += " uk-margin-bottom";
             element.className += " uk-margin-bottom";
         }
-        parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type})));
+        if (data) {
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type, name: data['name'], media_type: data['media_type'], is_file: data['is_file']})));
+        } else {
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type, is_file: true})));
+        }
         this.io_count++;
     }
 
