@@ -216,6 +216,7 @@ class Form {
         if (element.value) {
             if (parent.getElementsByTagName('button').length < 1) {
                 let btn = document.createElement('button');
+                btn.id = 'add-' + type + '-field-btn'
                 btn.className = 'uk-button uk-button-default';
                 btn.type = 'button';
                 btn.setAttribute('uk-icon', 'plus');
