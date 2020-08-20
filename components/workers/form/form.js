@@ -128,7 +128,7 @@ class Form {
         let output_field_keys = [];
         for (let [key, value] of form.entries()) {
             if (!key.includes('input-') && !key.includes('output-') && !key.includes('conf-')) {
-                data[key] = value;
+                data[key] = (value) ? value : null;
             }
             if (key.includes('conf-')) {
                 const num = key.split('-')[1];
