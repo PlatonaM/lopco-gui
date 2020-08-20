@@ -186,6 +186,9 @@ class Form {
     }
 
     addConfigFields(element) {
+    submitEdit(event) {
+        active_cmp.form.submit(event, 'PUT');
+    }
         let parent = element.parentElement;
         if (parent.childElementCount < 2) {
             element.className += " uk-margin-bottom";
