@@ -185,15 +185,20 @@ class Form {
             });
     }
 
-    addConfigFields(element) {
     submitEdit(event) {
         active_cmp.form.submit(event, 'PUT');
     }
+
+    addConfigFields(element, data=null) {
         let parent = element.parentElement;
         if (parent.childElementCount < 2) {
             element.className += " uk-margin-bottom";
         }
-        parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count})));
+        if (data) {
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count, key: data['key'], value: data['value']})));
+        } else {
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count})));
+        }
         this.conf_count++;
     }
 
