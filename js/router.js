@@ -58,7 +58,7 @@ if (route) {
                 window.active_cmp.draw((url.search) ? url.searchParams : undefined, route[1]);
             })
             .catch((err) => {
-                main_element.innerHTML = err;
+                main_element.innerHTML = 'Error loading page.';
             })
     });
 } else {
