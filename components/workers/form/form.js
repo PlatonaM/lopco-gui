@@ -26,33 +26,16 @@ class Form {
         this.io_count = 0;
     }
 
-    genConfigs(items) {
-        let configs = [];
-        if (items) {
-            for (const [key, value] of Object.entries(items)) {
-                configs.push(
-                    {
-                        conf_key: key,
-                        conf_value: (value) ? value : 'null'
-                    }
-                )
-            }
-        }
-        return configs;
+    async getTemplates() {
+        let response = await fetch('/components/workers/form/conf-fields-template.html')
+        Form.conf_template = await response.text();
+        response = await fetch('/components/workers/form/io-fields-template.html')
+        Form.io_template = await response.text();
+        return await fetch('/components/workers/form/template.html');
     }
-
+    
     draw(data= null) {
-        fetch('/components/workers/form/conf-fields-template.html')
-            .then((response) => response.text())
-            .then((template) => {
-                Form.conf_template = template;
-            });
-        fetch('/components/workers/form/io-fields-template.html')
-            .then((response) => response.text())
-            .then((template) => {
-                Form.io_template = template;
-            });
-        fetch('/components/workers/form/template.html')
+        this.getTemplates()
             .then((response) => response.text())
             .then((template) => {
                 if (data) {
