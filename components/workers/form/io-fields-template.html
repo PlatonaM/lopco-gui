@@ -1,14 +1,14 @@
 <div class="uk-grid uk-grid-small" id="{{type}}-{{id}}">
     <div class="uk-width-expand">
-        <input class="uk-input" type="text" id="{{type}}-{{id}}-key" name="{{type}}-{{id}}-name" placeholder="Field name" uk-tooltip="title: Input field name; pos: top-left; delay: 500" required>
+        <input class="uk-input" type="text" id="{{type}}-{{id}}-key" name="{{type}}-{{id}}-name" value="{{name}}" placeholder="Field name" uk-tooltip="title: Input field name; pos: top-left; delay: 500" required>
     </div>
     <div class="uk-width-expand">
-        <input class="uk-input" type="text" id="{{type}}-{{id}}-value" name="{{type}}-{{id}}-media_type" placeholder="Media type" uk-tooltip="title: Input field media type; pos: top-left; delay: 500" required>
+        <input class="uk-input" type="text" id="{{type}}-{{id}}-value" name="{{type}}-{{id}}-media_type" value="{{media_type}}" placeholder="Media type" uk-tooltip="title: Input field media type; pos: top-left; delay: 500" required>
     </div>
     <div>
         <select class="uk-select uk-width-auto" id="{{type}}-{{id}}-is_file" name="{{type}}-{{id}}-is_file" uk-tooltip="title: Select if this {{type}} field contains a value or a reference to a file stored in the Data-Cache; pos: top-left; delay: 500">
-            <option value="true" selected>File</option>
-            <option value="false">Value</option>
+            <option value="true" {{#is_file}}selected{{/is_file}}>File</option>
+            <option value="false" {{^is_file}}selected{{/is_file}}>Value</option>
         </select>
     </div>
     <div class="uk-width-auto">
