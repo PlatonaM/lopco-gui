@@ -1,72 +1,74 @@
-{{^id}}
-<h4 class="uk-heading-divider uk-text-light">Add new Worker:</h4>
-{{/id}}
-{{#id}}
-<h4 class="uk-heading-divider uk-text-light">Edit Worker:</h4>
-{{/id}}
-<form class="uk-form-horizontal uk-margin-medium">
-    {{#id}}
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-id">ID</label>
-        <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
-            <input class="uk-input" type="text" value="{{id}}" disabled>
-            <input class="uk-input" id="form-id" name="id" type="text" value="{{id}}" hidden>
-        </div>
-    </div>
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    {{^id}}
+    <h4 class="uk-heading-divider uk-text-light">Add new Worker:</h4>
     {{/id}}
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-name">Name</label>
-        <div class="uk-form-controls" uk-tooltip="title: Worker name; pos: top-left; delay: 500">
-            <input class="uk-input" id="form-name" name="name" type="text" value="{{name}}" required>
+    {{#id}}
+    <h4 class="uk-heading-divider uk-text-light">Edit Worker:</h4>
+    {{/id}}
+    <form class="uk-form-horizontal uk-margin-medium">
+        {{#id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-id" style="color: #666666">ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
+                <input class="uk-input" type="text" value="{{id}}" disabled>
+                <input class="uk-input" id="form-id" name="id" type="text" value="{{id}}" hidden>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-image">Image</label>
-        <div class="uk-form-controls" uk-tooltip="title: Docker image; pos: top-left; delay: 500">
-            <input class="uk-input" id="form-image" name="image" type="text" value="{{image}}" required>
+        {{/id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-name" style="color: #666666">Name</label>
+            <div class="uk-form-controls" uk-tooltip="title: Worker name; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-name" name="name" type="text" value="{{name}}" required>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-dcp">Data-Cache path</label>
-        <div class="uk-form-controls" uk-tooltip="title: Data-Cach mount point in the container; pos: top-left; delay: 500">
-            <input class="uk-input" id="form-dcp" name="data_cache_path" type="text" value="{{data_cache_path}}" required>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-image" style="color: #666666">Image</label>
+            <div class="uk-form-controls" uk-tooltip="title: Docker image; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-image" name="image" type="text" value="{{image}}" required>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-desc">Description</label>
-        <div class="uk-form-controls" uk-tooltip="title: Worker description; pos: top-left; delay: 500">
-            <textarea class="uk-textarea" id="form-desc" name="description" rows="3">{{description}}</textarea>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-dcp" style="color: #666666">Data-Cache path</label>
+            <div class="uk-form-controls" uk-tooltip="title: Data-Cach mount point in the container; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-dcp" name="data_cache_path" type="text" value="{{data_cache_path}}" required>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label">Configs</label>
-        <div class="uk-form-controls">
-            <button id="add-conf-field-btn" class="uk-button uk-button-default" type="button" onclick="active_cmp.form.addConfigFields(this);" uk-tooltip="title: Add config field; pos: top-left; delay: 500" uk-icon="plus"></button>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-desc" style="color: #666666">Description</label>
+            <div class="uk-form-controls" uk-tooltip="title: Worker description; pos: top-left; delay: 500">
+                <textarea class="uk-textarea" id="form-desc" name="description" rows="3">{{description}}</textarea>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label">Input</label>
-        <div class="uk-form-controls">
-            <select class="uk-select uk-width-auto" id="form-input-type" name="input-type" onchange="active_cmp.form.toggleIOFields(this, 'input')" uk-tooltip="title: Number of possible inputs; pos: top-left; delay: 500">
-                <option value="">None</option>
-                <option value="single">Single</option>
-                <option value="multiple">Multiple</option>
-            </select>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Configs</label>
+            <div class="uk-form-controls">
+                <button id="add-conf-field-btn" class="uk-button uk-button-default" type="button" onclick="active_cmp.form.addConfigFields(this);" uk-tooltip="title: Add config field; pos: top-left; delay: 500" uk-icon="plus"></button>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label">Output</label>
-        <div class="uk-form-controls">
-            <select class="uk-select uk-width-auto" id="form-output-type" name="output-type" onchange="active_cmp.form.toggleIOFields(this, 'output')" uk-tooltip="title: Number of possible outputs; pos: top-left; delay: 500">
-                <option value="">None</option>
-                <option value="single">Single</option>
-                <option value="multiple">Multiple</option>
-            </select>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Input</label>
+            <div class="uk-form-controls">
+                <select class="uk-select uk-width-auto" id="form-input-type" name="input-type" onchange="active_cmp.form.toggleIOFields(this, 'input')" uk-tooltip="title: Number of possible inputs; pos: top-left; delay: 500">
+                    <option value="">None</option>
+                    <option value="single">Single</option>
+                    <option value="multiple">Multiple</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin uk-margin-medium-top uk-text-center">
-        <!--<button class="uk-button uk-button-default uk-button-small" type="reset" onclick="return confirm('Reset all changes?')">Reset</button>-->
-        <button class="uk-button uk-button-default uk-button-small" type="button" onclick="confirm('Cancel and return to Workers?') ? window.open('/workers','_self') : null">Cancel</button>
-        <button class="uk-button uk-button-default uk-button-small" type="submit">Save</button>
-    </div>
-</form>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Output</label>
+            <div class="uk-form-controls">
+                <select class="uk-select uk-width-auto" id="form-output-type" name="output-type" onchange="active_cmp.form.toggleIOFields(this, 'output')" uk-tooltip="title: Number of possible outputs; pos: top-left; delay: 500">
+                    <option value="">None</option>
+                    <option value="single">Single</option>
+                    <option value="multiple">Multiple</option>
+                </select>
+            </div>
+        </div>
+        <hr class="uk-float-left uk-width-1-1 uk-margin-remove-top uk-margin-small-bottom">
+        <div>
+            <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="confirm('Cancel and return to Workers?') ? window.open('/workers','_self') : null">Cancel<span style="margin-left: 5px" uk-icon="icon: close"></span></button>
+            <button class="uk-button uk-button-text uk-margin-left" style="display: inline-flex; align-items: center;" type="submit">Save<span style="margin-left: 5px" uk-icon="icon: check"></span></button>
+        </div>
+    </form>
+</div>
