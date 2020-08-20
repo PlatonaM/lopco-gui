@@ -1,52 +1,55 @@
-{{^ds_id}}
-<h4 class="uk-heading-divider uk-text-light">Add new Data-Source:</h4>
-{{/ds_id}}
-{{#ds_id}}
-<h4 class="uk-heading-divider uk-text-light">Edit Data-Source:</h4>
-{{/ds_id}}
-<form class="uk-form-horizontal uk-margin-medium">
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-id">Local ID</label>
-        <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
-            {{^ds_id}}
-            <input class="uk-input" id="form-id" name="form-id" type="text" required>
-            {{/ds_id}}
-            {{#ds_id}}
-            <input class="uk-input" type="text" value="{{ds_id}}" disabled>
-            <input class="uk-input" id="form-id" name="form-id" type="text" value="{{ds_id}}" hidden>
-            {{/ds_id}}
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    {{^ds_id}}
+    <h4 class="uk-heading-divider uk-text-light">Add new Data-Source:</h4>
+    {{/ds_id}}
+    {{#ds_id}}
+    <h4 class="uk-heading-divider uk-text-light">Edit Data-Source:</h4>
+    {{/ds_id}}
+    <form class="uk-form-horizontal uk-margin-medium">
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-id" style="color: #666666">Local ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: Unique local ID of Data-Source; pos: top-left; delay: 500">
+                {{^ds_id}}
+                <input class="uk-input" id="form-id" name="form-id" type="text" required>
+                {{/ds_id}}
+                {{#ds_id}}
+                <input class="uk-input" type="text" value="{{ds_id}}" disabled>
+                <input class="uk-input" id="form-id" name="form-id" type="text" value="{{ds_id}}" hidden>
+                {{/ds_id}}
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-name">Name</label>
-        <div class="uk-form-controls" uk-tooltip="title: Name of Data-Source; pos: top-left; delay: 500">
-            <input class="uk-input" id="form-name" name="form-name" type="text" value="{{ds_name}}">
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-name" style="color: #666666">Name</label>
+            <div class="uk-form-controls" uk-tooltip="title: Name of Data-Source; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-name" name="form-name" type="text" value="{{ds_name}}">
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-pipeline">Pipeline</label>
-        <div class="uk-form-controls">
-            <select class="uk-select" id="form-pipeline" name="form-pipeline" required>
-                <option value="">Please select ...</option>
-                {{#pipelines}}
-                {{^selected}}
-                <option value="{{p_id}}">{{p_name}} ({{p_id}})</option>
-                {{/selected}}
-                {{#selected}}
-                <option value="{{p_id}}" selected>{{p_name}} ({{p_id}})</option>
-                {{/selected}}
-                {{/pipelines}}
-            </select>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-pipeline" style="color: #666666">Pipeline</label>
+            <div class="uk-form-controls">
+                <select class="uk-select" id="form-pipeline" name="form-pipeline" required>
+                    <option value="">Please select ...</option>
+                    {{#pipelines}}
+                    {{^selected}}
+                    <option value="{{p_id}}">{{p_name}} ({{p_id}})</option>
+                    {{/selected}}
+                    {{#selected}}
+                    <option value="{{p_id}}" selected>{{p_name}} ({{p_id}})</option>
+                    {{/selected}}
+                    {{/pipelines}}
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin">
-        <label class="uk-form-label" for="form-type">Type ID</label>
-        <div class="uk-form-controls" uk-tooltip="title: ID of the Type corresponding to the Data-Source; pos: top-left; delay: 500">
-            <input class="uk-input" id="form-type" name="form-type" type="text" value="{{ds_type}}" required>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-type" style="color: #666666">Type ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: ID of the Type corresponding to the Data-Source; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-type" name="form-type" type="text" value="{{ds_type}}" required>
+            </div>
         </div>
-    </div>
-    <div class="uk-margin uk-margin-medium-top uk-text-center uk-subnav-pill">
-        <button class="uk-button uk-button-default uk-button-small" type="button" onclick="confirm('Cancel and return to Data-Sources?') ? window.open('/data-sources','_self') : null">Cancel</button>
-        <button class="uk-button uk-button-default uk-button-small" type="submit">Save</button>
-    </div>
-</form>
+        <hr class="uk-float-left uk-width-1-1 uk-margin-remove-top uk-margin-small-bottom">
+        <div>
+            <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="confirm('Cancel and return to Data-Sources?') ? window.open('/data-sources','_self') : null">Cancel<span style="margin-left: 5px" uk-icon="icon: close"></span></button>
+            <button class="uk-button uk-button-text uk-margin-left" style="display: inline-flex; align-items: center;" type="submit">Save<span style="margin-left: 5px" uk-icon="icon: check"></span></button>
+        </div>
+    </form>
+</div>
