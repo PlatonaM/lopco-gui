@@ -46,20 +46,42 @@ class Form {
                             name: data['name'],
                             image: data['image'],
                             description: data['description'],
-                            data_cache_path: data['data_cache_path'],
-                            conf_section: (data['configs']),
-                            configs: this.genConfigs(data['configs']),
-                            i_type: (data['input']) ? data['input']['type'] : null,
-                            o_type: (data['output']) ? data['output']['type'] : null,
-                            i_fields: (data['input']) ? data['input']['fields'] : null,
-                            o_fields: (data['output']) ? data['output']['fields'] : null
+                            data_cache_path: data['data_cache_path']
                         }
                     );
+                    if (data['configs']) {
+                        const btn = document.getElementById('add-conf-field-btn');
+                        for (const [key, value] of Object.entries(data['configs'])) {
+                            this.addConfigFields(btn, { key: key, value: value });
+                        }
+                    }
+                    if (data['input']) {
+                        const sel = document.getElementById('form-input-type');
+                        sel.value = data['input']['type'];
+                        this.toggleIOFields(sel, 'input');
+                        const btn = document.getElementById('add-input-field-btn');
+                        for (const field of data['input']['fields']) {
+                            this.addIOField(btn, 'input', field);
+                        }
+                    }
+                    if (data['output']) {
+                        const sel = document.getElementById('form-output-type');
+                        sel.value = data['output']['type'];
+                        this.toggleIOFields(sel, 'output');
+                        const btn = document.getElementById('add-output-field-btn');
+                        for (const field of data['output']['fields']) {
+                            this.addIOField(btn, 'output', field);
+                        }
+                    }
                 } else {
                     this.container.innerHTML = Mustache.render(template, {});
                 }
                 let form = this.container.getElementsByTagName('form')[0];
-                form.addEventListener('submit', this.submit)
+                if (data) {
+                    form.addEventListener('submit', this.submitEdit);
+                } else {
+                    form.addEventListener('submit', this.submit);
+                }
             });
     }
 
