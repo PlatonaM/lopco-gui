@@ -119,7 +119,7 @@ class Form {
         return data;
     }
 
-    submit(event) {
+    submit(event, method='POST') {
         event.preventDefault();
         const form = new FormData(event.target);
         let data = {};
@@ -159,8 +159,16 @@ class Form {
         }
         data['input'] = (form.get('input-type') && input_field_keys.length > 0) ? active_cmp.form.genIO(form, 'input', input_field_keys) : null;
         data['output'] = (form.get('output-type') && output_field_keys.length > 0) ? active_cmp.form.genIO(form, 'output', output_field_keys) : null;
-        fetch(active_cmp.constructor.api, {
-            method: 'POST',
+        let url;
+        if (method === 'POST') {
+            url = active_cmp.constructor.api;
+        }
+        if (method === 'PUT') {
+            url = active_cmp.constructor.api + '/' + data['id'];
+            delete data['id'];
+        }
+        fetch(url, {
+            method: method,
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
