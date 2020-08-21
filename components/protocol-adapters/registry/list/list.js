@@ -46,7 +46,7 @@ class List {
                                 }
                             )
                         }
-                        this.container.innerHTML = Mustache.render(template, {ds_items: items});
+                        this.container.innerHTML = Mustache.render(template, {pa_items: items});
                     });
             })
             .catch((err) => {
@@ -59,7 +59,7 @@ class List {
             fetch(active_cmp.constructor.api + '/' + id, {method: 'DELETE'})
                 .then((response) => {
                     if (response.ok) {
-                        window.open('/protocol-adapters','_self');
+                        window.open('/protocol-adapters/registry','_self');
                     } else {
                         throw response.status;
                     }
