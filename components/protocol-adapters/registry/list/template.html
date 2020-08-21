@@ -1,20 +1,29 @@
 <div uk-filter="target: .js-filter">
-    <ul class="uk-subnav uk-subnav-pill">
-        <li>
-            <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
-            <div uk-dropdown>
-                <ul class="uk-nav uk-dropdown-nav">
-                    <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
-                    <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="uk-margin-auto-left">
-            <a href="/protocol-adapters/registry?action=new">New<span style="margin-left: 5px" uk-icon="icon: plus-circle"></span></a>
-        </li>
-    </ul>
+    <div class="uk-width-1-2 uk-float-left">
+        <ul class="uk-subnav uk-subnav-pill">
+            <li>
+                <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+                <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
+                        <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-1-2 uk-float-right">
+        <ul class="uk-subnav uk-subnav-pill uk-subnav-divider uk-margin-auto-left" style="width: max-content">
+            <li>
+                <a href="/protocol-adapters/deployments">Show Deployments</a>
+            </li>
+            <li>
+                <a href="/protocol-adapters/registry?action=new">New<span style="margin-left: 5px" uk-icon="icon: plus-circle"></span></a>
+            </li>
+        </ul>
+    </div>
     <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
-        {{#ds_items}}
+        {{#pa_items}}
         <li data-name="{{name}}" data-image="{{image}}">
             <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
                 <div class="uk-float-left uk-width-1-2">
@@ -42,6 +51,6 @@
                 </div>
             </div>
         </li>
-        {{/ds_items}}
+        {{/pa_items}}
     </ul>
 </div>
