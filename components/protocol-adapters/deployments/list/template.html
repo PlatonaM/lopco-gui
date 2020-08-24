@@ -27,7 +27,7 @@
                         <span class="uk-inline uk-text-small" style="width: 64px">STATUS:</span><span class="{{status}} uk-inline uk-text-light uk-text-small">{{status}}</span>
                     </div>
                     <div>
-                        <span class="uk-inline uk-text-small" style="width: 64px">PORTS:</span><span class="uk-inline uk-text-light uk-text-small"></span>
+                        <span class="uk-inline uk-text-small" style="width: 64px">PORTS:</span><span class="uk-inline uk-text-light uk-text-small">{{#ports}}{{port}}->{{host_i}}:{{host_p}}{{/ports}}{{^ports}}null{{/ports}}</span>
                     </div>
                 </div>
                 <div class="uk-float-right uk-width-1-2">

@@ -44,13 +44,30 @@ class List {
                     .then((template) => {
                         let items = [];
                         for (let [key, value] of Object.entries(data)) {
+                            let ports = [];
+                            if (value['ports']) {
+                                const entries = Object.entries(value['ports']);
+                                let e_length = entries.length;
+                                for (let [port, host] of entries) {
+                                    ports.push(
+                                        {
+                                            port: port,
+                                            host_i: (host) ? host['host_interface'] : 'null',
+                                            host_p: (host) ? (e_length > 1) ? host['host_ports'].toString()+'; ' : host['host_ports'].toString() : 'null'
+                                        }
+                                    );
+                                    e_length--;
+
+                                }
+                            }
                             items.push(
                                 {
                                     id: key,
                                     pa_id: value['labels']['lopco-id'],
                                     image: value['image']['name'],
                                     hash: value['image']['hash'],
-                                    status: value['status']
+                                    status: value['status'],
+                                    ports: ports
                                 }
                             )
                         }
