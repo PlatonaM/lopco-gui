@@ -26,7 +26,7 @@ const routes = [
     ['/data-sources/{ds}', 'data-sources', 'DataSources'],
     ['/workers', 'workers', 'Workers'],
     ['/workers/{wk}', 'workers', 'Workers'],
-    ['/protocol-adapters/registry', 'protocol-adapters/registry', 'Registry'],
+    ['/protocol-adapters', 'protocol-adapters/registry', 'Registry'],
     ['/protocol-adapters/registry/{pa}', 'protocol-adapters/registry', 'Registry'],
     ['/protocol-adapters/deployments', 'protocol-adapters/deployments', 'Deployments'],
     ['/protocol-adapters/deployments/{pa}', 'protocol-adapters/deployments', 'Deployments']
