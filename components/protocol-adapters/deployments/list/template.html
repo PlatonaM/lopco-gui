@@ -4,8 +4,10 @@
             <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
             <div uk-dropdown>
                 <ul class="uk-nav uk-dropdown-nav">
-                    <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
+                    <li class="uk-active" uk-filter-control="sort: data-pa-id"><a href="#">PA-ID</a></li>
+                    <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
                     <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
+                    <li uk-filter-control="sort: data-hash"><a href="#">Hash</a></li>
                 </ul>
             </div>
         </li>
@@ -15,7 +17,7 @@
     </ul>
     <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
         {{#pa_items}}
-        <li data-id="{{d_id}}" data-image="{{image}}" data-hash="{{hash}}" data-pa-id="pa_id">
+        <li data-image="{{image}}" data-hash="{{hash}}" data-pa-id="{{pa_id}}" data-status="{{status}}">
             <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
                 <div class="uk-float-left uk-width-1-2">
                     <div>
