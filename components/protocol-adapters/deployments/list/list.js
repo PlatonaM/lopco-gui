@@ -46,7 +46,7 @@ class List {
                         for (let [key, value] of Object.entries(data)) {
                             items.push(
                                 {
-                                    d_id: key,
+                                    id: key,
                                     pa_id: value['labels']['lopco-id'],
                                     image: value['image']['name'],
                                     hash: value['image']['hash'],
