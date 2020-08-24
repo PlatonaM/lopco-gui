@@ -19,7 +19,15 @@ export { List }
 class List {
 
     constructor(ctr) {
+        this.loadStyle();
         this.container = ctr;
+    }
+
+    loadStyle() {
+        let element = document.createElement("link");
+        element.href = "/components/protocol-adapters/deployments/list/style.css";
+        element.rel = "stylesheet";
+        document.getElementsByTagName("head")[0].appendChild(element);
     }
 
     draw() {
@@ -41,7 +49,8 @@ class List {
                                     d_id: key,
                                     pa_id: value['labels']['lopco-id'],
                                     image: value['image']['name'],
-                                    hash: value['image']['hash']
+                                    hash: value['image']['hash'],
+                                    status: value['status']
                                 }
                             )
                         }
