@@ -79,6 +79,44 @@ class List {
             });
     }
 
+    start(id) {
+        fetch(active_cmp.constructor.api + '/' + id, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'running' })
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.open('/protocol-adapters/deployments','_self');
+                } else {
+                    throw response.status;
+                }
+            })
+            .catch((err) => {
+                alert('Error starting ' + id + ' - ' + err);
+            })
+    }
+
+    stop(id) {
+        if (confirm('Stop ' + id + '?')) {
+            fetch(active_cmp.constructor.api + '/' + id, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: 'stopped' })
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        window.open('/protocol-adapters/deployments','_self');
+                    } else {
+                        throw response.status;
+                    }
+                })
+                .catch((err) => {
+                    alert('Error starting ' + id + ' - ' + err);
+                })
+        }
+    }
+
     delete(id) {
         if (confirm('Delete ' + id + '?')) {
             fetch(active_cmp.constructor.api + '/' + id, {method: 'DELETE'})
