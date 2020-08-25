@@ -71,4 +71,75 @@ class Form {
                 this.container.innerHTML = err;
             });
     }
+
+    submit(event) {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let data = {};
+        let config_field_keys = [];
+        let port_keys = [];
+        for (let [key, value] of form.entries()) {
+            if (!key.includes('port-') && !key.includes('conf-')) {
+                data[key] = (value) ? value : null;
+            }
+            if (key.includes('conf-')) {
+                const num = key.split('-')[1];
+                if (!config_field_keys.includes(num)) {
+                    config_field_keys.push(num)
+                }
+            }
+            if (key.includes('port-')) {
+                const num = key.split('-')[1];
+                if (!port_keys.includes(num)) {
+                    port_keys.push(num)
+                }
+            }
+        }
+        if (config_field_keys.length > 0) {
+            data['configs'] = {};
+            for (const num of config_field_keys) {
+                data['configs'][form.get('conf-' + num + '-key')] = (form.get('conf-' + num + '-value')) ? form.get('conf-' + num + '-value') : null;
+            }
+        } else {
+            data['configs'] = null;
+        }
+        if (port_keys.length > 0) {
+            data['ports'] = {};
+            for (const num of port_keys) {
+                data['ports'][form.get('port-' + num + '-number') + '/' + form.get('port-' + num + '-protocol')] = {
+                    host_interface: (form.get('port-' + num + '-host-interface')) ? form.get('port-' + num + '-host-interface') : null,
+                    host_ports: (form.get('port-' + num + '-host-ports').includes(',')) ? active_cmp.form.splitToNumbers(form.get('port-' + num + '-host-ports')) : Number(form.get('port-' + num + '-host-ports'))
+                };
+            }
+        } else {
+            data['ports'] = null;
+        }
+        data['type'] = 'protocol-adapter';
+        delete data['name'];
+        fetch(active_cmp.constructor.api, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Protocol-Adapter deployed successfully!');
+                    window.open('/protocol-adapters/deployments','_self');
+                } else {
+                    throw response.status;
+                }
+            })
+            .catch((error) => {
+                alert("Can't deploy Protocol-Adapter: " + error);
+            });
+    }
+
+    splitToNumbers(str) {
+        str = str.split(',');
+        let res = [];
+        for (const item of str) {
+            res.push(Number(item));
+        }
+        return res;
+    }
 }
