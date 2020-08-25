@@ -29,6 +29,52 @@
                 <input class="uk-input" id="form-dc-path" name="dc_path" type="text" value="{{dc_path}}" hidden>
             </div>
         </div>
+        {{#has_configs}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Configs</label>
+            <div class="uk-form-controls">
+                {{#configs}}
+                <div class="uk-grid uk-grid-small">
+                    <div class="uk-width-1-3">
+                        <input class="uk-input" type="text" value="{{key}}" uk-tooltip="title: Config field name; pos: top-left; delay: 500" disabled>
+                        <input class="uk-input" type="text" id="conf-{{key}}" name="conf-{{key}}" value="{{key}}" hidden>
+                    </div>
+                    <div class="uk-width-2-3">
+                        <input class="uk-input" type="text" id="conf-{{key}}-value" name="conf-{{key}}-value" value="{{value}}" placeholder="Config value" uk-tooltip="title: Config field value; pos: top-left; delay: 500">
+                    </div>
+                </div>
+                {{/configs}}
+            </div>
+        </div>
+        {{/has_configs}}
+        {{#has_ports}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Ports</label>
+            <div class="uk-form-controls">
+                {{#ports}}
+                <div class="uk-grid uk-grid-small">
+                    <div style="width: 71px">
+                        <input class="uk-input" type="text" value="{{port}}" uk-tooltip="title: Container port; pos: top-left; delay: 500" disabled>
+                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}" name="port-{{port}}-{{protocol}}" value="{{port}}" hidden>
+                    </div>
+                    <div style="width: 55px">
+                        <input class="uk-input" type="text" value="{{protocol}}" uk-tooltip="title: Protocol; pos: top-left; delay: 500" disabled>
+                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-protocol" name="port-{{port}}-{{protocol}}-protocol" value="{{protocol}}" hidden>
+                    </div>
+                    <div style="display: inline-flex; align-items: center;">
+                        <span uk-icon="icon: arrow-right"></span>
+                    </div>
+                    <div class="uk-width-expand">
+                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-host-interface" name="port-{{port}}-{{protocol}}-host-interface" placeholder="Host interface (optional)" uk-tooltip="title: Host interface (optional); pos: top-left; delay: 500">
+                    </div>
+                    <div class="uk-width-expand">
+                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-host-ports" name="port-{{port}}-{{protocol}}-host-ports" placeholder="Host port" uk-tooltip="title: Host port or comma separated list of host ports; pos: top-left; delay: 500" required>
+                    </div>
+                </div>
+                {{/ports}}
+            </div>
+        </div>
+        {{/has_ports}}
         <hr class="uk-float-left uk-width-1-1 uk-margin-remove-top uk-margin-small-bottom">
         <div>
             <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="confirm('Cancel and return to Protocol-Adapters?') ? window.open('/protocol-adapters','_self') : null">Cancel<span style="margin-left: 5px" uk-icon="icon: close"></span></button>
