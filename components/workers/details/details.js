@@ -57,7 +57,7 @@ class Details {
                                 image: data['image'],
                                 description: data['description'],
                                 data_cache_path: data['data_cache_path'],
-                                conf_section: (data['configs']),
+                                conf_section: !!(data['configs']),
                                 configs: this.genConfigs(data['configs']),
                                 i_type: (data['input']) ? data['input']['type'] : null,
                                 o_type: (data['output']) ? data['output']['type'] : null,
