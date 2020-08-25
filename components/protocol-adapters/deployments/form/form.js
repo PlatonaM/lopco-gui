@@ -33,6 +33,15 @@ class Form {
                 fetch('/components/protocol-adapters/deployments/form/template.html')
                     .then((response) => response.text())
                     .then((template) => {
+                        let configs = [];
+                        for (const [key, val] of Object.entries(data['configs'])) {
+                            configs.push(
+                                {
+                                    key: key,
+                                    value: val
+                                }
+                            )
+                        }
                         this.container.innerHTML = Mustache.render(
                             template,
                             {
@@ -40,7 +49,9 @@ class Form {
                                 name: data['name'],
                                 image: data['image'],
                                 dc_path: data['data_cache_path'],
-                                configs: data['configs'],
+                                has_configs: !!(configs),
+                                configs: configs,
+                                has_ports: !!(data['ports']),
                                 ports: data['ports']
                             }
                         );
