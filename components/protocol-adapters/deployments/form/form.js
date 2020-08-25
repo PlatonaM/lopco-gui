@@ -34,13 +34,21 @@ class Form {
                     .then((response) => response.text())
                     .then((template) => {
                         let configs = [];
+                        let num = 0;
                         for (const [key, val] of Object.entries(data['configs'])) {
                             configs.push(
                                 {
                                     key: key,
-                                    value: val
+                                    value: val,
+                                    num: num
                                 }
                             )
+                            num++;
+                        }
+                        if (data['ports']) {
+                            for (num=0; num < data['ports'].length; num++) {
+                                data['ports'][num]['num'] = num;
+                            }
                         }
                         this.container.innerHTML = Mustache.render(
                             template,
