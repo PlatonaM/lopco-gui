@@ -17,31 +17,26 @@
 export { Deployments }
 
 import { List } from './list/list.min.js'
-/*import { Form } from './form/form.min.js'
-import { Details } from "./details/details.min.js";*/
+import { Form } from './form/form.min.js'
+//import { Details } from "./details/details.min.js";
 
 
 class Deployments {
     static api = '/api/deployment-manager/deployments';
+    static r_api = '/api/protocol-adapter-registry/protocol-adapters';
 
     constructor(ctr) {
         this.list = new List(ctr);
-        /*this.form = new Form(ctr);
-        this.details = new Details(ctr);*/
+        this.form = new Form(ctr);
+        //this.details = new Details(ctr);
     }
 
     draw(sp, {pa}) {
         if (!sp && !pa) {
             return this.list.draw();
         }
-        if (sp && pa && sp.has('action') && sp.get('action') === 'details') {
-            return this.details.draw(pa);
-        }
-        if (sp && !pa && sp.has('action') && sp.get('action') === 'new') {
-            return this.form.draw();
-        }
-        if (sp && pa && sp.has('action') && sp.get('action') === 'edit') {
-            return this.form.drawEdit(pa);
+        if (sp && !pa && sp.has('action') && sp.has('id') && sp.get('action') === 'new') {
+            return this.form.draw(sp.get('id'));
         }
     }
 
