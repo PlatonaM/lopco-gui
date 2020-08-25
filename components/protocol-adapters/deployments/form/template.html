@@ -54,8 +54,8 @@
                 {{#ports}}
                 <div class="uk-grid uk-grid-small">
                     <div style="width: 71px">
-                        <input class="uk-input" type="text" value="{{port}}" uk-tooltip="title: Container port; pos: top-left; delay: 500" disabled>
-                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}" name="port-{{port}}-{{protocol}}" value="{{port}}" hidden>
+                        <input class="uk-input" type="number" value="{{port}}" uk-tooltip="title: Container port; pos: top-left; delay: 500" disabled>
+                        <input class="uk-input" type="number" id="port-{{port}}-{{protocol}}" name="port-{{port}}-{{protocol}}" value="{{port}}" hidden>
                     </div>
                     <div style="width: 55px">
                         <input class="uk-input" type="text" value="{{protocol}}" uk-tooltip="title: Protocol; pos: top-left; delay: 500" disabled>
@@ -68,7 +68,7 @@
                         <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-host-interface" name="port-{{port}}-{{protocol}}-host-interface" placeholder="Host interface (optional)" uk-tooltip="title: Host interface (optional); pos: top-left; delay: 500">
                     </div>
                     <div class="uk-width-expand">
-                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-host-ports" name="port-{{port}}-{{protocol}}-host-ports" placeholder="Host port" uk-tooltip="title: Host port or comma separated list of host ports; pos: top-left; delay: 500" required>
+                        <input class="uk-input" type="number" min="0" max="60999" id="port-{{port}}-{{protocol}}-host-ports" name="port-{{port}}-{{protocol}}-host-ports" placeholder="Host port" uk-tooltip="title: Host port or comma separated list of host ports; pos: top-left; delay: 500" required>
                     </div>
                 </div>
                 {{/ports}}
