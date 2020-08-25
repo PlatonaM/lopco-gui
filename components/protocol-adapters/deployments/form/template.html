@@ -37,10 +37,10 @@
                 <div class="uk-grid uk-grid-small">
                     <div class="uk-width-1-3">
                         <input class="uk-input" type="text" value="{{key}}" uk-tooltip="title: Config field name; pos: top-left; delay: 500" disabled>
-                        <input class="uk-input" type="text" id="conf-{{key}}" name="conf-{{key}}" value="{{key}}" hidden>
+                        <input class="uk-input" type="text" id="conf-{{num}}" name="conf-{{num}}-key" value="{{key}}" hidden>
                     </div>
                     <div class="uk-width-2-3">
-                        <input class="uk-input" type="text" id="conf-{{key}}-value" name="conf-{{key}}-value" value="{{value}}" placeholder="Config value" uk-tooltip="title: Config field value; pos: top-left; delay: 500">
+                        <input class="uk-input" type="text" id="conf-{{num}}-value" name="conf-{{num}}-value" value="{{value}}" placeholder="Config value" uk-tooltip="title: Config field value; pos: top-left; delay: 500">
                     </div>
                 </div>
                 {{/configs}}
@@ -55,20 +55,20 @@
                 <div class="uk-grid uk-grid-small">
                     <div style="width: 71px">
                         <input class="uk-input" type="number" value="{{port}}" uk-tooltip="title: Container port; pos: top-left; delay: 500" disabled>
-                        <input class="uk-input" type="number" id="port-{{port}}-{{protocol}}" name="port-{{port}}-{{protocol}}" value="{{port}}" hidden>
+                        <input class="uk-input" type="number" id="port-{{num}}-number" name="port-{{num}}-number" value="{{port}}" hidden>
                     </div>
                     <div style="width: 55px">
                         <input class="uk-input" type="text" value="{{protocol}}" uk-tooltip="title: Protocol; pos: top-left; delay: 500" disabled>
-                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-protocol" name="port-{{port}}-{{protocol}}-protocol" value="{{protocol}}" hidden>
+                        <input class="uk-input" type="text" id="port-{{num}}-protocol" name="port-{{num}}-protocol" value="{{protocol}}" hidden>
                     </div>
                     <div style="display: inline-flex; align-items: center;">
                         <span uk-icon="icon: arrow-right"></span>
                     </div>
                     <div class="uk-width-expand">
-                        <input class="uk-input" type="text" id="port-{{port}}-{{protocol}}-host-interface" name="port-{{port}}-{{protocol}}-host-interface" placeholder="Host interface (optional)" uk-tooltip="title: Host interface (optional); pos: top-left; delay: 500">
+                        <input class="uk-input" type="text" id="port-{{num}}-host-interface" name="port-{{num}}-host-interface" placeholder="Host interface (optional)" uk-tooltip="title: Host interface (optional); pos: top-left; delay: 500">
                     </div>
                     <div class="uk-width-expand">
-                        <input class="uk-input" type="number" min="0" max="60999" id="port-{{port}}-{{protocol}}-host-ports" name="port-{{port}}-{{protocol}}-host-ports" placeholder="Host port" uk-tooltip="title: Host port or comma separated list of host ports; pos: top-left; delay: 500" required>
+                        <input class="uk-input" type="text" id="port-{{num}}-host-ports" name="port-{{num}}-host-ports" placeholder="Host port" uk-tooltip="title: Host port or comma separated list of host ports; pos: top-left; delay: 500" required>
                     </div>
                 </div>
                 {{/ports}}
