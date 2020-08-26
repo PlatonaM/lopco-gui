@@ -80,6 +80,7 @@ class List {
     }
 
     start(id) {
+        showSpinner();
         fetch(active_cmp.constructor.api + '/' + id, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -93,12 +94,14 @@ class List {
                 }
             })
             .catch((err) => {
+                hideSpinner();
                 alert('Error starting ' + id + ' - ' + err);
             })
     }
 
     stop(id) {
         if (confirm('Stop ' + id + '?')) {
+            showSpinner();
             fetch(active_cmp.constructor.api + '/' + id, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
@@ -112,6 +115,7 @@ class List {
                     }
                 })
                 .catch((err) => {
+                    hideSpinner();
                     alert('Error starting ' + id + ' - ' + err);
                 })
         }
@@ -119,6 +123,7 @@ class List {
 
     delete(id) {
         if (confirm('Delete ' + id + '?')) {
+            showSpinner();
             fetch(active_cmp.constructor.api + '/' + id, {method: 'DELETE'})
                 .then((response) => {
                     if (response.ok) {
@@ -128,6 +133,7 @@ class List {
                     }
                 })
                 .catch((err) => {
+                    hideSpinner();
                     alert('Error deleting ' + id + ' - ' + err);
                 })
         }
