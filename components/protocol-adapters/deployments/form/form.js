@@ -74,6 +74,7 @@ class Form {
 
     submit(event) {
         event.preventDefault();
+        showSpinner();
         const form = new FormData(event.target);
         let data = {};
         let config_field_keys = [];
@@ -130,6 +131,7 @@ class Form {
                 }
             })
             .catch((error) => {
+                hideSpinner();
                 alert("Can't deploy Protocol-Adapter: " + error);
             });
     }
