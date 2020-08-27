@@ -27,7 +27,7 @@ class Form {
                 if (response.ok) {
                     return response.json()
                 }
-                throw 'Error retrieving pipelines - ' + response.status;
+                throw 'Error retrieving Protocol-Adapter - ' + response.status;
             })
             .then((data) => {
                 fetch('/components/protocol-adapters/deployments/form/template.html')
