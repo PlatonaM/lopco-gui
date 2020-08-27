@@ -18,7 +18,7 @@ export { Registry }
 
 import { List } from './list/list.min.js'
 import { Form } from './form/form.min.js'
-//import { Details } from "./details/details.min.js";
+import { Details } from "./details/details.min.js";
 
 
 class Registry {
@@ -27,7 +27,7 @@ class Registry {
     constructor(ctr) {
         this.list = new List(ctr);
         this.form = new Form(ctr);
-        //this.details = new Details(ctr);
+        this.details = new Details(ctr);
     }
 
     draw(sp, {pa}) {
