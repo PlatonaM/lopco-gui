@@ -1,0 +1,60 @@
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    {{^id}}
+    <h4 class="uk-heading-divider uk-text-light">Add new Protocol-Adapter:</h4>
+    {{/id}}
+    {{#id}}
+    <h4 class="uk-heading-divider uk-text-light">Edit Protocol-Adapter:</h4>
+    {{/id}}
+    <form class="uk-form-horizontal uk-margin-medium">
+        {{#id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-id" style="color: #666666">ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: Protocol-Adapter ID; pos: top-left; delay: 500">
+                <input class="uk-input" type="text" value="{{id}}" disabled>
+                <input class="uk-input" id="form-id" name="id" type="text" value="{{id}}" hidden>
+            </div>
+        </div>
+        {{/id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-name" style="color: #666666">Name</label>
+            <div class="uk-form-controls" uk-tooltip="title: Protocol-Adapter name; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-name" name="name" type="text" value="{{name}}" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-image" style="color: #666666">Image</label>
+            <div class="uk-form-controls" uk-tooltip="title: Protocol-Adapter docker image; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-image" name="image" type="text" value="{{image}}" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-dc-path" style="color: #666666">Data-Cache Path</label>
+            <div class="uk-form-controls" uk-tooltip="title: Path for mounting the Data-Cache inside the container; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-dc-path" name="data_cache_path" type="text" value="{{dc_path}}" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-desc" style="color: #666666">Description</label>
+            <div class="uk-form-controls" uk-tooltip="title: Protocol-Adapter description; pos: top-left; delay: 500">
+                <textarea class="uk-textarea" id="form-desc" name="description" rows="3">{{description}}</textarea>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Configs</label>
+            <div class="uk-form-controls">
+                <button id="add-conf-field-btn" class="uk-button uk-button-default" type="button" onclick="active_cmp.form.addField(this, 'config');" uk-tooltip="title: Add config field; pos: top-left; delay: 500" uk-icon="plus"></button>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" style="color: #666666">Ports</label>
+            <div class="uk-form-controls">
+                <button id="add-port-field-btn" class="uk-button uk-button-default" type="button" onclick="active_cmp.form.addField(this, 'port');" uk-tooltip="title: Add config field; pos: top-left; delay: 500" uk-icon="plus"></button>
+            </div>
+        </div>
+        <hr class="uk-float-left uk-width-1-1 uk-margin-remove-top uk-margin-small-bottom">
+        <div>
+            <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="confirm('Cancel and return to Protocol-Adapters?') ? window.open('/protocol-adapters','_self') : null">Cancel<span style="margin-left: 5px" uk-icon="icon: close"></span></button>
+            <button class="uk-button uk-button-text uk-margin-left" style="display: inline-flex; align-items: center;" type="submit">Save<span style="margin-left: 5px" uk-icon="icon: check"></span></button>
+        </div>
+    </form>
+</div>
