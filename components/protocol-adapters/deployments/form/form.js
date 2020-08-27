@@ -135,13 +135,4 @@ class Form {
                 alert("Can't deploy Protocol-Adapter: " + error);
             });
     }
-
-    splitToNumbers(str) {
-        str = str.split(',');
-        let res = [];
-        for (const item of str) {
-            res.push(Number(item));
-        }
-        return res;
-    }
 }
