@@ -1,0 +1,16 @@
+<div class="uk-grid uk-grid-small" id="port-{{num}}">
+    <div style="width: 100px">
+        <input class="uk-input" type="number" id="port-{{num}}-number" name="port-{{num}}-number" value="{{port}}" uk-tooltip="title: Port number used by the Protocol-Adapter for incoming connections; pos: top-left; delay: 500" required>
+    </div>
+    <div style="width: 85px">
+        <select class="uk-select" id="port-{{num}}-protocol" name="port-{{num}}-protocol" uk-tooltip="title: Port protocol; pos: top-left; delay: 500" required>
+            <option value="">None</option>
+            <option value="tcp" {{#tcp}}selected{{/tcp}}>tcp</option>
+            <option value="udp" {{#udp}}selected{{/udp}}>udp</option>
+            <option value="sctp" {{#sctp}}selected{{/sctp}}>sctp</option>
+        </select>
+    </div>
+    <div class="uk-width-auto">
+        <button class="uk-button uk-button-default uk-icon" type="button" uk-icon="trash" uk-tooltip="title: Remove port; pos: top-left; delay: 500" onclick="active_cmp.form.removeField('port-{{num}}')"></button>
+    </div>
+</div>
