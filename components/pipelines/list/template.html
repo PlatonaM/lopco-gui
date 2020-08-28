@@ -1,0 +1,43 @@
+<div uk-filter="target: .js-filter">
+    <ul class="uk-subnav uk-subnav-pill">
+        <li>
+            <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
+                    <li uk-filter-control="sort: data-id"><a href="#">ID</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="uk-margin-auto-left">
+            <a href="/pipelines?action=new">New<span style="margin-left: 5px" uk-icon="icon: plus-circle"></span></a>
+        </li>
+    </ul>
+    <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+        {{#pl_items}}
+        <li data-id="{{id}}" data-name="{{name}}">
+            <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+                <div class="uk-float-left uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+                    </div>
+                </div>
+                <div class="uk-float-right uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 150px">NUMBER OF STAGES:</span><span class="uk-inline uk-text-light uk-text-small">{{stage_length}}</span>
+                    </div>
+                </div>
+                <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+                <div class="uk-float-left uk-width-1-1">
+                    <a href="/pipelines/{{id}}?action=details" class="uk-icon-link" style="margin-right: 25px" uk-icon="search"><span class="uk-text-small" style="margin-right: 5px">DETAILS</span></a>
+                    <a href="/pipelines/{{id}}?action=edit" class="uk-icon-link" style="margin-right: 30px" uk-icon="pencil"><span class="uk-text-small" style="margin-right: 5px">EDIT</span></a>
+                    <a onclick="active_cmp.list.delete('{{id}}');" class="uk-icon-link" uk-icon="trash"><span class="uk-text-small" style="margin-right: 5px">DELETE</span></a>
+                </div>
+            </div>
+        </li>
+        {{/pl_items}}
+    </ul>
+</div>
