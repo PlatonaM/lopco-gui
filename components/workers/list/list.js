@@ -28,7 +28,7 @@ class List {
                 if (response.ok) {
                     return response.json()
                 }
-                throw 'Error retrieving workers - ' + response.status;
+                throw 'Error retrieving Workers - ' + response.status;
             })
             .then((data) => {
                 fetch('/components/workers/list/template.html')
