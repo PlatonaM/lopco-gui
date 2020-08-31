@@ -58,7 +58,7 @@ class List {
             fetch(active_cmp.constructor.api + '/' + id, {method: 'DELETE'})
                 .then((response) => {
                     if (response.ok) {
-                        window.open('/workers','_self');
+                        window.open('/pipelines','_self');
                     } else {
                         throw response.status;
                     }
