@@ -17,16 +17,17 @@
 export { Pipelines }
 
 import { List } from './list/list.min.js'
-//import { Form } from './form/form.min.js'
+import { Form } from './form/form.min.js'
 //import { Details } from "./details/details.min.js";
 
 
 class Pipelines {
     static api = '/api/pipeline-registry/pipelines';
+    static w_api = '/api/worker-registry/workers';
 
     constructor(ctr) {
         this.list = new List(ctr);
-        //this.form = new Form(ctr);
+        this.form = new Form(ctr);
         //this.details = new Details(ctr);
     }
 
