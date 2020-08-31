@@ -1,0 +1,31 @@
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    {{^id}}
+    <h4 class="uk-heading-divider uk-text-light">Add new Pipeline:</h4>
+    {{/id}}
+    {{#id}}
+    <h4 class="uk-heading-divider uk-text-light">Edit Pipeline:</h4>
+    {{/id}}
+    <form class="uk-form-horizontal">
+        {{#id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-id" style="color: #666666">ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: Pipeline ID; pos: top-left; delay: 500">
+                <input class="uk-input" type="text" value="{{id}}" disabled>
+                <input class="uk-input" id="form-id" name="id" type="text" value="{{id}}" hidden>
+            </div>
+        </div>
+        {{/id}}
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-name" style="color: #666666">Name</label>
+            <div class="uk-form-controls" uk-tooltip="title: Pipeline name; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-name" name="name" type="text" value="{{name}}" required>
+            </div>
+        </div>
+
+        <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+        <div>
+            <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="confirm('Cancel and return to Pipelines?') ? window.open('/pipelines','_self') : null">Cancel<span style="margin-left: 5px" uk-icon="icon: close"></span></button>
+            <button class="uk-button uk-button-text uk-margin-left" style="display: inline-flex; align-items: center;" type="submit">Save<span style="margin-left: 5px" uk-icon="icon: check"></span></button>
+        </div>
+    </form>
+</div>
