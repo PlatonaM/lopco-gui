@@ -17,8 +17,17 @@
 export { Form }
 
 class Form {
+    static stage_template;
+
     constructor(ctr) {
         this.container = ctr;
+        this.stage_container = null;
+    }
+
+    async getTemplates() {
+        let response = await fetch('/components/pipelines/form/stage-template.html')
+        Form.stage_template = await response.text();
+        return await fetch('/components/pipelines/form/template.html');
     }
 
     draw(pl_data= null) {
@@ -30,7 +39,7 @@ class Form {
                 throw 'Error retrieving Workers - ' + response.status;
             })
             .then((data) => {
-                fetch('/components/pipelines/form/template.html')
+                this.getTemplates()
                     .then((response) => response.text())
                     .then((template) => {
                         let workers = [];
@@ -58,7 +67,8 @@ class Form {
                             this.container.innerHTML = Mustache.render(template, {workers: workers});
                         }
                         let form = this.container.getElementsByTagName('form')[0];
-                        form.addEventListener('submit', this.submit)
+                        form.addEventListener('submit', this.submit);
+                        this.stage_container = document.getElementById('stages');
                     });
             })
             .catch((err) => {
