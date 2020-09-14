@@ -22,6 +22,9 @@ class Form {
     constructor(ctr) {
         this.container = ctr;
         this.stage_container = null;
+        this.workers = {};
+        this.st_count = 0;
+        this.stages = [];
     }
 
     async getTemplates() {
@@ -48,10 +51,10 @@ class Form {
                             workers.push(
                                 {
                                     w_id: key,
-                                    w_name: value['name'],
-                                    w_data: value
+                                    w_name: value['name']
                                 }
                             )
+                            this.workers[key] = value;
                         }
                         if (pl_data) {
                             this.container.innerHTML = Mustache.render(
@@ -91,5 +94,25 @@ class Form {
             .catch((err) => {
                 this.container.innerHTML = err;
             });
+    }
+
+    addStage(wk_id) {
+        console.log(wk_id);
+        console.log(this.st_count);
+        console.log(this.workers[wk_id]);
+        this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
+            num: this.st_count,
+            w_name: this.workers[wk_id]['name'],
+            w_id: wk_id,
+            input: this.workers[wk_id]['input'] ? this.workers[wk_id]['input']['fields']: null,
+            output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null
+        })));
+        this.st_count++;
+    }
+
+    removeStage(id) {
+        let element = document.getElementById(id);
+        let parent = element.parentElement;
+        parent.removeChild(element);
     }
 }
