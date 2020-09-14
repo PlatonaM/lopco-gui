@@ -1,4 +1,4 @@
-<div class="uk-flex-none uk-card uk-card-body uk-padding-small uk-margin-small-right uk-background-muted" style="width: 450px; border: 1px dashed #e5e5e5;">
+<div id="stage-{{num}}" class="uk-flex-none uk-card uk-card-body uk-padding-small uk-margin-small-right uk-background-muted" style="width: 450px; border: 1px dashed #e5e5e5;">
     <div>
         <label class="uk-form-label uk-text-uppercase" for="stage-{{num}}-name" style="color: #666666; width: 100px; margin-bottom: 5px;">Stage</label>
         <div class="uk-form-controls uk-margin-auto-left" uk-tooltip="title: Stage name; pos: top-left; delay: 500">
@@ -25,11 +25,11 @@
             {{#input}}
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <input class="uk-input" type="text" value="init_sourcesdfsdfsdfsdf" disabled>
-                    <input class="uk-input" id="stage-0-output" name="stage-0-output" type="text" value="init_source" hidden>
+                    <input class="uk-input" type="text" value="{{name}}" disabled>
+                    <input class="uk-input" id="stage-{{num}}-input-{{name}}-field" name="stage-{{num}}-input-{{name}}-field" type="text" value="{{name}}" hidden>
                 </div>
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <select class="uk-select" id="form-input-type" name="input-type" onchange="" uk-tooltip="title: Number of possible inputs; pos: top-left; delay: 500">
+                    <select class="uk-select" id="stage-{{num}}-input-{{name}}-value" name="stage-{{num}}-input-{{name}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                     </select>
                 </div>
@@ -38,10 +38,10 @@
         </div>
         <div class="uk-flex-none uk-width-2-5">
             <div class="uk-text-uppercase uk-margin-small-left" style="color: #666666; font-size: 0.875rem; margin-bottom: 5px">Output</div>
-            {{#output}}}
+            {{#output}}
             <div class="uk-form-controls uk-margin-small-left">
-                <input class="uk-input" type="text" value="init_source" disabled>
-                <input class="uk-input" id="stage-0-output" name="stage-0-output" type="text" value="init_source" hidden>
+                <input class="uk-input" type="text" value="{{name}}" disabled>
+                <input class="uk-input" id="stage-{{num}}-output-{{name}}-field" name="stage-{{num}}-output-{{name}}-field" type="text" value="{{name}}" hidden>
             </div>
             {{/output}}
         </div>
@@ -65,6 +65,6 @@
     {{/has_configs}}
     <hr>
     <div>
-        <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="">Delete<span style="margin-left: 5px" uk-icon="icon: trash"></span></button>
+        <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="active_cmp.form.removeStage('stage-{{num}}')">Delete<span style="margin-left: 5px" uk-icon="icon: trash"></span></button>
     </div>
 </div>
