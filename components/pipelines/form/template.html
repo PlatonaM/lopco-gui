@@ -29,7 +29,7 @@
                 {{#workers}}
                 <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-width-1-1 uk-margin-small-bottom" style="border: 1px dashed #e5e5e5">
                     <div class="uk-width-auto uk-margin-small-right">
-                        <button class="uk-button uk-button-default uk-icon uk-padding-remove" style="height: 48px;" type="button" uk-icon="chevron-left" onclick="active_cmp.form." uk-tooltip="title: Add Worker; pos: top-left; delay: 500"></button>
+                        <button class="uk-button uk-button-default uk-icon uk-padding-remove" style="height: 48px;" type="button" uk-icon="chevron-left" onclick="active_cmp.form.addStage('{{w_id}}')" uk-tooltip="title: Add Worker; pos: top-left; delay: 500"></button>
                     </div>
                     <div class="uk-width-expand">
                         <div class="uk-text-truncate">{{w_name}}</div>
