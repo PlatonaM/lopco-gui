@@ -24,7 +24,8 @@ class Form {
         this.stage_container = null;
         this.workers = {};
         this.st_count = 0;
-        this.stages = [];
+        this.st_order = [];
+        this.st_map = {};
     }
 
     async getTemplates() {
@@ -110,29 +111,55 @@ class Form {
     }
 
     addStage(wk_id) {
-        console.log(wk_id);
-        console.log(this.st_count);
-        console.log(this.workers[wk_id]);
+        let inputs = [];
+        let i_num = 0;
+        if (this.workers[wk_id]['input']) {
+            for (let item of this.workers[wk_id]['input']['fields']) {
+                item['i_num'] = i_num;
+                inputs.push(item);
+                i_num++;
+            }
+        }
+        let i_values = [];
+        if (this.st_map[this.st_order[this.st_order.length - 1]] === 'init') {
+            i_values.push(
+                {
+                    name: 'init_source'
+                }
+            )
+        } else {
+            if (this.workers[this.st_map[this.st_order[this.st_order.length - 1]]]['output']) {
+                for (let item of this.workers[this.st_map[this.st_order[this.st_order.length - 1]]]['output']['fields']) {
+                    i_values.push(item);
+                }
+            }
+        }
         let configs = [];
+        let c_num = 0;
         if (this.workers[wk_id]['configs']) {
             for (let [key, value] of Object.entries(this.workers[wk_id]['configs'])) {
                 configs.push(
                     {
                         key: key,
-                        value: value
+                        value: value,
+                        c_num: c_num
                     }
                 )
+                c_num++;
             }
         }
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             num: this.st_count,
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
-            input: this.workers[wk_id]['input'] ? this.workers[wk_id]['input']['fields']: null,
+            input: inputs,
+            values: i_values,
             output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null,
             has_configs: !!(this.workers[wk_id]['configs']),
             configs: configs
         })));
+        this.st_map[this.st_count] = wk_id;
+        this.st_order.push(this.st_count)
         this.st_count++;
     }
 
@@ -140,5 +167,7 @@ class Form {
         let element = document.getElementById(id);
         let parent = element.parentElement;
         parent.removeChild(element);
+        delete this.st_map[id];
+        this.st_order = this.st_order.splice(this.st_order.indexOf(id), 1);
     }
 }
