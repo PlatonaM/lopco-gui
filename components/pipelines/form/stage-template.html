@@ -39,6 +39,9 @@
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                     <select class="uk-select" id="stage-{{num}}-input-{{i_num}}-value" name="stage-{{num}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
                         <option value="">None</option>
+                        {{#values}}
+                        <option value="{{name}}">{{name}}</option>
+                        {{/values}}
                     </select>
                 </div>
             </div>
