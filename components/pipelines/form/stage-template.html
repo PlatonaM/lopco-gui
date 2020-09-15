@@ -53,11 +53,11 @@
         {{#configs}}
         <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right uk-width-1-1">
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" type="text" value="init_sourcesdfsdfsdfsdf" disabled>
-                <input class="uk-input" id="stage-0-output" name="stage-0-output" type="text" value="init_source" hidden>
+                <input class="uk-input" type="text" value="{{key}}" disabled>
+                <input class="uk-input" id="stage-{{num}}-config-{{name}}-field" name="stage-{{num}}-config-{{name}}-field" type="text" value="{{key}}" hidden>
             </div>
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" id="stage-0-output" name="stage-0-output" type="text" value="">
+                <input class="uk-input" id="stage-{{num}}-config-{{name}}-value" name="stage-{{num}}-config-{{name}}-value" type="text" value="{{value}}">
             </div>
         </div>
         {{/configs}}
