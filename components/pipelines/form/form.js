@@ -72,6 +72,7 @@ class Form {
                         let form = this.container.getElementsByTagName('form')[0];
                         form.addEventListener('submit', this.submit);
                         this.stage_container = document.getElementById('stages');
+                        this.addInitStage();
                     });
             })
             .catch((err) => {
@@ -94,6 +95,18 @@ class Form {
             .catch((err) => {
                 this.container.innerHTML = err;
             });
+    }
+
+    addInitStage() {
+        this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
+            init: true,
+            name: 'init',
+            num: this.st_count,
+            output: [{name: 'init_source', media_type: '', is_file: true}]
+        })));
+        this.st_map[this.st_count] = 'init';
+        this.st_order.push(this.st_count)
+        this.st_count++;
     }
 
     addStage(wk_id) {
