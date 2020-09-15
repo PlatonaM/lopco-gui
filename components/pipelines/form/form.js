@@ -100,12 +100,25 @@ class Form {
         console.log(wk_id);
         console.log(this.st_count);
         console.log(this.workers[wk_id]);
+        let configs = [];
+        if (this.workers[wk_id]['configs']) {
+            for (let [key, value] of Object.entries(this.workers[wk_id]['configs'])) {
+                configs.push(
+                    {
+                        key: key,
+                        value: value
+                    }
+                )
+            }
+        }
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             num: this.st_count,
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
             input: this.workers[wk_id]['input'] ? this.workers[wk_id]['input']['fields']: null,
-            output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null
+            output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null,
+            has_configs: !!(this.workers[wk_id]['configs']),
+            configs: configs
         })));
         this.st_count++;
     }
