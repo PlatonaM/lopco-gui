@@ -1,13 +1,13 @@
-<div id="stage-{{num}}" class="uk-flex-none uk-card uk-card-body uk-padding-small uk-margin-small-right uk-background-muted" style="width: 450px; border: 1px dashed #e5e5e5;">
+<div id="{{id}}" class="uk-flex-none uk-card uk-card-body uk-padding-small uk-margin-small-right uk-background-muted" style="width: 450px; border: 1px dashed #e5e5e5;">
     <div>
-        <label class="uk-form-label uk-text-uppercase" for="stage-{{num}}-name" style="color: #666666; width: 100px; margin-bottom: 5px;">Stage</label>
+        <label class="uk-form-label uk-text-uppercase" for="{{id}}-name" style="color: #666666; width: 100px; margin-bottom: 5px;">Stage</label>
         <div class="uk-form-controls uk-margin-auto-left" uk-tooltip="title: Stage name; pos: top-left; delay: 500">
             {{^init}}
-            <input class="uk-input" id="stage-{{num}}-name" name="stage-{{num}}-name" type="text" value="{{name}}">
+            <input class="uk-input" id="{{id}}-name" name="{{id}}-name" type="text" value="{{name}}">
             {{/init}}
             {{#init}}
             <input class="uk-input" type="text" value="{{name}}" disabled>
-            <input class="uk-input" id="stage-{{num}}-name" name="stage-{{num}}-name" type="text" value="{{name}}" hidden>
+            <input class="uk-input" id="{{id}}-name" name="{{id}}-name" type="text" value="{{name}}" hidden>
             {{/init}}
         </div>
     </div>
@@ -17,11 +17,11 @@
         <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right uk-width-1-1" style="margin-top: 5px">
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                 <input class="uk-input" type="text" value="{{w_name}}" disabled>
-                <input class="uk-input" id="stage-{{num}}-w-name" name="stage-{{num}}-w-name" type="text" value="{{w_name}}" hidden>
+                <input class="uk-input" id="{{id}}-w-name" name="{{id}}-w-name" type="text" value="{{w_name}}" hidden>
             </div>
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                 <input class="uk-input" type="text" value="{{w_id}}" disabled>
-                <input class="uk-input" id="stage-{{num}}-w-id" name="stage-{{num}}-w-id" type="text" value="{{w_id}}" hidden>
+                <input class="uk-input" id="{{id}}-w-id" name="{{id}}-w-id" type="text" value="{{w_id}}" hidden>
             </div>
         </div>
     </div>
@@ -34,10 +34,10 @@
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                     <input class="uk-input" type="text" value="{{name}}" disabled>
-                    <input class="uk-input" id="stage-{{num}}-input-{{i_num}}-key" name="stage-{{num}}-input-{{i_num}}-key" type="text" value="{{name}}" hidden>
+                    <input class="uk-input" id="{{id}}-input-{{i_num}}-key" name="{{id}}-input-{{i_num}}-key" type="text" value="{{name}}" hidden>
                 </div>
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <select class="uk-select" id="stage-{{num}}-input-{{i_num}}-value" name="stage-{{num}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
+                    <select class="uk-select" id="{{id}}-input-{{i_num}}-value" name="{{id}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                         {{#values}}
                         <option value="{{name}}">{{name}}</option>
@@ -52,7 +52,7 @@
             {{#output}}
             <div class="uk-form-controls uk-margin-small-left">
                 <input class="uk-input" type="text" value="{{name}}" disabled>
-                <input class="uk-input" id="stage-{{num}}-output-{{name}}-field" name="stage-{{num}}-output-{{name}}-field" type="text" value="{{name}}" hidden>
+<!--                <input class="uk-input" id="{{id}}-output-{{name}}-field" name="{{id}}-output-{{name}}-field" type="text" value="{{name}}" hidden>-->
             </div>
             {{/output}}
         </div>
@@ -65,10 +65,10 @@
         <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right uk-width-1-1">
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                 <input class="uk-input" type="text" value="{{key}}" disabled>
-                <input class="uk-input" id="stage-{{num}}-config-{{c_num}}-key" name="stage-{{num}}-config-{{c_num}}-key" type="text" value="{{key}}" hidden>
+                <input class="uk-input" id="{{id}}-config-{{c_num}}-key" name="{{id}}-config-{{c_num}}-key" type="text" value="{{key}}" hidden>
             </div>
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" id="stage-{{num}}-config-{{c_num}}-value" name="stage-{{num}}-config-{{c_num}}-value" type="text" value="{{value}}">
+                <input class="uk-input" id="{{id}}-config-{{c_num}}-value" name="{{id}}-config-{{c_num}}-value" type="text" value="{{value}}">
             </div>
         </div>
         {{/configs}}
@@ -77,7 +77,7 @@
     {{^init}}
     <hr>
     <div>
-        <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="active_cmp.form.removeStage('stage-{{num}}')">Delete<span style="margin-left: 5px" uk-icon="icon: trash"></span></button>
+        <button class="uk-button uk-button-text" style="display: inline-flex; align-items: center;" type="button" onclick="active_cmp.form.removeStage('{{id}}')">Delete<span style="margin-left: 5px" uk-icon="icon: trash"></span></button>
     </div>
     {{/init}}
 </div>
