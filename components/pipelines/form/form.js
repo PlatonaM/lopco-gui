@@ -111,7 +111,6 @@ class Form {
             output: [{name: 'init_source', media_type: '', is_file: true}]
         })));
         this.stages[Object.keys(this.stages).length] = { id: st_id, wk_id: null };
-        console.log(this.stages);
     }
 
     addStage(wk_id) {
@@ -171,11 +170,19 @@ class Form {
         let element = document.getElementById(id);
         let parent = element.parentElement;
         parent.removeChild(element);
+        let st_num;
         for (let [key, value] of Object.entries(this.stages)) {
             if (value['id'] === id) {
-                delete this.stages[key]
+                st_num = Number(key);
                 break;
             }
         }
+        if (st_num !== Object.keys(this.stages).length - 1) {
+            let i;
+            for (i=st_num; i < Object.keys(this.stages).length - 1; i++) {
+                this.stages[i] = this.stages[i + 1];
+            }
+        }
+        delete this.stages[Object.keys(this.stages).length - 1]
     }
 }
