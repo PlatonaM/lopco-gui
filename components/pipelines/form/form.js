@@ -23,9 +23,7 @@ class Form {
         this.container = ctr;
         this.stage_container = null;
         this.workers = {};
-        this.st_count = 0;
-        this.st_order = [];
-        this.st_map = {};
+        this.stages = {};
     }
 
     async getTemplates() {
@@ -98,19 +96,26 @@ class Form {
             });
     }
 
+    genRandomID() {
+        let array = new Uint32Array(2);
+        window.crypto.getRandomValues(array);
+        return array.join('') + String(performance.now()).replace('.', '');
+    }
+
     addInitStage() {
+        const st_id = this.genRandomID();
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             init: true,
             name: 'init',
-            num: this.st_count,
+            id: st_id,
             output: [{name: 'init_source', media_type: '', is_file: true}]
         })));
-        this.st_map[this.st_count] = 'init';
-        this.st_order.push(this.st_count)
-        this.st_count++;
+        this.stages[Object.keys(this.stages).length] = { id: st_id, wk_id: null };
+        console.log(this.stages);
     }
 
     addStage(wk_id) {
+        const st_num = Object.keys(this.stages).length;
         let inputs = [];
         let i_num = 0;
         if (this.workers[wk_id]['input']) {
@@ -121,15 +126,15 @@ class Form {
             }
         }
         let i_values = [];
-        if (this.st_map[this.st_order[this.st_order.length - 1]] === 'init') {
+        if (st_num - 1 === 0) {
             i_values.push(
                 {
                     name: 'init_source'
                 }
             )
         } else {
-            if (this.workers[this.st_map[this.st_order[this.st_order.length - 1]]]['output']) {
-                for (let item of this.workers[this.st_map[this.st_order[this.st_order.length - 1]]]['output']['fields']) {
+            if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
+                for (let item of this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']) {
                     i_values.push(item);
                 }
             }
@@ -148,8 +153,9 @@ class Form {
                 c_num++;
             }
         }
+        const st_id = this.genRandomID();
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
-            num: this.st_count,
+            id: st_id,
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
             input: inputs,
@@ -158,17 +164,18 @@ class Form {
             has_configs: !!(this.workers[wk_id]['configs']),
             configs: configs
         })));
-        this.st_map[this.st_count] = wk_id;
-        this.st_order.push(this.st_count)
-        this.st_count++;
+        this.stages[st_num] = { id: st_id, wk_id: wk_id };
     }
 
     removeStage(id) {
         let element = document.getElementById(id);
         let parent = element.parentElement;
         parent.removeChild(element);
-        id = Number(id.split('-')[1])
-        delete this.st_map[id];
-        this.st_order.splice(this.st_order.indexOf(id), 1);
+        for (let [key, value] of Object.entries(this.stages)) {
+            if (value['id'] === id) {
+                delete this.stages[key]
+                break;
+            }
+        }
     }
 }
