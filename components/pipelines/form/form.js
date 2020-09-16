@@ -167,7 +167,8 @@ class Form {
         let element = document.getElementById(id);
         let parent = element.parentElement;
         parent.removeChild(element);
+        id = Number(id.split('-')[1])
         delete this.st_map[id];
-        this.st_order = this.st_order.splice(this.st_order.indexOf(id), 1);
+        this.st_order.splice(this.st_order.indexOf(id), 1);
     }
 }
