@@ -190,5 +190,30 @@ class Form {
             }
         }
         delete this.stages[Object.keys(this.stages).length - 1]
+        if ((Object.keys(this.stages).length > 1) && (st_num !== Object.keys(this.stages).length)) {
+            if (st_num - 1 === 0) {
+                this.repopulateInputs(st_num, [ {name: 'init_source'} ]);
+            } else {
+                if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
+                    this.repopulateInputs(st_num, this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']);
+                }
+            }
+        }
+    }
+
+    repopulateInputs(st_num, fields) {
+        let i;
+        for (i=0; i < this.workers[this.stages[st_num]['wk_id']]['input']['fields'].length; i++) {
+            let in_elm = document.getElementById(this.stages[st_num]['id'] + '-input-' + i + '-value');
+            while (in_elm.options.length > 1) {
+                in_elm.options.remove(in_elm.options.length - 1);
+            }
+            for (let item of fields) {
+                let in_opt = document.createElement('option')
+                in_opt.value = item['name'];
+                in_opt.text = item['name'];
+                in_elm.add(in_opt);
+            }
+        }
     }
 }
