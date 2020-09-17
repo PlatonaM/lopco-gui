@@ -3,7 +3,7 @@
         <label class="uk-form-label uk-text-uppercase" for="{{id}}-name" style="color: #666666; width: 100px; margin-bottom: 5px;">Stage</label>
         <div class="uk-form-controls uk-margin-auto-left" uk-tooltip="title: Stage name; pos: top-left; delay: 500">
             {{^init}}
-            <input class="uk-input" id="{{id}}-name" name="{{id}}-name" type="text" value="{{name}}">
+            <input class="uk-input" id="{{id}}-name" name="{{id}}-name" type="text" value="{{name}}" required>
             {{/init}}
             {{#init}}
             <input class="uk-input" type="text" value="{{name}}" disabled>
