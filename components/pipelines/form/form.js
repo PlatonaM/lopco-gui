@@ -119,8 +119,14 @@ class Form {
         let i_num = 0;
         if (this.workers[wk_id]['input']) {
             for (let item of this.workers[wk_id]['input']['fields']) {
-                item['i_num'] = i_num;
-                inputs.push(item);
+                inputs.push(
+                    {
+                        name: item['name'],
+                        media_type: item['media_type'],
+                        is_file: item['is_file'],
+                        i_num: i_num
+                    }
+                );
                 i_num++;
             }
         }
