@@ -28,6 +28,9 @@
                             <span class="uk-inline uk-text-small" style="width: 80px">STAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{stage}}</span>
                         </div>
                         <div style="margin-top: 4px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 80px">INPUTS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#i_fields}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/i_fields}}{{#null_i_fields}}<div class="uk-text-italic">{{field}}</div>{{/null_i_fields}}</div>
+                        </div>
+                        <div style="margin-top: 4px">
                             <span class="uk-inline uk-text-top uk-text-small" style="width: 80px">OUTPUTS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#fields}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/fields}}{{#null_fields}}<div class="uk-text-italic">{{field}}</div>{{/null_fields}}</div>
                         </div>
                     </div>
