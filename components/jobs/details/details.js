@@ -57,13 +57,17 @@ class Details {
                     .then((template) => {
                         let stages = [];
                         let i;
-                        for (i = 0; i < data['stages'].length; i++) {
-                            const gen_fields = this.genFields(data['stages'][i]['outputs'])
+                        for (i = 0; i < Object.keys(data['stages']).length; i++) {
+                            const inputs = this.genFields(data['stages'][i]['inputs']);
+                            console.log(inputs);
+                            const outputs = this.genFields(data['stages'][i]['outputs']);
                             stages.push(
                                 {
-                                    stage: data['stages'][i]['id'],
-                                    fields: gen_fields[0],
-                                    null_fields: gen_fields[1]
+                                    stage: i,
+                                    i_fields: inputs[0],
+                                    null_i_fields: inputs[1],
+                                    fields: outputs[0],
+                                    null_fields: outputs[1]
                                 }
                             );
                         }
