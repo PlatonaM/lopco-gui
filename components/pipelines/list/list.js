@@ -41,7 +41,7 @@ class List {
                                 {
                                     id: key,
                                     name: value['name'],
-                                    stage_length: value['stages'].length
+                                    stage_length: Object.keys(value['stages']).length
                                 }
                             )
                         }
