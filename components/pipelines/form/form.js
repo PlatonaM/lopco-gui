@@ -69,7 +69,11 @@ class Form {
                             this.container.innerHTML = Mustache.render(template, {workers: workers});
                         }
                         let form = this.container.getElementsByTagName('form')[0];
-                        form.addEventListener('submit', this.submit);
+                        if (pl_data) {
+                            form.addEventListener('submit', this.submitEdit);
+                        } else {
+                            form.addEventListener('submit', this.submit);
+                        }
                         this.stage_container = document.getElementById('stages');
                         this.addInitStage();
                     });
