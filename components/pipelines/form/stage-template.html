@@ -40,7 +40,7 @@
                     <select class="uk-select" id="{{id}}-input-{{i_num}}-value" name="{{id}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                         {{#values}}
-                        <option value="{{name}}">{{name}}</option>
+                        <option value="{{name}}" {{#selected}}selected{{/selected}}>{{name}}</option>
                         {{/values}}
                     </select>
                 </div>
