@@ -149,7 +149,7 @@ class Form {
                 configs.push(
                     {
                         key: key,
-                        value: value,
+                        value: (data) ? (Object.keys(data['worker']['configs']).includes(key)) ? data['worker']['configs'][key] : value : value,
                         c_num: c_num
                     }
                 )
