@@ -75,6 +75,12 @@ class Form {
                             form.addEventListener('submit', this.submit);
                         }
                         this.stage_container = document.getElementById('stages');
+                        if (pl_data) {
+                            let i;
+                            for (i=0; i < Object.keys(pl_data['stages']).length; i++) {
+                                this.addStage(pl_data['stages'][i]['worker']['id'], pl_data['stages'][i]);
+                            }
+                        }
                     });
             })
             .catch((err) => {
@@ -105,7 +111,7 @@ class Form {
         return array.join('') + String(performance.now()).replace('.', '');
     }
 
-    addStage(wk_id) {
+    addStage(wk_id, data=null) {
         const st_num = Object.keys(this.stages).length;
         let inputs = [];
         let i_num = 0;
