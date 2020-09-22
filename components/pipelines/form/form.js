@@ -117,29 +117,34 @@ class Form {
         let i_num = 0;
         if (this.workers[wk_id]['input']) {
             for (let item of this.workers[wk_id]['input']['fields']) {
+                let values = [];
+                if (st_num === 0) {
+                    values.push(
+                        {
+                            name: 'init_source',
+                            selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === 'init_source') : null : null
+                        }
+                    )
+                } else {
+                    if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
+                        for (let o_item of this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']) {
+                            values.push({
+                                ...o_item,
+                                selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === o_item['name']) : null : null
+                            });
+                        }
+                    }
+                }
                 inputs.push(
                     {
                         name: item['name'],
                         media_type: item['media_type'],
                         is_file: item['is_file'],
-                        i_num: i_num
+                        i_num: i_num,
+                        values: values
                     }
                 );
                 i_num++;
-            }
-        }
-        let i_values = [];
-        if (st_num === 0) {
-            i_values.push(
-                {
-                    name: 'init_source'
-                }
-            )
-        } else {
-            if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
-                for (let item of this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']) {
-                    i_values.push(item);
-                }
             }
         }
         let configs = [];
