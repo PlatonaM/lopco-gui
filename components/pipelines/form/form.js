@@ -164,6 +164,7 @@ class Form {
         const st_id = this.genRandomID();
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             id: st_id,
+            number: st_num,
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
             input: inputs,
