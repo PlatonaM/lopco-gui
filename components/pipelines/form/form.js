@@ -160,6 +160,7 @@ class Form {
         this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             id: st_id,
             number: st_num,
+            description: (data) ? data['description'] : null,
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
             input: inputs,
