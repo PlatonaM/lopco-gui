@@ -105,17 +105,6 @@ class Form {
         return array.join('') + String(performance.now()).replace('.', '');
     }
 
-    addInitStage() {
-        const st_id = this.genRandomID();
-        this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
-            init: true,
-            name: 'init',
-            id: st_id,
-            output: [{name: 'init_source', media_type: '', is_file: true}]
-        })));
-        this.stages[Object.keys(this.stages).length] = { id: st_id, wk_id: null };
-    }
-
     addStage(wk_id) {
         const st_num = Object.keys(this.stages).length;
         let inputs = [];
