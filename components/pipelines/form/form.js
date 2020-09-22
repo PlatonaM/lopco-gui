@@ -169,7 +169,6 @@ class Form {
             w_name: this.workers[wk_id]['name'],
             w_id: wk_id,
             input: inputs,
-            values: i_values,
             output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null,
             has_configs: !!(this.workers[wk_id]['configs']),
             configs: configs
