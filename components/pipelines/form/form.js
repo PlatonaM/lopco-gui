@@ -75,7 +75,6 @@ class Form {
                             form.addEventListener('submit', this.submit);
                         }
                         this.stage_container = document.getElementById('stages');
-                        this.addInitStage();
                     });
             })
             .catch((err) => {
@@ -135,7 +134,7 @@ class Form {
             }
         }
         let i_values = [];
-        if (st_num - 1 === 0) {
+        if (st_num === 0) {
             i_values.push(
                 {
                     name: 'init_source'
@@ -194,8 +193,8 @@ class Form {
             }
         }
         delete this.stages[Object.keys(this.stages).length - 1]
-        if ((Object.keys(this.stages).length > 1) && (st_num !== Object.keys(this.stages).length)) {
-            if (st_num - 1 === 0) {
+        if ((Object.keys(this.stages).length > 0) && (st_num !== Object.keys(this.stages).length)) {
+            if (st_num === 0) {
                 this.repopulateInputs(st_num, [ {name: 'init_source'} ]);
             } else {
                 if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
