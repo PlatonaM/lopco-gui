@@ -203,6 +203,10 @@ class Form {
                 }
             }
         }
+        for (let [key, value] of Object.entries(this.stages)) {
+            let num_e = document.getElementById(value['id'] + '-number');
+            num_e.value = key;
+        }
     }
 
     repopulateInputs(st_num, fields) {
