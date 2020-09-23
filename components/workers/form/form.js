@@ -195,11 +195,11 @@ class Form {
             element.className += " uk-margin-bottom";
         }
         if (data) {
-            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count, key: data['key'], value: data['value']})));
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: active_cmp.form.conf_count, key: data['key'], value: data['value']})));
         } else {
-            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: this.conf_count})));
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.conf_template, {id: active_cmp.form.conf_count})));
         }
-        this.conf_count++;
+        active_cmp.form.conf_count++;
     }
 
     removeConfigFields(id) {
@@ -242,11 +242,11 @@ class Form {
             element.className += " uk-margin-bottom";
         }
         if (data) {
-            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type, name: data['name'], media_type: data['media_type'], is_file: data['is_file']})));
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: active_cmp.form.io_count, type: type, name: data['name'], media_type: data['media_type'], is_file: data['is_file']})));
         } else {
-            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: this.io_count, type: type, is_file: true})));
+            parent.append(document.createRange().createContextualFragment(Mustache.render(Form.io_template, {id: active_cmp.form.io_count, type: type, is_file: true})));
         }
-        this.io_count++;
+        active_cmp.form.io_count++;
     }
 
     removeIOField(id) {
