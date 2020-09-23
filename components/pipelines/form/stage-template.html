@@ -29,7 +29,7 @@
     <hr>
     <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-top" uk-height-match>
         <div class="uk-flex-none uk-width-3-5" style="border-right: 1px solid #e5e5e5;">
-            <div class="uk-text-uppercase uk-margin-small-right" style="color: #666666; font-size: 0.875rem; margin-bottom: 5px">Input</div>
+            <div class="uk-text-uppercase uk-margin-small-right" style="color: #666666; font-size: 0.875rem; margin-bottom: 5px">Input [{{i_type}}]</div>
             {{#input}}
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
@@ -48,10 +48,10 @@
             {{/input}}
         </div>
         <div class="uk-flex-none uk-width-2-5">
-            <div class="uk-text-uppercase uk-margin-small-left" style="color: #666666; font-size: 0.875rem; margin-bottom: 5px">Output</div>
+            <div class="uk-text-uppercase uk-margin-small-left" style="color: #666666; font-size: 0.875rem; margin-bottom: 5px">Output [{{o_type}}]</div>
             {{#output}}
             <div class="uk-form-controls uk-margin-small-left">
-                <input class="uk-input" type="text" value="{{name}}" disabled>
+                <input class="uk-input" type="text" value="{{name}}" uk-tooltip="title: {{media_type}}; pos: top-left; delay: 500" disabled>
 <!--                <input class="uk-input" id="{{id}}-output-{{name}}-field" name="{{id}}-output-{{name}}-field" type="text" value="{{name}}" hidden>-->
             </div>
             {{/output}}
