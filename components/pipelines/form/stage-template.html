@@ -16,11 +16,11 @@
         <div class="uk-text-uppercase uk-margin-small-top" style="color: #666666; font-size: 0.875rem">Worker</div>
         <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right uk-width-1-1" style="margin-top: 5px">
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" type="text" value="{{w_name}}" disabled>
+                <input class="uk-input" type="text" value="{{w_name}}" uk-tooltip="title: Worker name; pos: top-left; delay: 500" disabled>
                 <input class="uk-input" id="{{id}}-w-name" name="{{id}}-w-name" type="text" value="{{w_name}}" hidden>
             </div>
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" type="text" value="{{w_id}}" disabled>
+                <input class="uk-input" type="text" value="{{w_id}}" uk-tooltip="title: Worker ID; pos: top-left; delay: 500" disabled>
                 <input class="uk-input" id="{{id}}-w-id" name="{{id}}-w-id" type="text" value="{{w_id}}" hidden>
             </div>
         </div>
@@ -33,11 +33,11 @@
             {{#input}}
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <input class="uk-input" type="text" value="{{name}}" disabled>
+                    <input class="uk-input" type="text" value="{{name}}" uk-tooltip="title: {{media_type}}; pos: top-left; delay: 500" disabled>
                     <input class="uk-input" id="{{id}}-input-{{i_num}}-key" name="{{id}}-input-{{i_num}}-key" type="text" value="{{name}}" hidden>
                 </div>
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <select class="uk-select" id="{{id}}-input-{{i_num}}-value" name="{{id}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Select output to map to this input field; pos: top-left; delay: 500">
+                    <select class="uk-select" id="{{id}}-input-{{i_num}}-value" name="{{id}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Output to map to input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                         {{#values}}
                         <option value="{{name}}" {{#selected}}selected{{/selected}}>{{name}}</option>
@@ -64,11 +64,11 @@
         {{#configs}}
         <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right uk-width-1-1">
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" type="text" value="{{key}}" disabled>
+                <input class="uk-input" type="text" value="{{key}}" uk-tooltip="title: Worker config field; pos: top-left; delay: 500" disabled>
                 <input class="uk-input" id="{{id}}-config-{{c_num}}-key" name="{{id}}-config-{{c_num}}-key" type="text" value="{{key}}" hidden>
             </div>
             <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                <input class="uk-input" id="{{id}}-config-{{c_num}}-value" name="{{id}}-config-{{c_num}}-value" type="text" value="{{value}}">
+                <input class="uk-input" id="{{id}}-config-{{c_num}}-value" name="{{id}}-config-{{c_num}}-value" type="text" value="{{value}}" uk-tooltip="title: Config field value; pos: top-left; delay: 500">
             </div>
         </div>
         {{/configs}}
