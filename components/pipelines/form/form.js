@@ -126,8 +126,8 @@ class Form {
                         }
                     )
                 } else {
-                    if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
-                        for (let o_item of this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']) {
+                    if (this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']) {
+                        for (let o_item of this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']['fields']) {
                             values.push({
                                 ...o_item,
                                 selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === o_item['name']) : null : null
@@ -175,7 +175,7 @@ class Form {
             i_type: this.workers[wk_id]['input']['type'],
             o_type: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['type'] : 'null'
         })));
-        this.stages[st_num] = { id: st_id, wk_id: wk_id };
+        this.stages[String(st_num)] = { id: st_id, wk_id: wk_id };
     }
 
     removeStage(id) {
@@ -192,16 +192,16 @@ class Form {
         if (st_num !== Object.keys(this.stages).length - 1) {
             let i;
             for (i=st_num; i < Object.keys(this.stages).length - 1; i++) {
-                this.stages[i] = this.stages[i + 1];
+                this.stages[String(i)] = this.stages[String(i + 1)];
             }
         }
-        delete this.stages[Object.keys(this.stages).length - 1]
+        delete this.stages[String(Object.keys(this.stages).length - 1)]
         if ((Object.keys(this.stages).length > 0) && (st_num !== Object.keys(this.stages).length)) {
             if (st_num === 0) {
                 this.repopulateInputs(st_num, [ {name: 'init_source'} ]);
             } else {
-                if (this.workers[this.stages[st_num - 1]['wk_id']]['output']) {
-                    this.repopulateInputs(st_num, this.workers[this.stages[st_num - 1]['wk_id']]['output']['fields']);
+                if (this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']) {
+                    this.repopulateInputs(st_num, this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']['fields']);
                 }
             }
         }
@@ -213,8 +213,8 @@ class Form {
 
     repopulateInputs(st_num, fields) {
         let i;
-        for (i=0; i < this.workers[this.stages[st_num]['wk_id']]['input']['fields'].length; i++) {
-            let in_elm = document.getElementById(this.stages[st_num]['id'] + '-input-' + i + '-value');
+        for (i=0; i < this.workers[this.stages[String(st_num)]['wk_id']]['input']['fields'].length; i++) {
+            let in_elm = document.getElementById(this.stages[String(st_num)]['id'] + '-input-' + i + '-value');
             while (in_elm.options.length > 1) {
                 in_elm.options.remove(in_elm.options.length - 1);
             }
