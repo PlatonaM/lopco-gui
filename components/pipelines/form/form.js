@@ -164,11 +164,11 @@ class Form {
     }
 
     addStage(wk_id, data=null) {
-        const st_num = Object.keys(this.stages).length;
+        const st_num = Object.keys(active_cmp.form.stages).length;
         let inputs = [];
         let i_num = 0;
-        if (this.workers[wk_id]['input']) {
-            for (let item of this.workers[wk_id]['input']['fields']) {
+        if (active_cmp.form.workers[wk_id]['input']) {
+            for (let item of active_cmp.form.workers[wk_id]['input']['fields']) {
                 let values = [];
                 if (st_num === 0) {
                     values.push(
@@ -178,8 +178,8 @@ class Form {
                         }
                     )
                 } else {
-                    if (this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']) {
-                        for (let o_item of this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']['fields']) {
+                    if (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) {
+                        for (let o_item of active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']['fields']) {
                             values.push({
                                 ...o_item,
                                 selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === o_item['name']) : null : null
@@ -201,8 +201,8 @@ class Form {
         }
         let configs = [];
         let c_num = 0;
-        if (this.workers[wk_id]['configs']) {
-            for (let [key, value] of Object.entries(this.workers[wk_id]['configs'])) {
+        if (active_cmp.form.workers[wk_id]['configs']) {
+            for (let [key, value] of Object.entries(active_cmp.form.workers[wk_id]['configs'])) {
                 configs.push(
                     {
                         key: key,
@@ -213,21 +213,21 @@ class Form {
                 c_num++;
             }
         }
-        const st_id = this.genRandomID();
-        this.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
+        const st_id = active_cmp.form.genRandomID();
+        active_cmp.form.stage_container.append(document.createRange().createContextualFragment(Mustache.render(Form.stage_template, {
             id: st_id,
             number: st_num,
             description: (data) ? data['description'] : null,
-            w_name: this.workers[wk_id]['name'],
+            w_name: active_cmp.form.workers[wk_id]['name'],
             w_id: wk_id,
             input: inputs,
-            output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null,
-            has_configs: !!(this.workers[wk_id]['configs']),
+            output: (active_cmp.form.workers[wk_id]['output']) ? active_cmp.form.workers[wk_id]['output']['fields'] : null,
+            has_configs: !!(active_cmp.form.workers[wk_id]['configs']),
             configs: configs,
-            i_type: this.workers[wk_id]['input']['type'],
-            o_type: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['type'] : 'null'
+            i_type: active_cmp.form.workers[wk_id]['input']['type'],
+            o_type: (active_cmp.form.workers[wk_id]['output']) ? active_cmp.form.workers[wk_id]['output']['type'] : 'null'
         })));
-        this.stages[String(st_num)] = { id: st_id, wk_id: wk_id };
+        active_cmp.form.stages[String(st_num)] = { id: st_id, wk_id: wk_id };
     }
 
     removeStage(id) {
@@ -235,29 +235,29 @@ class Form {
         let parent = element.parentElement;
         parent.removeChild(element);
         let st_num;
-        for (let [key, value] of Object.entries(this.stages)) {
+        for (let [key, value] of Object.entries(active_cmp.form.stages)) {
             if (value['id'] === id) {
                 st_num = Number(key);
                 break;
             }
         }
-        if (st_num !== Object.keys(this.stages).length - 1) {
+        if (st_num !== Object.keys(active_cmp.form.stages).length - 1) {
             let i;
-            for (i=st_num; i < Object.keys(this.stages).length - 1; i++) {
-                this.stages[String(i)] = this.stages[String(i + 1)];
+            for (i=st_num; i < Object.keys(active_cmp.form.stages).length - 1; i++) {
+                active_cmp.form.stages[String(i)] = active_cmp.form.stages[String(i + 1)];
             }
         }
-        delete this.stages[String(Object.keys(this.stages).length - 1)]
-        if ((Object.keys(this.stages).length > 0) && (st_num !== Object.keys(this.stages).length)) {
+        delete active_cmp.form.stages[String(Object.keys(active_cmp.form.stages).length - 1)]
+        if ((Object.keys(active_cmp.form.stages).length > 0) && (st_num !== Object.keys(active_cmp.form.stages).length)) {
             if (st_num === 0) {
-                this.repopulateInputs(st_num, [ {name: 'init_source'} ]);
+                active_cmp.form.repopulateInputs(st_num, [ {name: 'init_source'} ]);
             } else {
-                if (this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']) {
-                    this.repopulateInputs(st_num, this.workers[this.stages[String(st_num - 1)]['wk_id']]['output']['fields']);
+                if (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) {
+                    active_cmp.form.repopulateInputs(st_num, active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']['fields']);
                 }
             }
         }
-        for (let [key, value] of Object.entries(this.stages)) {
+        for (let [key, value] of Object.entries(active_cmp.form.stages)) {
             let num_e = document.getElementById(value['id'] + '-number');
             num_e.value = key;
         }
@@ -265,8 +265,8 @@ class Form {
 
     repopulateInputs(st_num, fields) {
         let i;
-        for (i=0; i < this.workers[this.stages[String(st_num)]['wk_id']]['input']['fields'].length; i++) {
-            let in_elm = document.getElementById(this.stages[String(st_num)]['id'] + '-input-' + i + '-value');
+        for (i=0; i < active_cmp.form.workers[active_cmp.form.stages[String(st_num)]['wk_id']]['input']['fields'].length; i++) {
+            let in_elm = document.getElementById(active_cmp.form.stages[String(st_num)]['id'] + '-input-value-' + i);
             while (in_elm.options.length > 1) {
                 in_elm.options.remove(in_elm.options.length - 1);
             }
