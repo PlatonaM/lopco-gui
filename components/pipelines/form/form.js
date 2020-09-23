@@ -171,7 +171,9 @@ class Form {
             input: inputs,
             output: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['fields'] : null,
             has_configs: !!(this.workers[wk_id]['configs']),
-            configs: configs
+            configs: configs,
+            i_type: this.workers[wk_id]['input']['type'],
+            o_type: (this.workers[wk_id]['output']) ? this.workers[wk_id]['output']['type'] : 'null'
         })));
         this.stages[st_num] = { id: st_id, wk_id: wk_id };
     }
