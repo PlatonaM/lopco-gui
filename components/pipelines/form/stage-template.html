@@ -32,10 +32,10 @@
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
                     <input class="uk-input" type="text" value="{{name}}" uk-tooltip="title: {{media_type}}; pos: top-left; delay: 500" disabled>
-                    <input class="uk-input" id="{{id}}-input-{{i_num}}-key" name="{{id}}-input-{{i_num}}-key" type="text" value="{{name}}" hidden>
+                    <input class="uk-input" id="{{id}}-input-key-{{i_num}}" name="{{id}}-input-key-{{i_num}}" type="text" value="{{name}}" hidden>
                 </div>
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <select class="uk-select" id="{{id}}-input-{{i_num}}-value" name="{{id}}-input-{{i_num}}-value" onchange="" uk-tooltip="title: Output to map to input field; pos: top-left; delay: 500">
+                    <select class="uk-select" id="{{id}}-input-value-{{i_num}}" name="{{id}}-input-value-{{i_num}}" onchange="" uk-tooltip="title: Output to map to input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                         {{#values}}
                         <option value="{{name}}" {{#selected}}selected{{/selected}}>{{name}}</option>
