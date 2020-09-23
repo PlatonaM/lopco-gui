@@ -105,6 +105,58 @@ class Form {
             });
     }
 
+    submit(event, method='POST') {
+        event.preventDefault();
+        const form = new FormData(event.target);
+        let i;
+        for (i=0; i < Object.keys(active_cmp.form.stages).length; i++) {
+            active_cmp.form.stages[String(i)]['worker'] = { ...active_cmp.form.workers[active_cmp.form.stages[String(i)]['wk_id']] };
+            active_cmp.form.stages[String(i)]['worker']['id'] = active_cmp.form.stages[String(i)]['wk_id'];
+            delete active_cmp.form.stages[String(i)]['wk_id'];
+            active_cmp.form.stages[String(i)]['description'] = form.get(active_cmp.form.stages[String(i)]['id'] + '-description');
+            active_cmp.form.stages[String(i)]['input_map'] = {};
+            for (let [key, value] of form.entries()) {
+                if (key.includes(active_cmp.form.stages[String(i)]['id']+'-input-key')) {
+                    active_cmp.form.stages[String(i)]['input_map'][value] = form.get(active_cmp.form.stages[String(i)]['id']+'-input-value-'+key.split('-')[3]);
+                }
+                if (key.includes(active_cmp.form.stages[String(i)]['id']+'-config-key')) {
+                    active_cmp.form.stages[String(i)]['worker']['configs'][value] = form.get(active_cmp.form.stages[String(i)]['id']+'-config-value-'+key.split('-')[3]);
+                }
+            }
+            delete active_cmp.form.stages[String(i)]['id'];
+        }
+        let url;
+        if (method === 'POST') {
+            url = active_cmp.constructor.api;
+        }
+        if (method === 'PUT') {
+            url = active_cmp.constructor.api + '/' + form.get('id');
+        }
+        fetch(url, {
+            method: method,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                'name': form.get('name'),
+                'stages': active_cmp.form.stages
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Pipeline saved successfully!');
+                    window.open('/pipelines','_self');
+                } else {
+                    throw response.status;
+                }
+            })
+            .catch((error) => {
+                alert("Can't save Pipeline: " + error);
+            });
+    }
+
+    submitEdit(event) {
+        active_cmp.form.submit(event, 'PUT');
+    }
+
     genRandomID() {
         let array = new Uint32Array(2);
         window.crypto.getRandomValues(array);
