@@ -1,0 +1,7 @@
+.running {
+    color: #228B22;
+}
+
+.stopped {
+    color: #DC143C;
+}
