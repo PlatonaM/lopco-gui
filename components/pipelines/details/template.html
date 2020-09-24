@@ -1,0 +1,49 @@
+<div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+    <div class="uk-float-left uk-width-1-2">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+        </div>
+    </div>
+    <div class="uk-float-left uk-width-1-2">
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 150px">NUMBER OF STAGES:</span><span class="uk-inline uk-text-light uk-text-small">{{stage_length}}</span>
+        </div>
+    </div>
+    <div class="uk-float-left uk-width-1-1 uk-margin-small-top">
+        <ul class="uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+            {{#stages}}
+            <li>
+                <div class="uk-card uk-card-body uk-padding-small" style="border: 1px dashed #e5e5e5;">
+                    <div class="uk-float-left uk-width-1-1">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 104px">STAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{st_num}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 104px">DESCRIPTION:</span><span class="uk-inline uk-text-light uk-text-small">{{description}}</span>
+                        </div>
+                        <div style="margin-top: 4px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">WORKER:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small"><div>name = <span class="uk-text-italic">{{w_name}}</span></div><div>id = <a class="uk-link-text uk-text-italic" href="/workers/{{w_id}}?action=details">{{w_id}}</a></div></div>
+                        </div>
+                        <div style="margin-top: 4px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">INPUT:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#inputs}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/inputs}}</div>
+                        </div>
+                        {{#has_output}}
+                        <div style="margin-top: 4px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">OUTPUT:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#outputs}}<div>{{name}}</div>{{/outputs}}</div>
+                        </div>
+                        {{/has_output}}
+                        {{#has_config}}
+                        <div style="margin-top: 4px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">CONFIGS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#configs}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/configs}}</div>
+                        </div>
+                        {{/has_config}}
+                    </div>
+                </div>
+            </li>
+            {{/stages}}
+        </ul>
+    </div>
+</div>
