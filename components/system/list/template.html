@@ -1,0 +1,46 @@
+<div uk-filter="target: .js-filter">
+    <ul class="uk-subnav uk-subnav-pill">
+        <li>
+            <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+            <div uk-dropdown>
+                <ul class="uk-nav uk-dropdown-nav">
+                    <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
+                    <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
+                    <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
+                    <li uk-filter-control="sort: data-hash"><a href="#">Hash</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="uk-margin-auto-left">
+            <a href="/system?action=update">Update</a>
+        </li>
+    </ul>
+    <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+        {{#items}}
+        <li data-image="{{image}}" data-hash="{{hash}}" data-name="{{name}}" data-status="{{status}}">
+            <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+                <div class="uk-float-left uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 64px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 64px">STATUS:</span><span class="{{status}} uk-inline uk-text-light uk-text-small">{{status}}</span>
+                    </div>
+                </div>
+                <div class="uk-float-right uk-width-1-2">
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 55px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
+                    </div>
+                    <div>
+                        <span class="uk-inline uk-text-small" style="width: 55px">HASH:</span><span class="uk-inline uk-text-light uk-text-small">{{hash}}</span>
+                    </div>
+                </div>
+                <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+                <div class="uk-float-left uk-width-1-1">
+                    <a href="/system/{{name}}?action=details" class="uk-icon-link" style="margin-right: 25px" uk-icon="search"><span class="uk-text-small" style="margin-right: 5px">DETAILS</span></a>
+                </div>
+            </div>
+        </li>
+        {{/items}}
+    </ul>
+</div>
