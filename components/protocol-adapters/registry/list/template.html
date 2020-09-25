@@ -22,35 +22,37 @@
             </li>
         </ul>
     </div>
-    <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
-        {{#pa_items}}
-        <li data-name="{{name}}" data-image="{{image}}">
-            <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
-                <div class="uk-float-left uk-width-1-2">
-                    <div>
-                        <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+    <div class="uk-width-1-1 uk-float-left">
+        <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+            {{#pa_items}}
+            <li data-name="{{name}}" data-image="{{image}}">
+                <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+                    <div class="uk-float-left uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+                        </div>
                     </div>
-                    <div>
-                        <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+                    <div class="uk-float-right uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 104px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 104px">DESCRIPTION:</span><span class="uk-inline uk-text-light uk-text-small">{{description}}</span>
+                        </div>
+                    </div>
+                    <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+                    <div class="uk-float-left uk-width-1-1">
+                        <a href="/protocol-adapters/registry/{{id}}?action=details" class="uk-icon-link" style="margin-right: 25px" uk-icon="search"><span class="uk-text-small" style="margin-right: 5px">DETAILS</span></a>
+                        <a href="/protocol-adapters/registry/{{id}}?action=edit" class="uk-icon-link" style="margin-right: 25px" uk-icon="pencil"><span class="uk-text-small" style="margin-right: 5px">EDIT</span></a>
+                        <a onclick="active_cmp.list.delete('{{id}}');" class="uk-icon-link" style="margin-right: 25px" uk-icon="trash"><span class="uk-text-small" style="margin-right: 5px">DELETE</span></a>
+                        <a href="/protocol-adapters/deployments?action=new&id={{id}}" class="uk-icon-link" uk-icon="play-circle"><span class="uk-text-small" style="margin-right: 5px">DEPLOY</span></a>
                     </div>
                 </div>
-                <div class="uk-float-right uk-width-1-2">
-                    <div>
-                        <span class="uk-inline uk-text-small" style="width: 104px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
-                    </div>
-                    <div>
-                        <span class="uk-inline uk-text-small" style="width: 104px">DESCRIPTION:</span><span class="uk-inline uk-text-light uk-text-small">{{description}}</span>
-                    </div>
-                </div>
-                <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
-                <div class="uk-float-left uk-width-1-1">
-                    <a href="/protocol-adapters/registry/{{id}}?action=details" class="uk-icon-link" style="margin-right: 25px" uk-icon="search"><span class="uk-text-small" style="margin-right: 5px">DETAILS</span></a>
-                    <a href="/protocol-adapters/registry/{{id}}?action=edit" class="uk-icon-link" style="margin-right: 25px" uk-icon="pencil"><span class="uk-text-small" style="margin-right: 5px">EDIT</span></a>
-                    <a onclick="active_cmp.list.delete('{{id}}');" class="uk-icon-link" style="margin-right: 25px" uk-icon="trash"><span class="uk-text-small" style="margin-right: 5px">DELETE</span></a>
-                    <a href="/protocol-adapters/deployments?action=new&id={{id}}" class="uk-icon-link" uk-icon="play-circle"><span class="uk-text-small" style="margin-right: 5px">DEPLOY</span></a>
-                </div>
-            </div>
-        </li>
-        {{/pa_items}}
-    </ul>
+            </li>
+            {{/pa_items}}
+        </ul>
+    </div>
 </div>
