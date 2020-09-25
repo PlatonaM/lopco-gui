@@ -31,7 +31,7 @@ class System {
 
     loadStyle() {
         let element = document.createElement("link");
-        element.href = "/components/system/style.css";
+        element.href = "/components/system/services/style.css";
         element.rel = "stylesheet";
         document.getElementsByTagName("head")[0].appendChild(element);
     }
