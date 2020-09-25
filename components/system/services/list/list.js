@@ -31,7 +31,7 @@ class List {
                 throw 'Error retrieving services - ' + response.status;
             })
             .then((data) => {
-                fetch('/components/system/list/template.html')
+                fetch('/components/system/services/list/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let items = [];
