@@ -28,10 +28,10 @@ class Details {
                 if (response.ok) {
                     return response.json()
                 }
-                throw 'Error retrieving Protocol-Adapter - ' + response.status;
+                throw 'Error retrieving service - ' + response.status;
             })
             .then((data) => {
-                fetch('/components/system/details/template.html')
+                fetch('/components/system/services/details/template.html')
                     .then((response) => response.text())
                     .then((template) => {
                         let ports = [];
