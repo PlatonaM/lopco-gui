@@ -76,7 +76,7 @@ class Details {
                                 id: j_id,
                                 created: data['created'],
                                 status: data['status'],
-                                ds_id: data['machine_id'],
+                                ds_id: data['ds_id'],
                                 pipeline_id: data['pipeline_id'],
                                 stages: stages
                             }
