@@ -39,7 +39,7 @@ class List {
                             items.push(
                                 {
                                     id: key,
-                                    ds_id: value['machine_id'],
+                                    ds_id: value['ds_id'],
                                     status: value['status'],
                                     pipeline_id: value['pipeline_id'],
                                     created: value['created'],
