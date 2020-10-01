@@ -1,18 +1,21 @@
 <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
     <div class="uk-float-left uk-width-1-2">
         <div>
-            <span class="uk-inline uk-text-small" style="width: 53px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+            <span class="uk-inline uk-text-small" style="width: 73px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
         </div>
         <div>
-            <span class="uk-inline uk-text-small" style="width: 53px">ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+            <span class="uk-inline uk-text-small" style="width: 73px">LOCAL ID:</span><span class="uk-inline uk-text-light uk-text-small">{{id}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 73px">PIPELINE:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="/pipelines/{{pipeline_id}}?action=details">{{pipeline_id}}</a>
         </div>
     </div>
     <div class="uk-float-right uk-width-1-2">
         <div>
-            <span class="uk-inline uk-text-small" style="width: 72px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type_id}}</span>
+            <span class="uk-inline uk-text-small" style="width: 141px">PLATFORM ID:</span><span class="uk-inline uk-text-light uk-text-small">{{p_id}}</span>
         </div>
         <div>
-            <span class="uk-inline uk-text-small" style="width: 72px">PIPELINE:</span><a class="uk-inline uk-text-light uk-text-small uk-link-text" href="/pipelines/{{pipeline_id}}?action=details">{{pipeline_id}}</a>
+            <span class="uk-inline uk-text-small" style="width: 141px">PLATFORM TYPE ID:</span><span class="uk-inline uk-text-light uk-text-small">{{type_id}}</span>
         </div>
     </div>
 </div>
