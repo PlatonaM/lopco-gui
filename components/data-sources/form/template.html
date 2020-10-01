@@ -41,7 +41,13 @@
             </div>
         </div>
         <div class="uk-margin">
-            <label class="uk-form-label uk-text-uppercase" for="form-type" style="color: #666666">Type ID</label>
+            <label class="uk-form-label uk-text-uppercase" for="form-type" style="color: #666666">Platform ID</label>
+            <div class="uk-form-controls" uk-tooltip="title: Platform ID of the Data-Source; pos: top-left; delay: 500">
+                <input class="uk-input" id="form-p-id" name="form-p-id" type="text" value="{{ds_p_id}}" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label uk-text-uppercase" for="form-type" style="color: #666666">Platform Type ID</label>
             <div class="uk-form-controls" uk-tooltip="title: ID of the Type corresponding to the Data-Source; pos: top-left; delay: 500">
                 <input class="uk-input" id="form-type" name="form-type" type="text" value="{{ds_type}}" required>
             </div>
