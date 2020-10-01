@@ -42,7 +42,8 @@ class List {
                                 {
                                     id: key,
                                     name: value['name'],
-                                    type_id: value['type_id'],
+                                    type_id: value['platform_type_id'],
+                                    p_id: value['platform_id'],
                                     pipeline_id: value['pipeline_id']
                                 }
                             )
