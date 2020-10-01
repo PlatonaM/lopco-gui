@@ -14,13 +14,13 @@
     limitations under the License.
 */
 
-export { System }
+export { Services }
 
 import { List } from './list/list.min.js'
 import { Details } from "./details/details.min.js";
 
 
-class System {
+class Services {
     static api = '/api/deployment-manager/deployments';
 
     constructor(ctr) {
