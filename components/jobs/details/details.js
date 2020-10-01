@@ -59,7 +59,6 @@ class Details {
                         let i;
                         for (i = 0; i < Object.keys(data['stages']).length; i++) {
                             const inputs = this.genFields(data['stages'][i]['inputs']);
-                            console.log(inputs);
                             const outputs = this.genFields(data['stages'][i]['outputs']);
                             stages.push(
                                 {
