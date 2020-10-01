@@ -51,7 +51,8 @@ class Form {
                                     pipelines: items,
                                     ds_id: ds_data['id'],
                                     ds_name: ds_data['name'],
-                                    ds_type: ds_data['type_id']
+                                    ds_p_id:  ds_data['platform_id'],
+                                    ds_type: ds_data['platform_type_id']
                                 }
                             );
                         } else {
@@ -92,7 +93,8 @@ class Form {
             body: JSON.stringify({
                 name: form.get('form-name'),
                 pipeline_id: form.get('form-pipeline'),
-                type_id: form.get('form-type')
+                platform_id: form.get('form-p-id'),
+                platform_type_id: form.get('form-type')
             }),
         })
             .then(response => {
