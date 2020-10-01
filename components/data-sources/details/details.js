@@ -39,7 +39,8 @@ class Details {
                             {
                                 id: ds,
                                 name: data['name'],
-                                type_id: data['type_id'],
+                                type_id: data['platform_type_id'],
+                                p_id: data['platform_id'],
                                 pipeline_id: data['pipeline_id']
                             }
                         );
