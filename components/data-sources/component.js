@@ -18,6 +18,7 @@ export {DataSources}
 
 import { List } from './list/list.min.js'
 import { Form } from './form/form.min.js'
+import { Details } from './details/details.min.js'
 
 
 class DataSources {
@@ -27,11 +28,15 @@ class DataSources {
     constructor(ctr) {
         this.list = new List(ctr);
         this.form = new Form(ctr);
+        this.details = new Details(ctr);
     }
 
     draw(sp, {ds}) {
         if (!sp && !ds) {
             return this.list.draw();
+        }
+        if (sp && ds && sp.has('action') && sp.get('action') === 'details') {
+            return this.details.draw(ds);
         }
         if (sp && !ds && sp.has('action') && sp.get('action') === 'new') {
             return this.form.draw();
