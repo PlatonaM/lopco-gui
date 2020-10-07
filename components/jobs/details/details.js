@@ -66,7 +66,9 @@ class Details {
                                     i_fields: inputs[0],
                                     null_i_fields: inputs[1],
                                     fields: outputs[0],
-                                    null_fields: outputs[1]
+                                    null_fields: outputs[1],
+                                    started: data['stages'][i]['started'],
+                                    completed: data['stages'][i]['completed']
                                 }
                             );
                         }
