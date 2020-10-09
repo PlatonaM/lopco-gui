@@ -1,13 +1,16 @@
 <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
     <div class="uk-float-left uk-width-1-2">
         <div>
-            <span class="uk-inline uk-text-small" style="width: 64px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+            <span class="uk-inline uk-text-small" style="width: 74px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
         </div>
         <div>
-            <span class="uk-inline uk-text-small" style="width: 64px">STATUS:</span><span class="{{status}} uk-inline uk-text-light uk-text-small">{{status}}</span>
+            <span class="uk-inline uk-text-small" style="width: 74px">STATUS:</span><span class="{{status}} uk-inline uk-text-light uk-text-small">{{status}}</span>
         </div>
         <div>
-            <span class="uk-inline uk-text-small" style="width: 64px">PORTS:</span><span class="uk-inline uk-text-light uk-text-small">{{#ports}}{{port}}->{{host_i}}:{{host_p}}{{/ports}}{{^ports}}null{{/ports}}</span>
+            <span class="uk-inline uk-text-small" style="width: 74px">PORTS:</span><span class="uk-inline uk-text-light uk-text-small">{{#ports}}{{port}}->{{host_i}}:{{host_p}}{{/ports}}{{^ports}}null{{/ports}}</span>
+        </div>
+        <div>
+            <span class="uk-inline uk-text-small" style="width: 74px">CREATED:</span><span class="uk-inline uk-text-light uk-text-small">{{created}}</span>
         </div>
     </div>
     <div class="uk-float-right uk-width-1-2">
@@ -21,8 +24,15 @@
             <span class="uk-inline uk-text-small" style="width: 55px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type}}</span>
         </div>
     </div>
+    {{#env_section}}
+    <div class="uk-float-right uk-width-1-1">
+        <div style="margin-top: 3px">
+            <span class="uk-inline uk-text-top uk-text-small" style="width: 74px">ENV:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#env}}<div>{{env_key}} = <span class="uk-text-italic">{{env_value}}</span></div>{{/env}}</div>
+        </div>
+    </div>
+    {{/env_section}}
     <div class="uk-grid-collapse uk-width-1-1" uk-grid>
-        <div style="width: 64px">
+        <div style="width: 74px">
             <span class="uk-text-small">LOG:</span>
         </div>
         <div id="log-ctr" class="uk-margin-small-top uk-padding-small uk-width-expand uk-text-small uk-text-light uk-text-left" style="border: 1px dashed #e5e5e5; height: 400px; overflow-x: auto; white-space: pre-wrap;"></div>
