@@ -50,6 +50,17 @@ class Details {
 
                             }
                         }
+                        let env_vars = [];
+                        if (data['environment']) {
+                            for (const [key, value] of Object.entries(data['environment'])) {
+                                env_vars.push(
+                                    {
+                                        env_key: key,
+                                        env_value: (value) ? value : 'null'
+                                    }
+                                )
+                            }
+                        }
                         this.container.innerHTML = Mustache.render(
                             template,
                             {
@@ -57,7 +68,10 @@ class Details {
                                 image: data['image']['name'],
                                 hash: data['image']['hash'],
                                 status: data['status'],
+                                created: data['created'],
                                 ports: ports,
+                                env_section: !!(data['environment']),
+                                env: env_vars,
                                 type: data['labels']['lopco-type']
                             }
                         );
