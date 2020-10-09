@@ -35,15 +35,17 @@ class Form {
                     .then((template) => {
                         let configs = [];
                         let num = 0;
-                        for (const [key, val] of Object.entries(data['configs'])) {
-                            configs.push(
-                                {
-                                    key: key,
-                                    value: val,
-                                    num: num
-                                }
-                            )
-                            num++;
+                        if (data['configs']) {
+                            for (const [key, val] of Object.entries(data['configs'])) {
+                                configs.push(
+                                    {
+                                        key: key,
+                                        value: val,
+                                        num: num
+                                    }
+                                )
+                                num++;
+                            }
                         }
                         if (data['ports']) {
                             for (num=0; num < data['ports'].length; num++) {
@@ -57,7 +59,7 @@ class Form {
                                 name: data['name'],
                                 image: data['image'],
                                 dc_path: data['data_cache_path'],
-                                has_configs: !!(configs),
+                                has_configs: !!(data['configs']),
                                 configs: configs,
                                 has_ports: !!(data['ports']),
                                 ports: data['ports']
