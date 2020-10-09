@@ -31,5 +31,5 @@ const routes = [
     ['/protocol-adapters/deployments', 'protocol-adapters/deployments', 'Deployments'],
     ['/protocol-adapters/deployments/{pa}', 'protocol-adapters/deployments', 'Deployments'],
     ['/system', 'system/services', 'Services'],
-    ['/system/services/{srv}', 'system/services', 'Services'],
+    ['/system/services/{srv}', 'system/services', 'Services']
 ];
