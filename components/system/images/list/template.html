@@ -6,9 +6,8 @@
                 <div uk-dropdown>
                     <ul class="uk-nav uk-dropdown-nav">
                         <li class="uk-active" uk-filter-control="sort: data-name"><a href="#">Name</a></li>
-                        <li uk-filter-control="sort: data-status"><a href="#">Status</a></li>
-                        <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
-                        <li uk-filter-control="sort: data-hash"><a href="#">Hash</a></li>
+                        <li uk-filter-control="sort: data-created"><a href="#">Created</a></li>
+                        <li uk-filter-control="sort: data-size"><a href="#">Size</a></li>
                     </ul>
                 </div>
             </li>
@@ -27,7 +26,7 @@
     <div class="uk-width-1-1 uk-float-left" style="padding-bottom: 40px">
         <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
             {{#items}}
-            <li data-name="{{name}}" data-status="{{status}}">
+            <li data-name="{{name}}" data-created="{{created}}" data-size="{{size}}">
                 <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
                     <div class="uk-float-left uk-width-1-2">
                         <div>
