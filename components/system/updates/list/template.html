@@ -1,0 +1,52 @@
+<div uk-filter="target: .js-filter">
+    <div class="uk-width-1-2 uk-float-left">
+        <ul class="uk-subnav uk-subnav-pill">
+            <li>
+                <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+                <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-active" uk-filter-control="sort: data-type"><a href="#">Type</a></li>
+                        <li uk-filter-control="sort: data-image"><a href="#">Image</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-1-2 uk-float-right">
+        <ul class="uk-subnav uk-subnav-pill uk-margin-auto-left" style="width: max-content">
+            <li>
+                <a href="/system">Services</a>
+            </li>
+            <li>
+                <a href="/system/images">Images</a>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-1-1 uk-float-left" style="padding-bottom: 40px">
+        <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+            {{#items}}
+            <li data-type="{{type}}{{image}}" data-image="{{image}}">
+                <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+                    <div class="uk-float-left uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 70px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
+                        </div>
+                        <div style="margin-top: 3px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 70px">USED BY:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#entities}}<div>{{^e_id}}{{e_name}}{{/e_id}}{{#e_id}}<a class="uk-text-light uk-text-small uk-link-text" href="{{e_api}}/{{e_id}}?action=details">{{e_name}}</a>{{/e_id}}</div>{{/entities}}</div>
+                        </div>
+                    </div>
+                    <div class="uk-float-right uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 46px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type}}</span>
+                        </div>
+                    </div>
+                    <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+                    <div class="uk-float-left uk-width-1-1">
+                        <a onclick="active_cmp.list.update('{{image}}');" class="uk-icon-link" style="margin-right: 25px" uk-icon="pull"><span class="uk-text-small" style="margin-right: 5px">UPDATE</span></a>
+                    </div>
+                </div>
+            </li>
+            {{/items}}
+        </ul>
+    </div>
+</div>
