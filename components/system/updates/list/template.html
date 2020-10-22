@@ -29,15 +29,18 @@
                 <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
                     <div class="uk-float-left uk-width-1-2">
                         <div>
-                            <span class="uk-inline uk-text-small" style="width: 70px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
+                            <span class="uk-inline uk-text-small" style="width: 55px">IMAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{image}}</span>
                         </div>
-                        <div style="margin-top: 3px">
-                            <span class="uk-inline uk-text-top uk-text-small" style="width: 70px">USED BY:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#entities}}<div>{{^e_id}}{{e_name}}{{/e_id}}{{#e_id}}<a class="uk-text-light uk-text-small uk-link-text" href="{{e_api}}/{{e_id}}?action=details">{{e_id}}</a>{{/e_id}}</div>{{/entities}}</div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 55px">TIME:</span><span class="uk-inline uk-text-light uk-text-small">{{time}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 55px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type}}</span>
                         </div>
                     </div>
                     <div class="uk-float-right uk-width-1-2">
-                        <div>
-                            <span class="uk-inline uk-text-small" style="width: 46px">TYPE:</span><span class="uk-inline uk-text-light uk-text-small">{{type}}</span>
+                        <div style="margin-top: 3px">
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 101px">REQUIRED BY:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#entities}}<div>{{^e_api}}{{e_id}}{{/e_api}}{{#e_api}}<a class="uk-text-light uk-text-small uk-link-text" href="{{e_api}}/{{e_id}}?action=details">{{e_id}}</a>{{/e_api}}</div>{{/entities}}</div>
                         </div>
                     </div>
                     <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
