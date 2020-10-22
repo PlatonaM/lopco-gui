@@ -33,7 +33,10 @@ class List {
                 if (response.ok) {
                     return response.json()
                 }
-                throw 'Error retrieving updatable items - ' + response.status;
+                if (response.status === 503) {
+                    throw 'Currently checking for updates, please try again later.'
+                }
+                throw 'Error retrieving available updates - ' + response.status;
             })
             .then((data) => {
                 fetch('/components/system/updates/list/template.html')
