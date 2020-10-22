@@ -92,7 +92,7 @@ class List {
             })
             .catch((err) => {
                 hideSpinner();
-                alert('Error refreshing available updates ' + id + ' - ' + err);
+                alert('Error refreshing available updates - ' + err);
             })
     }
 }
