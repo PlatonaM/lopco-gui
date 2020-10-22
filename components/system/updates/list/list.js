@@ -43,12 +43,11 @@ class List {
                         for (let [key, value] of Object.entries(data)) {
                             let entities = [];
                             if (value['entities']) {
-                                for (let [k, v] of Object.entries(value['entities'])) {
+                                for (let id of value['entities']) {
                                     entities.push(
                                         {
-                                            e_id: k,
+                                            e_id: id,
                                             e_api: List.type_map[value['type']],
-                                            e_name: v['name']
                                         }
                                     )
                                 }
@@ -56,8 +55,8 @@ class List {
                             if (value['type'] === 'core') {
                                 entities.push(
                                     {
-                                        e_id: null,
-                                        e_name: 'LOPCO'
+                                        e_id: 'LOPCO',
+                                        e_api: null
                                     }
                                 )
                             }
@@ -65,7 +64,8 @@ class List {
                                 {
                                     image: key,
                                     type: value['type'],
-                                    entities: entities
+                                    entities: entities,
+                                    time: value['time']
                                 }
                             )
                         }
