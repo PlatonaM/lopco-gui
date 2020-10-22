@@ -76,4 +76,20 @@ class List {
                 this.container.innerHTML = err
             });
     }
+
+    refresh() {
+        showSpinner();
+        fetch(active_cmp.constructor.api + '?refresh=true')
+            .then((response) => {
+                if (response.ok) {
+                    window.open('/system/updates','_self');
+                } else {
+                    throw response.status;
+                }
+            })
+            .catch((err) => {
+                hideSpinner();
+                alert('Error refreshing available updates ' + id + ' - ' + err);
+            })
+    }
 }
