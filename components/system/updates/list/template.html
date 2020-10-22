@@ -13,14 +13,21 @@
         </ul>
     </div>
     <div class="uk-width-1-2 uk-float-right">
-        <ul class="uk-subnav uk-subnav-pill uk-margin-auto-left" style="width: max-content">
-            <li>
-                <a href="/system">Services</a>
-            </li>
-            <li>
-                <a href="/system/images">Images</a>
-            </li>
-        </ul>
+        <div class="uk-margin-auto-left" style="width: max-content">
+            <ul class="uk-subnav uk-subnav-pill uk-subnav-divider" style="width: max-content; margin-left: 0; float: right">
+                <li style="padding-left: 0">
+                    <a href="/system/images">Images</a>
+                </li>
+                <li>
+                    <a onclick="active_cmp.list.refresh();">Refresh<span style="margin-left: 5px" uk-icon="icon: refresh"></span></a>
+                </li>
+            </ul>
+            <ul class="uk-subnav uk-subnav-pill" style="width: max-content; margin-top: 0; float: right">
+                <li style="margin-top: 1px">
+                    <a href="/system">Services</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="uk-width-1-1 uk-float-left" style="padding-bottom: 40px">
         <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
