@@ -95,4 +95,23 @@ class List {
                 alert('Error refreshing available updates - ' + err);
             })
     }
+
+    update(img) {
+        showSpinner();
+        fetch(active_cmp.constructor.api + '/' + encodeURIComponent(encodeURIComponent(img)), {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => {
+                if (response.ok) {
+                    window.open('/system/updates','_self');
+                } else {
+                    throw response.status;
+                }
+            })
+            .catch((err) => {
+                hideSpinner();
+                alert('Error updating "' + img + '" - ' + err);
+            })
+    }
 }
