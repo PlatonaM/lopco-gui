@@ -1,0 +1,68 @@
+<div uk-filter="target: .js-filter">
+    <div class="uk-width-1-2 uk-float-left">
+        <ul class="uk-subnav uk-subnav-pill">
+            <li>
+                <a href="#">Sort by<span style="margin-left: 5px" uk-icon="icon: triangle-down"></span></a>
+                <div uk-dropdown>
+                    <ul class="uk-nav uk-dropdown-nav">
+                        <li class="uk-active" uk-filter-control="sort: data-time; order: desc"><a href="#">Time</a></li>
+                        <li uk-filter-control="sort: data-name; order: desc"><a href="#">Name</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-1-2 uk-float-right">
+        <div class="uk-margin-auto-left" style="width: max-content">
+            <ul class="uk-subnav uk-subnav-pill" style="width: max-content; margin-left: 0; margin-top: 0; float: right">
+                <li>
+                    <a onclick="active_cmp.list.import();">Import<span style="margin-left: 5px" uk-icon="icon: upload"></span></a>
+                </li>
+            </ul>
+            <ul class="uk-subnav uk-subnav-pill uk-subnav-divider" style="width: max-content; margin-left: 0; margin-top: 0; float: right">
+                <li style="padding-left: 0">
+                    <a href="/system/updates">Updates</a>
+                </li>
+                <li>
+                    <a onclick="active_cmp.list.create();">Create<span style="margin-left: 5px" uk-icon="icon: plus-circle"></span></a>
+                </li>
+            </ul>
+            <ul class="uk-subnav uk-subnav-pill" style="width: max-content; margin-top: 0; float: right">
+                <li style="margin-top: 1px">
+                    <a href="/system">Services</a>
+                </li>
+                <li style="margin-top: 1px">
+                    <a href="/system/images">Images</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="uk-width-1-1 uk-float-left" style="padding-bottom: 40px">
+        <ul class="js-filter uk-child-width-1-1 uk-child-width-1-1@m uk-grid-small" uk-grid>
+            {{#items}}
+            <li data-time="{{time}}" data-name="{{name}}">
+                <div class="uk-card uk-card-body uk-padding-small uk-background-muted">
+                    <div class="uk-float-left uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 55px">NAME:</span><span class="uk-inline uk-text-light uk-text-small">{{name}}</span>
+                        </div>
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 55px">SIZE:</span><span class="uk-inline uk-text-light uk-text-small">{{size}} Bytes</span>
+                        </div>
+                    </div>
+                    <div class="uk-float-right uk-width-1-2">
+                        <div>
+                            <span class="uk-inline uk-text-small" style="width: 55px">TIME:</span><span class="uk-inline uk-text-light uk-text-small">{{time}}</span>
+                        </div>
+                    </div>
+                    <hr class="uk-float-left uk-width-1-1 uk-margin-small-top uk-margin-small-bottom">
+                    <div class="uk-float-left uk-width-1-1">
+                        <a onclick="active_cmp.list.apply('{{name}}');" class="uk-icon-link" style="margin-right: 25px" uk-icon="pull"><span class="uk-text-small" style="margin-right: 5px">APPLY</span></a>
+                        <a onclick="active_cmp.list.delete('{{name}}');" class="uk-icon-link" style="margin-right: 25px" uk-icon="trash"><span class="uk-text-small" style="margin-right: 5px">DELETE</span></a>
+                    </div>
+                </div>
+            </li>
+            {{/items}}
+        </ul>
+    </div>
+</div>
