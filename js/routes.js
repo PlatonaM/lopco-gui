@@ -33,5 +33,6 @@ const routes = [
     ['/system', 'system/services', 'Services'],
     ['/system/services/{srv}', 'system/services', 'Services'],
     ['/system/images', 'system/images', 'Images'],
-    ['/system/updates', 'system/updates', 'Updates']
+    ['/system/updates', 'system/updates', 'Updates'],
+    ['/system/backups', 'system/backups', 'Backups']
 ];
