@@ -40,6 +40,12 @@
                             <span class="uk-inline uk-text-top uk-text-small" style="width: 96px">OUTPUTS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#fields}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/fields}}{{#null_fields}}<div class="uk-text-italic">{{field}}</div>{{/null_fields}}</div>
                         </div>
                     </div>
+                    <div class="uk-grid-collapse uk-width-1-1" uk-grid>
+                        <div style="width: 96px">
+                            <span class="uk-text-small">LOG:</span>
+                        </div>
+                        <div class="uk-margin-small-top uk-padding-small uk-width-expand uk-text-small uk-text-light uk-text-left" style="border: 1px dashed #e5e5e5; height: 250px; overflow-x: auto; white-space: pre;">{{log}}</div>
+                    </div>
                 </div>
             </li>
             {{/stages}}
