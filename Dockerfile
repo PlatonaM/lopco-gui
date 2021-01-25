@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --update --no-cache lighttpd
+RUN apk --no-cache add lighttpd
 
 RUN mkdir -p /var/www/localhost/htdocs /var/log/lighttpd /var/lib/lighttpd
 
