@@ -77,7 +77,7 @@ class Form {
                         this.stage_container = document.getElementById('stages');
                         if (pl_data) {
                             let i;
-                            for (i=0; i < Object.keys(pl_data['stages']).length; i++) {
+                            for (i=1; i <= Object.keys(pl_data['stages']).length; i++) {
                                 this.addStage(pl_data['stages'][i]['worker']['id'], pl_data['stages'][i]);
                             }
                         }
