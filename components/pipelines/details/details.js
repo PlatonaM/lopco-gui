@@ -36,7 +36,7 @@ class Details {
                     .then((template) => {
                         let stages = [];
                         let i;
-                        for (i=0; i < Object.keys(data['stages']).length; i++) {
+                        for (i=1; i <= Object.keys(data['stages']).length; i++) {
                             let i_map = [];
                             for (let [key, value] of Object.entries(data['stages'][i]['input_map'])) {
                                 i_map.push(
