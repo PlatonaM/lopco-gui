@@ -57,7 +57,7 @@ class Details {
                     .then((template) => {
                         let stages = [];
                         let i;
-                        for (i = 0; i < Object.keys(data['stages']).length; i++) {
+                        for (i = 1; i <= Object.keys(data['stages']).length; i++) {
                             const inputs = this.genFields(data['stages'][i]['inputs']);
                             const outputs = this.genFields(data['stages'][i]['outputs']);
                             stages.push(
