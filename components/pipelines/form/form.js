@@ -110,20 +110,22 @@ class Form {
         const form = new FormData(event.target);
         let i;
         for (i=1; i <= Object.keys(active_cmp.form.stages).length; i++) {
-            active_cmp.form.stages[String(i)]['worker'] = { ...active_cmp.form.workers[active_cmp.form.stages[String(i)]['wk_id']] };
-            active_cmp.form.stages[String(i)]['worker']['id'] = active_cmp.form.stages[String(i)]['wk_id'];
-            delete active_cmp.form.stages[String(i)]['wk_id'];
-            active_cmp.form.stages[String(i)]['description'] = form.get(active_cmp.form.stages[String(i)]['id'] + '-description');
-            active_cmp.form.stages[String(i)]['input_map'] = {};
+            let st_num = String(i);
+            let st_id = active_cmp.form.stages[st_num]['id'];
+            active_cmp.form.stages[st_num]['worker'] = JSON.parse(JSON.stringify(active_cmp.form.workers[active_cmp.form.stages[st_num]['wk_id']]));
+            active_cmp.form.stages[st_num]['worker']['id'] = active_cmp.form.stages[st_num]['wk_id'];
+            delete active_cmp.form.stages[st_num]['wk_id'];
+            active_cmp.form.stages[st_num]['description'] = form.get(st_id + '-description');
+            active_cmp.form.stages[st_num]['input_map'] = {};
             for (let [key, value] of form.entries()) {
-                if (key.includes(active_cmp.form.stages[String(i)]['id']+'-input-key')) {
-                    active_cmp.form.stages[String(i)]['input_map'][value] = form.get(active_cmp.form.stages[String(i)]['id']+'-input-value-'+key.split('-')[3]);
+                if (key.includes(st_id+'-input-key')) {
+                    active_cmp.form.stages[st_num]['input_map'][value] = form.get(st_id+'-input-value-'+key.split('-')[3]);
                 }
-                if (key.includes(active_cmp.form.stages[String(i)]['id']+'-config-key')) {
-                    active_cmp.form.stages[String(i)]['worker']['configs'][value] = form.get(active_cmp.form.stages[String(i)]['id']+'-config-value-'+key.split('-')[3]);
+                if (key.includes(st_id+'-config-key')) {
+                    active_cmp.form.stages[st_num]['worker']['configs'][value] = form.get(st_id+'-config-value-'+key.split('-')[3]);
                 }
             }
-            delete active_cmp.form.stages[String(i)]['id'];
+            delete active_cmp.form.stages[st_num]['id'];
         }
         let url;
         if (method === 'POST') {
