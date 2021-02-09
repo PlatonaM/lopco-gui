@@ -109,7 +109,7 @@ class Form {
         event.preventDefault();
         const form = new FormData(event.target);
         let i;
-        for (i=0; i < Object.keys(active_cmp.form.stages).length; i++) {
+        for (i=1; i <= Object.keys(active_cmp.form.stages).length; i++) {
             active_cmp.form.stages[String(i)]['worker'] = { ...active_cmp.form.workers[active_cmp.form.stages[String(i)]['wk_id']] };
             active_cmp.form.stages[String(i)]['worker']['id'] = active_cmp.form.stages[String(i)]['wk_id'];
             delete active_cmp.form.stages[String(i)]['wk_id'];
@@ -132,6 +132,10 @@ class Form {
         if (method === 'PUT') {
             url = active_cmp.constructor.api + '/' + form.get('id');
         }
+        console.log(JSON.stringify({
+            'name': form.get('name'),
+            'stages': active_cmp.form.stages
+        }))
         fetch(url, {
             method: method,
             headers: { 'Content-Type': 'application/json' },
@@ -164,36 +168,18 @@ class Form {
     }
 
     addStage(wk_id, data=null) {
-        const st_num = Object.keys(active_cmp.form.stages).length;
+        const st_num = Object.keys(active_cmp.form.stages).length + 1;
         let inputs = [];
         let i_num = 0;
         if (active_cmp.form.workers[wk_id]['input']) {
             for (let item of active_cmp.form.workers[wk_id]['input']['fields']) {
-                let values = [];
-                if (st_num === 0) {
-                    values.push(
-                        {
-                            name: 'init_source',
-                            selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === 'init_source') : null : null
-                        }
-                    )
-                } else {
-                    if (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) {
-                        for (let o_item of active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']['fields']) {
-                            values.push({
-                                ...o_item,
-                                selected: (data) ? (Object.keys(data['input_map']).includes(item['name'])) ? (data['input_map'][item['name']] === o_item['name']) : null : null
-                            });
-                        }
-                    }
-                }
                 inputs.push(
                     {
-                        name: item['name'],
+                        i_name: item['name'],
                         media_type: item['media_type'],
                         is_file: item['is_file'],
                         i_num: i_num,
-                        values: values
+                        o_name: (st_num === 1) ? '0:init_source' : (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) ? (data) ? data['input_map'][item['name']] : null : null
                     }
                 );
                 i_num++;
@@ -241,40 +227,31 @@ class Form {
                 break;
             }
         }
-        if (st_num !== Object.keys(active_cmp.form.stages).length - 1) {
+        if (st_num !== Object.keys(active_cmp.form.stages).length) {
             let i;
-            for (i=st_num; i < Object.keys(active_cmp.form.stages).length - 1; i++) {
+            for (i=st_num; i < Object.keys(active_cmp.form.stages).length; i++) {
                 active_cmp.form.stages[String(i)] = active_cmp.form.stages[String(i + 1)];
             }
         }
-        delete active_cmp.form.stages[String(Object.keys(active_cmp.form.stages).length - 1)]
-        if ((Object.keys(active_cmp.form.stages).length > 0) && (st_num !== Object.keys(active_cmp.form.stages).length)) {
-            if (st_num === 0) {
-                active_cmp.form.repopulateInputs(st_num, [ {name: 'init_source'} ]);
-            } else {
-                if (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) {
-                    active_cmp.form.repopulateInputs(st_num, active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']['fields']);
-                }
-            }
-        }
+        delete active_cmp.form.stages[String(Object.keys(active_cmp.form.stages).length)];
         for (let [key, value] of Object.entries(active_cmp.form.stages)) {
             let num_e = document.getElementById(value['id'] + '-number');
             num_e.value = key;
-        }
-    }
-
-    repopulateInputs(st_num, fields) {
-        let i;
-        for (i=0; i < active_cmp.form.workers[active_cmp.form.stages[String(st_num)]['wk_id']]['input']['fields'].length; i++) {
-            let in_elm = document.getElementById(active_cmp.form.stages[String(st_num)]['id'] + '-input-value-' + i);
-            while (in_elm.options.length > 1) {
-                in_elm.options.remove(in_elm.options.length - 1);
-            }
-            for (let item of fields) {
-                let in_opt = document.createElement('option')
-                in_opt.value = item['name'];
-                in_opt.text = item['name'];
-                in_elm.add(in_opt);
+            let i;
+            for (i=0; i < active_cmp.form.workers[value['wk_id']]['input']['fields'].length; i++) {
+                let in_elm = document.getElementById(value['id'] + '-input-value-' + i);
+                if ((st_num === 1) && (Number(key) === st_num)) {
+                    in_elm.value = '0:init_source';
+                } else {
+                    let in_map = in_elm.value.split(':')
+                    let in_map_num = Number(in_map[0])
+                    if (in_map_num > st_num) {
+                        in_elm.value = in_map_num - 1 + ':' + in_map[1]
+                    }
+                    if (in_map_num === st_num) {
+                        in_elm.value = '';
+                    }
+                }
             }
         }
     }
