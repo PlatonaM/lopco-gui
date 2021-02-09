@@ -132,10 +132,6 @@ class Form {
         if (method === 'PUT') {
             url = active_cmp.constructor.api + '/' + form.get('id');
         }
-        console.log(JSON.stringify({
-            'name': form.get('name'),
-            'stages': active_cmp.form.stages
-        }))
         fetch(url, {
             method: method,
             headers: { 'Content-Type': 'application/json' },
