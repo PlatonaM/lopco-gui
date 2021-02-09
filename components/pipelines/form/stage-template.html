@@ -31,16 +31,17 @@
             {{#input}}
             <div class="uk-flex uk-flex-left uk-flex-top uk-flex-nowrap uk-margin-small-right">
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <input class="uk-input" type="text" value="{{name}}" uk-tooltip="title: {{media_type}}; pos: top-left; delay: 500" disabled>
-                    <input class="uk-input" id="{{id}}-input-key-{{i_num}}" name="{{id}}-input-key-{{i_num}}" type="text" value="{{name}}" hidden>
+                    <input class="uk-input" type="text" value="{{i_name}}" uk-tooltip="title: {{media_type}}; pos: top-left; delay: 500" disabled>
+                    <input class="uk-input" id="{{id}}-input-key-{{i_num}}" name="{{id}}-input-key-{{i_num}}" type="text" value="{{i_name}}" hidden>
                 </div>
                 <div class="uk-flex-none uk-form-controls uk-margin-remove uk-width-1-2">
-                    <select class="uk-select" id="{{id}}-input-value-{{i_num}}" name="{{id}}-input-value-{{i_num}}" onchange="" uk-tooltip="title: Output to map to input field; pos: top-left; delay: 500">
+                    <input class="uk-input" id="{{id}}-input-value-{{i_num}}" name="{{id}}-input-value-{{i_num}}" type="text" value="{{o_name}}" uk-tooltip="title: Input field value; pos: top-left; delay: 500">
+<!--                    <select class="uk-select" id="{{id}}-input-value-{{i_num}}" name="{{id}}-input-value-{{i_num}}" onchange="" uk-tooltip="title: Output to map to input field; pos: top-left; delay: 500">
                         <option value="">None</option>
                         {{#values}}
                         <option value="{{name}}" {{#selected}}selected{{/selected}}>{{name}}</option>
                         {{/values}}
-                    </select>
+                    </select>-->
                 </div>
             </div>
             {{/input}}
