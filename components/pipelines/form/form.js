@@ -177,7 +177,7 @@ class Form {
                         media_type: item['media_type'],
                         is_file: item['is_file'],
                         i_num: i_num,
-                        o_name: (st_num === 1) ? '0:init_source' : (active_cmp.form.workers[active_cmp.form.stages[String(st_num - 1)]['wk_id']]['output']) ? (data) ? data['input_map'][item['name']] : null : null
+                        o_name: (st_num === 1) ? '0:init_source' : (data) ? data['input_map'][item['name']] : null
                     }
                 );
                 i_num++;
