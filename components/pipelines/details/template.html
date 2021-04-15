@@ -17,7 +17,7 @@
             {{#stages}}
             <li>
                 <div class="uk-card uk-card-body uk-padding-small" style="border: 1px dashed #e5e5e5;">
-                    <div class="uk-float-left uk-width-1-1">
+                    <div class="uk-float-left uk-width-1-1" style="overflow-x: auto;">
                         <div>
                             <span class="uk-inline uk-text-small" style="width: 104px">STAGE:</span><span class="uk-inline uk-text-light uk-text-small">{{st_num}}</span>
                         </div>
@@ -37,7 +37,7 @@
                         {{/has_output}}
                         {{#has_config}}
                         <div style="margin-top: 4px">
-                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">CONFIGS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small">{{#configs}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/configs}}</div>
+                            <span class="uk-inline uk-text-top uk-text-small" style="width: 104px">CONFIGS:</span><div class="uk-inline uk-text-light uk-text-top uk-text-small" style="white-space: pre;">{{#configs}}<div>{{field}} = <span class="uk-text-italic">{{f_value}}</span></div>{{/configs}}</div>
                         </div>
                         {{/has_config}}
                     </div>
